@@ -1,0 +1,244 @@
+<include file="Public:head"/> 
+
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/cymain.css" />
+
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/themes/default/default.css" />
+
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/plugins/code/prettify.css" />
+
+<script src="{laoyang::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+
+<script src="{laoyang::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+
+<script src="{laoyang::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+
+<script src="./tpl/User/default/common/js/cart/jscolor.js" type="text/javascript"></script>
+
+
+
+<script type="text/javascript" src="/tpl/User/default/common/js/jQuery.js"></script>
+
+<script>
+
+var editor;
+
+KindEditor.ready(function(K) {
+
+editor = K.create('#intro', {
+
+resizeType : 1,
+
+allowPreviewEmoticons : false,
+
+allowImageUpload : true,
+
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+
+items : [
+
+'source','undo','clearhtml','hr',
+
+'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+
+'insertunorderedlist', '|', 'emoticons', 'image','link', 'unlink','baidumap','lineheight','table','anchor','preview','print','template','code','cut']
+
+});
+
+
+
+});
+
+</script>
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/default_user_com.css" media="all">
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:10px;" >
+<if condition="$ischild neq 1">
+<include file="Public:hangye"/>
+
+<div class="cLineB">
+</if>
+<h4 class="left">竞猜回复设置</h4>
+<div class="clr"></div>
+</div>
+
+ <div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:10px;" >
+
+
+
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+
+
+
+<div class="tab">
+
+<ul>
+
+<li class="<if condition="ACTION_NAME EQ 'index'">current</if> tabli" id="tab0"><a href="{laoyang::U('Jingcai/index',array('token'=>$token))}">回复设置</a></li>
+
+<li class="<if condition="ACTION_NAME EQ 'type'">current</if> tabli" id="tab2"><a href="{laoyang::U('Jingcai/type',array('token'=>$token))}">赛事类别</a></li>
+
+
+</ul>
+
+</div>
+
+<link rel="stylesheet" type="text/css" href="{laoyang::STATICS}/default_user_com.css" media="all">
+
+<div class="cLineB">
+
+
+
+ </div> 
+
+  <div class="msgWrap bgfc">
+
+  <form action="" method="post" class="form-horizontal form-validate" novalidate="novalidate">
+
+  <input type="hidden" name="token" value="{laoyang:$token}" />
+
+<if condition="$es_data['id'] neq ''">
+
+<input type="hidden" name="id" value="{laoyang:$es_data['id']}" />
+
+</if>
+
+	<div class="control-group">
+
+		<label for="title" class="control-label">图文消息标题：</label>
+
+		<div class="controls">
+
+			<input type="text" name="title" id="title" maxlength="10" class="span4" value="{laoyang:$es_data['title']}" data-rule-required="true"><span class="maroon">*</span><span class="help-inline">触发关键词后返回图文消息标题</span>
+
+		</div>
+
+	</div>
+
+	<div class="control-group">
+
+		<label for="keyword" class="control-label">触发关键词：</label>
+
+		<div class="controls">
+
+			<input type="text" name="keyword" id="keyword" class="span4" data-rule-required="true" value="{laoyang:$es_data['keyword']}"><span class="maroon">*</span><span class="help-inline">只能设置一个关键字</span>
+
+		</div>
+
+	</div>
+	<div class="control-group">
+
+		<label for="coverurl" class="control-label">图文消息封面：</label>
+
+		<div class="controls">
+
+      <img class="thumb_img" id="cover_src" src="{laoyang:$es_data['cover']|default='./tpl/static/jingcai/yunm.jpg'}" style="max-height:100px;">
+
+      <input type="text" class="px" id="cover" value="{laoyang:$es_data['cover']|default='./tpl/static/jingcai/yunm.jpg'}" name="cover" >
+
+
+
+               <script src="{laoyang::STATICS}/upyun.js"></script><a href="###" onclick="upyunPicUpload('cover',360,200,'{laoyang:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('cover')">预览</a>
+
+              <span class="help-inline">建议尺寸：宽360像素，高200像素</span>
+
+          </span>
+
+       </div>
+
+	</div>
+
+	
+
+     <div class="control-group">
+
+		<label for="coverurl" class="control-label">赛事列表头部图片：</label>
+
+		<div class="controls">
+
+      <img class="thumb_img" id="bannerpic_src" src="{laoyang:$es_data['bannerpic']|default='./tpl/static/jingcai/yunm.jpg'}" style="max-height:100px;">
+
+      <input type="text" class="px" id="bannerpic" value="{laoyang:$es_data['bannerpic']|default='./tpl/static/jingcai/yunm.jpg'}" name="bannerpic" >
+
+
+
+               </script><a href="###" onclick="upyunPicUpload('bannerpic',720,130,'{laoyang:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('bannerpic')">预览</a>
+
+              <span class="help-inline">建议尺寸：宽720像素，高130像素</span>
+
+          </span>
+
+       </div>
+
+	</div>
+
+
+
+     <div class="control-group">
+
+         <label for="estate_desc" class="control-label">简介：</label>
+
+         <div class="controls">
+
+             <textarea class="px" id="info" name="info" style="width: 605px; height: 150px;">{laoyang:$es_data['info']}</textarea>
+
+                                        
+
+         </div>
+
+     </div>
+
+    <div class="control-group">
+
+         <label for="estate_desc" class="control-label">是否开启抽奖：</label>
+
+         <div class="controls">
+
+            <input type="radio" name="choujiang" value="1"   <if condition="$es_data['choujiang'] eq 1">checked</if> >是
+            <input type="radio" name="choujiang" value="0"  <if condition="$es_data['choujiang'] neq 1">checked</if> >否
+         </div>
+
+     </div>
+     
+     <div class="control-group">
+
+         <label for="estate_desc" class="control-label">活动状态：</label>
+
+         <div class="controls">
+
+              <input type="radio" name="status" value="1"  <if condition="$es_data['status'] eq 1">checked</if> >是
+            <input type="radio" name="status" value="0" <if condition="$es_data['status'] neq 1">checked</if> >否
+
+                                        
+
+         </div>
+
+     </div>
+
+ <if condition="$es_data['id'] neq ''">
+
+<input type="hidden" name="id" value="{laoyang:$es_data['id']}" />
+
+</if>
+
+   <div class="form-actions">
+
+			<button id="bsubmit" type="submit" data-loading-text="提交中..." class="btnGreen">保存</button>　<button type="button" class="btnGray vm">取消</button>
+
+		</div>
+
+</form>
+
+  </div> 
+
+ 
+
+  
+
+        </div>
+
+		
+
+<include file="Public:footer"/>

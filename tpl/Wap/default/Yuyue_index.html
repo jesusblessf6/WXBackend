@@ -1,0 +1,71 @@
+﻿<html>
+<head>
+<title>{laoyang:$data.copyright}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link href="{laoyang::RES}/css/yuyue/hotel.css" rel="stylesheet" type="text/css">
+<style>
+	.yuding{position:relative;color:#F60;text-align:center;line-height:30px;
+		font-size:16px;
+	}
+</style>
+</head>
+<body id="" >
+<div class="qiandaobanner"> 
+		<if condition="$data['topic'] neq ''"><img src="{laoyang:$data.topic}"><else /><img src="{laoyang::RES}/images/yuyue/head_pic.jpg"></if>
+   </div>
+<div class="cardexplain"> 
+
+  <!--普通用户登录时显示-->
+     
+<!--商家房价及类型-->
+<ul class="round">
+<li class="title"><span class="none">预订内容</span></li>
+<volist name="info" id="item">      
+ <li class="dandanb"> <!--订房-->
+<a href="{laoyang::U($type.'/info',array('token'=> $data['token'], 'wecha_id'=> $data['wecha_id'],'id'=>$item['pid'],'aid'=>$item['id']))}">
+	<span>
+	 <table class="jiagebiao" width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td><div>{laoyang:$item.name}</div>
+				<div><img src="{laoyang:$item.pic1}" class="showimg">
+				<p>{laoyang:$item.memo}</p>
+				<p>原&nbsp;&nbsp;&nbsp;价：<a class="yuanjia" style="text-decoration: line-through">￥{laoyang:$item.yuanjia}</a></p>
+				<p>优惠价：<a class="youhuijia">￥{laoyang:$item.youhui}</a></p></td>
+
+				<td><div class="yuding">预订</div></td>
+			</tr>
+			
+		</table>
+		
+	</span>
+</a>
+</li>
+</volist>
+
+
+	</ul>
+
+
+
+	<!--后台可控制是否显示-->
+
+
+<ul class="round">
+<li class="title"><span class="none">订单说明</span></li>
+<li>
+	<div class="text">{laoyang:$data.info}</div>
+</li>
+</ul>
+<!--后台可控制是否显示-->
+<ul class="round">
+	<li class="addr"><a href="http://api.map.baidu.com/marker?location={laoyang:$data.longitude},{laoyang:$data.latitude}&title={laoyang:$data.copyright}&name={laoyang:$data.copyright}&content={laoyang:$data.address}&output=html&src=weiba|weiweb"><span>地址： {laoyang:$data.address}</span></a></li>
+	<li class="tel"><a href="tel:{laoyang:$data.phone}"><span>电话： {laoyang:$data.phone}</span></a></li>
+</ul>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<include file="Public:head"/>
+
+<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+
+          <div class="cLineB">
+<h4>短信平台</h4></div>
+
+          <form method="post" action="{laoyang::U('User/Index/upsave')}" enctype="multipart/form-data">
+
+          <input type="hidden" name="id" value="{laoyang:$info.id}">
+
+          <div class="msgWrap">
+
+            <table class="userinfoArea" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+              <thead>
+
+<!-- 			    <tr>
+
+                  <th><span class="red">*</span>短信平台手机号：</th>
+
+                  <td><input type="text" required="" class="px" name="phone" value="{laoyang:$info.phone}" tabindex="1" size="25"><span class="red">&nbsp;&nbsp;用于接收订单的手机号</span>
+
+                  </td>
+
+                </tr> -->
+				<tr>
+
+                  <th><span class="red">*</span>短信平台ID：</th>
+
+                  <td><input type="text" required="" class="px" name="smsid" value="{laoyang:$info.smsid}" tabindex="1" size="25"> <span class="red">&nbsp;&nbsp;平台商开通账号教程：<a href="http://www.fenxiangweb.com" target="_blank"><img src="{laoyang::RES}/images/help.png" class="vm helpimg" title="帮助"></a></span>
+
+                  </td>
+
+                </tr>
+                <tr>
+
+                  <th><span class="red">*</span>短信平台账号：</th>
+
+                  <td><input type="text" required="" class="px" name="smsuser" value="{laoyang:$info.smsuser}" tabindex="1" size="25"> <span class="red">&nbsp;&nbsp;客户开通或充值：<a href="http://wpa.qq.com/msgrd?v=3&uin={laoyang::C('site_qq')}&site=qq&menu=yes" target="_blank"><img src="{laoyang::RES}/images/help.png" class="vm helpimg" title="帮助"></a></span>
+
+                  </td>
+
+                </tr>
+
+				<tr>
+
+                  <th><span class="red">*</span>短信平台密码：</th>
+
+                  <td><input type="text" required="" class="px" name="smspassword" value="{laoyang:$info.smspassword}" tabindex="1" size="25">
+
+                  </td>
+
+                </tr>
+				
+				<tr>
+
+                  <th><span class="red">*</span>短信后缀：</th>
+
+                  <td><input type="text" required="" class="px" name="subfix" value="{laoyang:$info.subfix}" tabindex="1" size="25">
+
+                  </td>
+
+                </tr>
+
+				<tr>
+
+                  <th><span class="red">*</span>短信平台状态：</th>
+
+                  <td><input type="radio" value="1" name="smsstatus" <eq name="info.smsstatus" value="1"> checked="checked"</eq> />开启 <input type="radio" value="0" name="smsstatus" <eq name="info.smsstatus" value="0"> checked="checked"</eq> />关闭
+
+                  </td>
+
+                </tr>
+
+				<div>
+
+				<input type="hidden" required="" class="px" name="wxname" value="{laoyang:$info.wxname}" tabindex="1" size="25">
+
+				<input type="hidden" required="" title="无法修改，您可以联系管理员" name="wxid" value="{laoyang:$info.wxid}" class="px" tabindex="1" size="25" style="color:#DDD;">
+
+				<input type="hidden" required="" name="weixin" value="{laoyang:$info.weixin}" class="px" tabindex="1" size="25">
+
+				<if condition="$info.headerpic neq ''"> <input type="hidden" class="px" name="headerpic" value="{laoyang:$info.headerpic}" size="60"> <else/> <input type="hidden" class="px" name="headerpic" value="{laoyang::RES}/images/portrait.jpg" size="60"> </if>
+
+				<input type="hidden" name="token" value="{laoyang:$info.token}" class="px" tabindex="1" size="40">
+
+				<input type="hidden" class="px" id="province" value="{laoyang:$info.province}" name="province" tabindex="1" size="20">
+
+				<input id="city" value="{laoyang:$info.city}" type="hidden" name="city" class="px" tabindex="1" size="20">
+
+				<input type="hidden" required="" class="px" tabindex="1" value="{laoyang:$info.qq}" name="qq" size="25">
+
+				<input type="hidden" required="" name="wxfans" value="{laoyang:$info.wxfans}" class="px" tabindex="1" size="25">
+
+				<input type="hidden" required="" name="type" value="{laoyang:$info.typeid}" class="px" tabindex="1" size="25">
+
+				</div>
+
+              </thead>
+
+              
+
+                <tr>
+
+                  <td><button type="submit" class="btnGreen" id="saveSetting">保存</button></td>
+
+                </tr>
+
+            </table>
+
+            
+
+          </div>
+
+          </form>
+
+        </div>
+
+        
+
+        <div class="clr"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!--底部-->
+
+  	</div>
+
+<include file="Public:footer"/>	

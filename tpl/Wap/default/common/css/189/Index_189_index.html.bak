@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="{baowei::RES}/css/189/css/reset.css?2014-02-25-10" media="all" />
+<link rel="stylesheet" type="text/css" href="{baowei::RES}/css/189/css/snower.css?2014-02-25-10" media="all" />
+<link rel="stylesheet" type="text/css" href="{baowei::RES}/css/189/css/common.css?2014-02-25-10" media="all" />
+<link rel="stylesheet" type="text/css" href="{baowei::RES}/css/189/css/font-awesome.css?2014-02-25-10" media="all" />
+<link rel="stylesheet" type="text/css" href="{baowei::RES}/css/189/css/home-59.css?2014-02-25-10" media="all" />
+<script type="text/javascript" src="{baowei::RES}/css/189/js/maivl.js?2014-02-25-10"></script>
+<script type="text/javascript" src="{baowei::RES}/css/189/js/jQuery.js?2014-02-25-10"></script>
+<script type="text/javascript" src="{baowei::RES}/css/189/js/zepto.js?2014-02-25-10"></script>
+<script type="text/javascript" src="{baowei::RES}/css/189/js/swipe.js?2014-02-25-10"></script>
+<script type="text/javascript" src="{baowei::RES}/css/189/js/player_min.js?2014-02-25-10"></script>
+<title>{baowei:$tpl.wxname}</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <meta name="Keywords" content="360微电商、微信营销、微信代运营、微信定制开发、微信托管、微网站、微商城、微营销" />
+        <meta name="Description" content="360微电商，国内最大的微信公众智能服务平台，360微电商八大微体系：微菜单、微官网、微会员、微活动、微商城、微推送、微服务、微统计，企业微营销必备。" />
+        <!-- Mobile Devices Support @begin -->
+            <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+            <meta content="no-cache" http-equiv="pragma">
+            <meta content="0" http-equiv="expires">
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <!-- Mobile Devices Support @end -->
+        <link rel="shortcut icon" href="http://stc.weimob.com/img/favicon.ico" />
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+        <script>
+    $(function(){
+        window.swiper_2 = new Swipe(document.getElementById('list_uls'), {
+            speed:500,
+            // auto:3000,
+            callback: function(){
+               var lis = $(".nav_for_list_ul ul:first-of-type li");
+               lis.removeClass("on").eq(this.index).addClass("on");
+               var las = $(".nav_for_list_ul ul:nth-of-type(2) a");
+               las.removeClass("on").eq(this.index).addClass("on");
+
+               var minIndex = 0;
+               var maxIndex = Math.max(0, nav_uls.length - 3);
+               var range = [this.index-1, minIndex, maxIndex];
+               //
+
+               range = range.sort(function(a, b){
+                       	return a>b?1:-1;
+                       });
+               window.nav_uls.slide(range[1]);
+            }
+        });
+    });
+</script>
+<script>
+	 $().ready(function(){
+		playbox.init("playbox");
+	});
+</script>
+<div class="body">
+	<section>
+		<div>
+			<header>
+        <div class="snower">
+            <script type="text/javascript">var urls = new Array();urls.push('http://stc.weimob.com/img/template/lib/v57_snow1.png');urls.push('http://stc.weimob.com/img/template/lib/v57_snow2.png');urls.push('http://stc.weimob.com/img/template/lib/v57_snow3.png');urls.push('http://stc.weimob.com/img/template/lib/v57_snow4.png');</script>
+            <script type="text/javascript" src="js/snower2.js"></script>
+        </div>
+    </header> 			<div class="header2">
+				<figure>								<img src="images/20140512144309_90675.jpg" alt="图片1" style="width:100%;" />
+							
+				</figure>
+								<figure>
+					<!-- <a href="javascript:;"> -->
+						<img src="images/official.jpg" />
+						<label>微官网</label>
+					<!-- </a> -->
+				</figure>
+													<a href="javascript:;" id="playbox" class="btn_music" data-type="2" onclick="playbox.init(this).play();" ontouchstart="event.stopPropagation();"></a><audio id="audio" loop src="http://stc.weimob.com/img/template/lib/default.mp3" style="pointer-events:none;display:none;width:0!important;height:0!important;"></audio>
+							</div>
+			<div>
+				<nav class="nav_for_list_ul">
+					<div class="ofh">
+						<ul>
+							<li class="on"><li >						</ul>
+						<ul>
+							<div id="nav_uls" style="width:33.3%;">
+								<ol>
+								<li><a href="javascript:swiper_2.slide(0);" class="on">分类一</a></li><li><a href="javascript:swiper_2.slide(1);" >分类二</a></li>								</ol>
+							</div>
+						</ul>
+						<script>
+							window.nav_uls = new Swipe(document.getElementById('nav_uls'), {
+			                    speed:500,
+			                    callback: function(){
+			                    	if(this.index>(this.length-3)){
+			                    		this.slide(this.length-3);
+			                    	}
+			                    }
+			                });
+						</script>
+					</div>
+				</nav>
+			</div>
+			<div id="list_uls" class="list_uls box_swipe">
+	            <ul ><volist name="info" id="vo" >
+	            		                <li>
+	                	<dl>
+	                			                		<dd>
+	                															<a onclick="return false;">
+													                			<figure>
+		                				<div><img src="{baowei:$vo.img}" /></div>
+		                				<figcaption>
+		                					<label>{baowei:$vo.name}</label>
+		                				</figcaption>
+		                			</figure>
+	                			</a>
+	                		</dd>
+	                			                	</dl>
+	                </li>
+	                	           </volist>     
+	                	            </ul>
+			</div>
+		</div>
+	</section>
+</div>
+<!--
+导航菜单
+   后台设置的快捷菜单
+-->
+
+<!--
+分享前控制
+-->
+	<script type="text/javascript">
+		
+		window.shareData = {
+			"imgUrl": "{baowei:$homeInfo.picurl}",
+			"timeLineLink": "{baowei::C('site_url')}{baowei::U('Index/index',array('token'=>$vo['token']))}",
+			"sendFriendLink": "{baowei::C('site_url')}{baowei::U('Index/index',array('token'=>$vo['token']))}",
+			"weiboLink": "{baowei::C('site_url')}{baowei::U('Index/index',array('token'=>$vo['token']))}",
+			"tTitle": "欢迎访问{baowei:$tpl.wxname}微网站",
+			"tContent": "欢迎访问{baowei:$tpl.wxname}微网站",
+			"fTitle": "欢迎访问{baowei:$tpl.wxname}微网站",
+			"fContent": "欢迎访问{baowei:$tpl.wxname}微网站",
+			"wContent": "欢迎访问{baowei:$tpl.wxname}微网站"
+		};
+			</script>
+        			<footer style="overflow:visible;">
+				<div class="weimob-copyright" style="padding-bottom:50px;">
+											? <if condition="$iscopyright eq 1">{baowei:$homeInfo.copyright}<else/>{baowei:$siteCopyright}</if>
+									</div>
+			</footer>
+				<div mark="stat_code" style="width:0px; height:0px; display:none;">
+					</div>
+	</body>
+		<script type="text/javascript">
+(function() {
+	var wtj = document.createElement('script'); wtj.type = 'text/javascript'; wtj.async = true;
+	wtj.src = 'http://tj.weimob.com/wtj.js?url=' + encodeURIComponent(location.href);
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wtj, s);
+})();
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd80741dd59de91e1846b2add2c0ad2a2' type='text/javascript'%3E%3C/script%3E"));
+function weimobAfterShare(shareFromWechatId,sendFriendLink,shareToPlatform){
+	var wmShare = document.createElement('script'); wmShare.type = 'text/javascript'; wmShare.async = true;
+    wmShare.src = 'http://tj.weimob.com/api-share.js?fromWechatId=' + shareFromWechatId + '&shareToPlatform=';
+	wmShare.src += shareToPlatform + '&pid=234867&sendFriendLink=' + encodeURIComponent(sendFriendLink);
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wmShare, s);
+}
+
+/**
+ * 默认分享出去的数据
+ *
+ */
+function getShareImageUrl(){
+	var share_imgurl = "";
+	if("" == share_imgurl){
+		var shareImgObj = document.getElementsByClassName("shareImgUrl")[0];
+		if('undefined' != typeof(shareImgObj)){
+			share_imgurl = shareImgObj.src;
+		}
+	}
+	return window.shareData.imgUrl || share_imgurl;
+}
+
+window.shareData = window.shareData || {
+		"timeLineLink": "{baowei::C('site_url')}{baowei::U('Index/index',array('token'=>$vo['token']))}",
+	"sendFriendLink": "{baowei::C('site_url')}{baowei::U('Index/index',array('token'=>$vo['token']))}",
+	"weiboLink": "{baowei::C('site_url')}{baowei::U('Index/index',array('token'=>$vo['token']))}",
+	"tTitle": document.title,
+	"tContent": document.title,
+	"fTitle": document.title,
+	"fContent": document.title,
+	"wContent": document.title
+}
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+	// 发送给好友
+	WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+		WeixinJSBridge.invoke('sendAppMessage', { 
+			"img_url": getShareImageUrl(),
+			"img_width": "640",
+			"img_height": "640",
+			"link": window.shareData.sendFriendLink,
+			"desc": window.shareData.fContent,
+			"title": window.shareData.fTitle
+		}, function (res) {
+			weimobAfterShare("",window.shareData.sendFriendLink,'appmessage');
+			_report('send_msg', res.err_msg);
+		})
+	});
+
+	// 分享到朋友圈
+	WeixinJSBridge.on('menu:share:timeline', function (argv) {
+		WeixinJSBridge.invoke('shareTimeline', {
+			"img_url": getShareImageUrl(),
+			"img_width": "640",
+			"img_height": "640",
+			"link": window.shareData.timeLineLink,
+			"desc": window.shareData.tContent,
+			"title": window.shareData.tTitle
+		}, function (res) {
+			weimobAfterShare("",window.shareData.timeLineLink,'timeline');
+			_report('timeline', res.err_msg);
+		});
+	});
+
+	// 分享到微博
+	WeixinJSBridge.on('menu:share:weibo', function (argv) {
+		WeixinJSBridge.invoke('shareWeibo', {
+			"content": window.shareData.wContent,
+			"url": window.shareData.weiboLink
+		}, function (res) {
+			weimobAfterShare("",window.shareData.weiboLink,'weibo');
+			_report('weibo', res.err_msg);
+		});
+	});
+}, false);
+</script>
+<script type="text/javascript" src="{baowei::RES}/css/189/js/ChatFloat.js"></script>
+<script type="text/javascript">
+var str_domain = location.href.split('/',4)[2];
+var boolIsTest = true;
+if(str_domain == 'www.360wos.com'){
+	boolIsTest = false;
+}
+new ChatFloat({
+        AId: '234867',
+        openid: "",
+		top:150,
+		right:0,
+		IsTest:boolIsTest
+});
+</script>
+</html>
+

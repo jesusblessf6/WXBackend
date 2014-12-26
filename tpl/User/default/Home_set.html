@@ -1,0 +1,197 @@
+<include file="Public:head" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default">
+</script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js">
+</script>
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/themes/default/default.css"/>
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/plugins/code/prettify.css"/>
+<script src="{laoyang::STATICS}/kindeditor/kindeditor.js" type="text/javascript">
+</script>
+<script src="{laoyang::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript">
+</script>
+<script src="{laoyang::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript">
+</script>
+<script src="./tpl/User/default/common/js/cart/jscolor.js" type="text/javascript">
+</script>
+<script type="text/javascript" src="/tpl/User/default/common/js/jQuery.js">
+</script>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-top:30px;" >
+  <div class="cLineB">
+  <div  class="quick-actions_homepage">
+
+  </div>
+    <h4>首页回复配置</h4>
+    <a href="javascript:history.go(-1);" class="right btn btn-info" style="margin-top:-27px">返回</a> </div>
+    <div class="msgWrap bgfc">
+        <form class="form" method="post" action="" enctype="multipart/form-data">
+            <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0"
+            cellpadding="0" width="100%">
+                <tbody>
+                    <tr>
+                        <th valign="top">
+                            <span class="red">
+                                *
+                            </span>
+                            关键词：
+                        </th>
+                        <td>
+                            <span class="red">
+                                首页 或者 home —— 当用户输入该关键词时，将会触发此回复。
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="120">
+                            回复标题：
+                        </th>
+                        <td>
+                            <input type="text" name="title" value="{laoyang:$home.title}" class="px"
+                            style="width:550px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="120">
+                            内容介绍：
+                        </th>
+                        <td>
+                            <textarea style="width:560px;height:75px" name="info" id="info" class="px">{laoyang:$home.info}</textarea>
+                            <br/>
+                            最多填写120个字
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            回复图片：
+                        </th>
+                        <td>
+                            <input type="text" name="picurl" id="picurl" value="{laoyang:$home.picurl}"
+                            class="px" style="width:550px;">
+                            <script src="/tpl/static/upyun.js">
+                            </script>
+                            <a href="###" onclick="upyunPicUpload('picurl',700,420,'{pigcms:$token}')"
+                            class="ChooseImage">
+                                上传
+                            </a>
+                            <a href="###" class="ChooseImage" onclick="viewImg('picurl')">
+                                预览
+                            </a>
+                        </td>
+                    </tr>
+				<tr>
+                  <TH valign="top"><label for="gzhurl">公众号链接地址：</label></TH>
+                  <TD><input type="text" class="px" id="gzhurl"  name="gzhurl" value="{laoyang:$home.gzhurl}" style="width:580px;"  /><br>
+                    <span class="red">填写此链接地址可以有效帮助粉丝关注您的公众号！请填写一个微信官方公众平台群发出的文章链接。</span>
+                  </TD>
+                </tr>					
+				<tr>
+					<th>公司Logo：</th>
+					<td><input type="text" name="logo" id="logo1" value="{laoyang:$home.logo}" class="px" style="width:550px;">  <a href="###" onclick="upyunPicUpload('logo1',1500,1000,'{laoyang:$token}')" class="ChooseImage">上传</a> <a href="###" onclick="viewImg('logo1')" class="ChooseImage">预览</a><br/> </td>
+				</tr>
+                    <tr>
+                        <th>
+                            3G网站背景：
+                        </th>
+                        <td>
+                            <input type="text" name="homeurl" id="homeurl" value="{laoyang:$home.homeurl}"
+                            class="px" style="width:550px;">
+                            <script src="/tpl/static/upyun.js">
+                            </script>
+                            <a href="###" onclick="chooseFile('homeurl','background')" class="ChooseImage">
+                                选择
+                            </a>
+                            <a href="###" onclick="upyunPicUpload('homeurl',1500,1000,'{laoyang:$token}')"
+                            class="ChooseImage">
+                                上传
+                            </a>
+                            <a href="###" class="ChooseImage" onclick="viewImg('homeurl')">
+                                预览
+                            </a>
+                            <br/>
+                            只适用于引用第三方3G网站的链接
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            3G相册顶部：
+                        </th>
+                        <td>
+                            <input type="text" name="photourl" id="photourl" value="{laoyang:$home.photourl}"
+                            class="px" style="width:550px;">
+                            <script src="/tpl/static/upyun.js">
+                            </script>
+                            <a href="###" onclick="chooseFile('photourl','background')" class="ChooseImage">
+                                选择
+                            </a>
+                            <a href="###" onclick="upyunPicUpload('photourl',1500,1000,'{laoyang:$token}')"
+                            class="ChooseImage">
+                                上传
+                            </a>
+                            <a href="###" class="ChooseImage" onclick="viewImg('photourl')">
+                                预览
+                            </a>
+                            <br/>
+                            自定义相册顶部的Banner图片
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="120">
+                            底部版权：
+                        </th>
+                        <td>
+                            <textarea style="width:560px;height:75px" name="copyright" id="copyright"
+                            class="px">{laoyang:$home.copyright}</textarea>
+                            <br/>
+                            最多填写120个字
+                        </td>
+                    </tr>
+                    <th>
+                        主页音乐：
+                    </th>
+                    <td>
+                        <input type="text" name="musicurl" id="musicurl" value="{laoyang:$home.musicurl}"
+                        class="px" style="width:550px;">
+                        <a href="###" onclick="chooseFile('musicurl','music')" class="ChooseImage">
+                            选择
+                        </a>
+                        <br/>
+                        如果填写网站会出现播放器，如果不填写则不出现
+                    </td>
+                    </tr>
+                    <tr>
+                        <tr>
+                            <th width="120">
+                                商家电话：
+                            </th>
+                            <td>
+                                <input type="text" name="dianhua" value="{laoyang:$home.dianhua}" class="px"
+                                style="width:300px;">
+                                <br/>
+                                主页展示上显示电话号码建议填写
+                            </td>
+                        </tr>
+						<tr>
+                        <th width="120">微网站URL：</th>
+                        <td>
+                            <span class="red">
+                               {laoyang::C('site_url')}{laoyang::U('Wap/Index/index',array('token'=>$_GET['token']))}
+                            </span>
+                        </td>
+                        </tr>
+                        <th>
+                            &nbsp;
+                        </th>
+                        <td>
+                            <button type="submit" name="button" class="btnGreen">
+                                保存
+                            </button>
+                            <a href="javascript:history.go(-1);" class="btnGray vm">
+                                取消
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+<include file="Public:footer" />

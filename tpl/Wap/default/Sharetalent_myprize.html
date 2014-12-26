@@ -1,0 +1,47 @@
+﻿<!DOCTYPE HTML>
+<!-- saved from url=(0075)http://wx.weixiamen.cn/mobile.php -->
+<!DOCTYPE html PUBLIC "" "">
+<HTML>
+<HEAD>
+<META content="IE=11.0000" 
+http-equiv="X-UA-Compatible">
+<TITLE>我的奖品</TITLE>
+<META charset="utf-8">
+<LINK href="/tpl/Wap/default/common/sharetalent/mobi.css" rel="stylesheet">
+<META name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+<META http-equiv="Cache-Control" content="max-age=0">
+<META name="apple-touch-fullscreen" content="yes">
+<META name="apple-mobile-web-app-capable" content="yes">
+<META name="apple-mobile-web-app-status-bar-style" content="black">
+<META name="Description" content="分享达人">
+<META name="Keywords" content="分享达人">
+<META name="GENERATOR" content="MSHTML 11.00.9600.17344">
+</HEAD>
+<BODY style='background-image: url("/tpl/Wap/default/common/sharetalent/bg.jpg");'>
+<SECTION 
+class="main animated fadeInDown">
+<volist name="info" id="list">
+  <DIV class="main-box">
+    
+    <DIV class="activity-list">
+      <DIV class="regular activity-box">{laoyang:$list.prize} <A style="left: 75%; color: red; position: absolute;" 
+onclick="" ><if condition="$list.statu eq '1'  ">已兑奖<else/>未兑奖</if></A>
+        
+      </DIV>
+    </DIV>
+   
+  </DIV>
+   </volist>
+  <FOOTER class="foot">
+    <STYLE>
+#copyright {width: 100%;height: 50px;line-height: 50px;text-align:center; color:#333;font-size: 15px;}
+</STYLE>
+    <DIV id="copyright" 
+style="color: rgb(255, 255, 255);">技术支持：{laoyang:$dates.copyright}</DIV>
+  </FOOTER>
+</SECTION>
+<NAV class="nav fn-clear"><a  href="{laoyang::U('Sharetalent/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}" ><i  class="icon-award"></i>达人活动</a> <a  href="{laoyang::U('Sharetalent/my',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"  class="active"><i  class="icon-inbox"></i>我的活动</a> <a  href="{laoyang::U('Sharetalent/reg',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"><i  class="icon-user-1"></i>个人中心</a></NAV>
+<SCRIPT src="/tpl/Wap/default/common/sharetalent/mini-full-min.js"></SCRIPT> 
+<SCRIPT src="/tpl/Wap/default/common/sharetalent/mobi.js"></SCRIPT>
+</BODY>
+</HTML>

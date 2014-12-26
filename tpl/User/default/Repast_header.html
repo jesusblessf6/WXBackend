@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<title> {laoyang::C('site_title')} {laoyang::C('site_name')}</title>
+
+<meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" href="{laoyang::RES}/css/matrix-style.css" />
+
+<link rel="stylesheet" href="{laoyang::RES}/css/matrix-media.css" />
+
+<link href="../wm-xin-a/font-awesome.css" rel="stylesheet" />
+
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/top_v5.css"/>
+
+<link href="{laoyang::RES}/css/style.css" rel="stylesheet" type="text/css" />
+
+<link href="{laoyang::RES}/css/stylet.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/top_v5.css"/>
+
+<script type="text/javascript" src="{laoyang::RES}/js/jQuery.js"></script>
+
+<script src="{laoyang::RES}/js/common.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<div class="header">
+
+    <div class="site-nav header-background">
+
+    	<div class="animated-color-line">
+
+            <div class="colors ">
+
+                <div class="color-part light-gray-bg show-color-part"></div>
+
+                <div class="color-part blue-bg show-color-part"></div>
+
+                <div class="color-part pink-bg show-color-part"></div>
+
+                <div class="color-part orange-bg show-color-part"></div>
+
+                <div class="color-part light-orange-bg show-color-part"></div>
+
+                <div class="color-part yellow-bg show-color-part"></div>
+
+                <div class="color-part green-bg show-color-part"></div>
+
+            </div>
+
+        </div>
+
+        <div class="wPage">
+
+        	<div class="header-nav">
+
+                <div id="logo">
+
+                    <a href="/" class="logocover"></a>
+
+                    <a href="/" title="" hidefocus="true" class="logo-ornament logo-animation" id="logo_ornament"></a>
+
+                </div>
+
+                <ul>
+
+                    <li><a href="/" class="hover" title="首页">首页</a></li>
+
+                    <li class="divider"></li>
+
+                   <!--  <li><a href="{laoyang::U('Home/Index/about')}">关于宝微管家</a></li>
+
+                    <li class="divider"></li>
+
+                    <li><a href="{laoyang::U('Home/Index/service')}">功能介绍</a></li>
+
+                    <li class="divider"></li>
+
+                    <li><a href="{laoyang::U('Home/Index/case')}">案例展示</a></li>
+
+                    <li class="divider"></li>
+
+                    <li><a href="{laoyang::U('Home/Index/ap')}">微路由</a></li> -->
+
+                    <!-- <li class="divider"></li>
+
+                    <li><a href="{laoyang::U('Home/Index/join')}">招商代理</a></li>
+
+                    <li class="divider"></li> -->
+
+					<li><a href="{laoyang::U('User/Index/jiaocheng')}">使用教程</a></li>
+
+                    <li><a href="{laoyang::U('User/Index/help')}">帮助中心</a></li>
+
+                    <if condition="$_SESSION[uid]==false">
+
+                    <li class="divider"></li>
+
+                    <li><a href="{laoyang::U('User/Index/price')}">资费说明</a></li>
+
+                    <li class="divider"></li>
+
+					<li><a href="{laoyang::U('Home/Index/contact')}">联系我们</a></li>
+
+                    <else/>
+
+                    <li class="divider"></li>
+
+                    <li><a href="{laoyang::U('User/Index/index')}">管理中心</a></li>
+
+                    <li class="divider"></li>
+
+                    <li><a href="{laoyang::U('User/Index/price')}">资费说明</a></li>
+
+                    <li class="divider"></li>
+
+                    <li><a href="{laoyang::U('System/Admin/logout')}">退出</a></li>
+
+                    </if>
+
+                    <if condition="$_SESSION[uid]==false">
+
+                    <li class="divider"></li>
+
+                    <li class="header-account"><a href="{laoyang::U('Home/Index/reg')}" class="create">创建一个账号</a><a href="{laoyang::U('Home/Index/index')}" class="login">登录</a></li>
+
+                    <else/>
+
+                    <li class="header-account"><a href="#" class="a" id="tiduser" onMouseOver="ying();" ><span>{laoyang:$Think.session.uname}</span></a></li>
+
+                    
+
+</if>
+
+                                    </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div id="sidebar">
+
+  <ul>
+
+    <li class="active"><a href="{laoyang::U('User/Index/index')}"><i class="icon-refresh"></i> <span>首页</span></a> </li>
+
+      <ul>
+		<if condition="$thisUser[wxcy] eq '1'">
+        <li><a href="{laoyang::U('Repast/orders',array('token'=>$token,'dining'=>1))}"><i class="icon-glass"></i> 连锁餐饮 </a></li>
+		</if>
+
+      </ul>
+
+    </li>
+
+    <li> <a href="{laoyang::U('System/Admin/logout')}"><i class="icon-off"></i> <span>退出</span></a></li>
+
+    
+
+  </ul>
+
+</div>
+
+
+
+<div id="content">

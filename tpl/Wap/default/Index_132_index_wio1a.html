@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html>    <head>
+       <if condition="$zd['status'] eq 1">
+            {laoyang:$zd['code']}
+        </if>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <title>{laoyang:$tpl.wxname}</title>
+
+        <base href="." />
+
+        <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+        <meta name="format-detection" content="telephone=no" />
+
+<link href="{laoyang::RES}/css/allcss/cate{laoyang:$tpl.tpltypeid}_{laoyang:$tpl.color_id}.css" rel="stylesheet" type="text/css" />
+
+<!-- <link href="{laoyang::RES}/css/132/cate13_.css" rel="stylesheet" type="text/css"> -->
+
+<link href="{laoyang::RES}/css/132/iscroll.css" rel="stylesheet" type="text/css">
+
+
+
+<script src="{laoyang::RES}/css/132/jquery.min.js" type="text/javascript"></script>
+
+<script src="{laoyang::RES}/css/132/idangerous.swiper.js" type="text/javascript"></script>
+
+<script src="{laoyang::RES}/css/132/iscroll.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+var myScroll;
+
+
+
+function loaded() {
+
+myScroll = new iScroll('wrapper', {
+
+snap: true,
+
+momentum: false,
+
+hScrollbar: false,
+
+onScrollEnd: function () {
+
+document.querySelector('#indicator > li.active').className = '';
+
+document.querySelector('#indicator > li:nth-child(' + (this.currPageX+1) + ')').className = 'active';
+
+}
+
+ });
+
+ 
+
+ 
+
+}
+
+
+
+document.addEventListener('DOMContentLoaded', loaded, false);
+
+</script>
+
+ 
+
+</head>
+
+
+
+<body id="cate13">
+
+
+<if condition="$homeInfo['musicurl'] neq false">
+
+<include file="Index:music"/>
+
+</if>
+
+<div class="banner">
+
+<div id="wrapper" style="overflow: hidden;">
+
+<div id="scroller" style="width: {laoyang:$num*1349}px; -webkit-transition: 0ms; transition: 0ms; -webkit-transform: translate3d(-2698px, 0px, 0px) scale(1);">
+
+<ul id="thelist">
+
+
+
+<volist name="flash" id="so">               
+
+<li><p>{laoyang:$so.info}</p>
+
+<if condition="$so.url neq ''"><a href="{laoyang:$so.url}"></if><img src="{laoyang:$so.img}" alt="{laoyang:$so.info}" style="width:100%;" /><if condition="$so.url neq ''"></a></if>
+
+</li>
+
+</volist>
+
+
+
+</ul>
+
+</div>
+
+</div>
+
+<div id="nav">
+
+<div id="prev" onclick="myScroll.scrollToPage(&#39;prev&#39;, 0,400,3);return false">← prev</div>
+
+<ul id="indicator">
+
+            
+
+<volist name="flash" id="so">
+
+    <li <if condition="$i eq 1">class="active"</if>></li>
+
+</volist>
+
+ 
+
+</ul>
+
+<div id="next" onclick="myScroll.scrollToPage(&#39;next&#39;, 0);return false">next →</div>
+
+</div>
+
+<div class="clr"></div>
+
+</div>
+
+ 
+
+ <div id="insert1"></div>
+
+
+
+<volist name="info" id="vo"> 
+
+<!-- <php>var_dump($vo);</php> -->
+
+<div class="Category">
+
+<div class="cname"><a href="<if condition="$vo['url'] eq ''">{laoyang::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}<else/>{laoyang:$vo.url|htmlspecialchars_decode}</if>" class="more"><!-- 查看更多 --></a>{laoyang:$vo.name}</div>
+
+    <div class="clist swiper-container clist{laoyang:$vo['key']}">
+
+<div class="swiper-wrapper" style="width: 1295.03125px;">
+
+    <div class="swiper-slide swiper-slide-visible swiper-slide-active" style="width: 1295.03125px;">
+
+<ul>
+
+      
+
+      
+
+    <volist name="vo['sub']" id="res">
+
+        <li><a href="<if condition="$res['url'] eq ''">{laoyang::U('Wap/Index/lists',array('classid'=>$res['id'],'token'=>$res['token']))}<else/>{laoyang:$res.url|htmlspecialchars_decode}</if>"><div><img src="{laoyang:$res.img}"></div><span>{laoyang:$res.name}</span></a></li>
+
+    </volist>    
+
+      
+
+        </ul>
+
+    </div>
+
+</div>
+
+ <script>
+
+$(function(){
+
+new Swiper('.clist'+{laoyang:$vo['key']},{
+
+ followFinger:false
+
+  });
+
+});
+
+</script>
+
+    </div>
+
+</div>
+
+</volist>
+
+
+
+<script>
+
+
+
+
+
+var count = document.getElementById("thelist").getElementsByTagName("img").length;  
+
+
+
+
+
+for(i=0;i<count;i++){
+
+ document.getElementById("thelist").getElementsByTagName("img").item(i).style.cssText = " width:"+document.body.clientWidth+"px";
+
+
+
+}
+
+
+
+document.getElementById("scroller").style.cssText = " width:"+document.body.clientWidth*count+"px";
+
+
+
+
+
+ setInterval(function(){
+
+myScroll.scrollToPage('next', 0,400,count);
+
+},3500 );
+
+
+
+window.onresize = function(){ 
+
+for(i=0;i<count;i++){
+
+document.getElementById("thelist").getElementsByTagName("img").item(i).style.cssText = " width:"+document.body.clientWidth+"px";
+
+
+
+}
+
+
+
+ document.getElementById("scroller").style.cssText = " width:"+document.body.clientWidth*count+"px";
+
+} 
+
+
+
+</script>
+
+ 
+
+ <div id="insert2"></div>
+
+<div style="display:none"> </div>
+
+ <include file="Index:styleInclude"/><include file="$cateMenuFileName"/>
+
+ 	<if condition="ACTION_NAME eq 'index'">
+
+		<script type="text/javascript">
+
+			window.shareData = {  
+
+					"moduleName":"Index",
+
+					"moduleID": '0',
+
+					"imgUrl": "{laoyang:$homeInfo.picurl}", 
+
+					"timeLineLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+
+					"sendFriendLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+
+					"weiboLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+
+					"tTitle": "{laoyang:$homeInfo.title}",
+
+					"tContent": "{laoyang:$homeInfo.info}"
+
+				};
+
+		</script>
+
+	<else />
+
+		<script type="text/javascript">
+
+			window.shareData = {  
+
+				"moduleName":"Index",
+
+				"moduleID": '1',
+
+				"imgUrl": "{laoyang:$homeInfo.picurl}", 
+
+				"timeLineLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+
+				"sendFriendLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+
+				"weiboLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+
+				"tTitle": "{laoyang:$homeInfo.title}",
+
+				"tContent": "{laoyang:$homeInfo.info}"
+
+			};
+
+		</script>	
+
+	
+
+	</if>
+
+{laoyang:$shareScript}
+
+<include file="Public:footer"/>

@@ -1,0 +1,72 @@
+<include file="Public:head"/>  
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/cymain.css" />
+<script src="{laoyang::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{laoyang::STATICS}/artDialog/plugins/iframeTools.js"></script>
+
+<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+<include file="Public:hangye"/>
+<div class="cLineB">
+<h4 class="left">{laoyang:$infoType.name}回复配置 </h4>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+
+<div class="tab">
+<ul>
+<li class="current tabli" id="tab2"><a href="{laoyang::U('Dining/ComBranches',array('token'=>$token))}">店铺信息</a></li>
+<li class="tabli" id="tab0"><a href="{laoyang::U('Dining/index',array('token'=>$token,'dining'=>1))}">菜品管理</a></li>
+<li class="tabli" id="tab2"><a href="{laoyang::U('Dining/cats',array('token'=>$token,'dining'=>1))}">菜品分类管理</a></li>
+<li class="tabli" id="tab2"><a href="{laoyang::U('Dining/orders',array('token'=>$token,'dining'=>1))}">订单管理</a></li>
+<li class="tabli" id="tab2"><a href="{laoyang::U('Dining/tables',array('token'=>$token,'dining'=>1))}">桌台管理</a></li>
+<li class="tabli" id="tab5"><a href="{laoyang::U('Reply_info/set',array('token'=>$token,'infotype'=>'Dining'))}">订餐回复配置</a></li>
+</ul>
+</div>
+<!--tab end-->  
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<div class="cLine">
+<div class="pageNavigator left"> <a href="{laoyang::U('Dining/ComIndex',array('token'=>$token,'isBranch'=>1))}" title="" class="btnGrayS vm bigbtn"><img src="{laoyang::RES}/images/icons/add.png" class="vm">添加</a></div>
+<div class="clr"></div>
+</div>
+
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th class="select" style="display:none"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+<th width="200">店铺名称</th>
+<th width="100">类型</th>
+<th >营业时间</th>
+<th width="70">在线支付</th>
+<th width="70">无线打印</th>
+<th width="70">短信通知</th>
+<th width="70">邮件通知</th>
+<th width="150" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody style="text-align:center;">
+<volist name="branches" id="c"> 
+<tr>
+<td style="display:none"><input type="checkbox" value="{laoyang:$o.id}" class="cbitem" name="id_{laoyang:$i}"></td>
+<td>{laoyang:$c.name}</td>
+<td>{laoyang:$c.category}</td>
+<td>{laoyang:$c.time}</td>
+<td><input type="radio" <if condition="$c.payonline eq 1">checked<else/>disabled</if> id="statu-1" value="1"></td>
+<td><input type="radio" <if condition="$c.print_status eq 1">checked<else/>disabled</if> id="statu-1" value="1"></td>
+<td><input type="radio" <if condition="$c.phone_status eq 1">checked<else/>disabled</if> id="statu-1" value="1"></td>
+<td><input type="radio" <if condition="$c.email_status eq 1">checked<else/>disabled</if> id="statu-1" value="1"></td>
+<td class="norightborder"><a href="{laoyang::U('Dining/ComIndex',array('token'=>$token,'id'=>$c['id'],'catid'=>$c['catid']))}">修改</a> <a href="javascript:drop_confirm('您确定要删除吗?', '{laoyang::U('Dining/ComDelete',array('token'=>$token,'id'=>$c['id'],'isBranch'=>1))}');">删除</a></td>
+</tr>
+</volist>
+</tbody>
+</table>
+<input type="hidden" name="token" value="{laoyang:$_GET['token']}" />
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{laoyang:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

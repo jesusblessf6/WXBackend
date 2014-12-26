@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html>
+
+        <head>
+       <if condition="$zd['status'] eq 1">
+            {laoyang:$zd['code']}
+        </if>
+
+        <meta charset="utf-8" />
+
+        <link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/188/css/reset.css?2014-02-25-10" media="all" />
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/188/css/snower.css?2014-02-25-10" media="all" />
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/188/css/font-awesome.css?2014-02-25-10" media="all" />
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/188/css/home-52.css?2014-02-25-10" media="all" />
+<script type="text/javascript" src="{laoyang::RES}/css/188/js/maivl.js?2014-02-25-10"></script>
+<script type="text/javascript" src="{laoyang::RES}/css/188/js/jQuery.js?2014-02-25-10"></script>
+<script type="text/javascript" src="{laoyang::RES}/css/188/js/zepto.js?2014-02-25-10"></script>
+<script type="text/javascript" src="{laoyang::RES}/css/188/js/swipe.js?2014-02-25-10"></script>
+<title>{laoyang:$tpl.wxname}</title>
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+
+        <meta name="Keywords" content="老杨分享、微信营销、微信代运营、微信定制开发、微信托管、微网站、微商城、微营销" />
+
+        <meta name="Description" content="老杨分享，国内最大的微信公众智能服务平台，老杨分享八大微体系：微菜单、微官网、微会员、微活动、微商城、微推送、微服务、微统计，企业微营销必备。" />
+
+        <!-- Mobile Devices Support @begin -->
+
+            <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+
+            <meta content="no-cache" http-equiv="pragma">
+
+            <meta content="0" http-equiv="expires">
+
+            <meta content="telephone=no, address=no" name="format-detection">
+
+            <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <!-- Mobile Devices Support @end -->
+
+        <link rel="shortcut icon" href="http://stc.weimob.com/img/favicon.ico" />
+
+    </head>
+
+    <body onselectstart="return true;" ondragstart="return false;">
+
+        <script>
+
+	$().ready(function(){
+
+		$("#list_ul a").on("mousedown touchstart", function(){
+
+			this.className = "active";
+
+		}).on("mouseup touchend", function(){
+
+			this.className = "";
+
+		});
+
+	});
+
+</script>
+
+<div class="body" >
+
+	<header>
+        <div class="snower">
+            <script type="text/javascript">var urls = new Array();urls.push('http://stc.weimob.com/img/template/lib/v57_snow1.png');urls.push('http://stc.weimob.com/img/template/lib/v57_snow2.png');urls.push('http://stc.weimob.com/img/template/lib/v57_snow3.png');urls.push('http://stc.weimob.com/img/template/lib/v57_snow4.png');</script>
+            <script type="text/javascript" src="{laoyang::RES}/css/188/js/snower2.js"></script>
+        </div>
+    </header> 	<div id="body2" class="body2 relative">
+
+		<aside class="aside_61">
+
+			<nav>
+
+				<a href="javascript:document.getElementById('body2').classList.toggle('on');" class="a_aside"></a>
+
+			</nav>
+
+			<ul>
+
+							</ul>
+
+		</aside>
+
+		<section>
+
+			<div class="header2 relative">
+
+									<a onclick="return false;">
+
+														<img src="images/20140512144309_90675.jpg" alt="图片1" style="width:100%;" />
+
+							</a>
+
+											</div>
+
+			<ul id="list_ul" class="list_ul"><volist name="info" id="vo" >
+
+								<li>
+
+											<a href="<if condition="$vo['url'] eq ''">{laoyang::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}<else/>{laoyang:$vo.url}</if>">
+
+											<dl class="tbox">
+
+							<dd>
+
+								<span class="icon-home"></span>
+
+							</dd>
+
+							<dd>
+
+								<label>{laoyang:$vo.name}</label>
+
+							</dd>
+
+						</dl>
+
+					</a>
+
+				</li>
+
+					</volist>
+
+							</ul>
+
+		</section>
+
+	</div>
+
+</div> 
+	
+
+<include file="Index:styleInclude"/><include file="$cateMenuFileName"/> 
+	<if condition="ACTION_NAME eq 'index'">
+		<script type="text/javascript">
+			window.shareData = {  
+					"moduleName":"Index",
+					"moduleID": '0',
+					"imgUrl": "{laoyang:$homeInfo.picurl}", 
+					"timeLineLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"sendFriendLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"weiboLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"tTitle": "{laoyang:$homeInfo.title}",
+					"tContent": "{laoyang:$homeInfo.info}"
+				};
+		</script>
+	<else />
+		<script type="text/javascript">
+			window.shareData = {  
+				"moduleName":"Index",
+				"moduleID": '1',
+				"imgUrl": "{laoyang:$homeInfo.picurl}", 
+				"timeLineLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"sendFriendLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"weiboLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"tTitle": "{laoyang:$homeInfo.title}",
+				"tContent": "{laoyang:$homeInfo.info}"
+			};
+		</script>	
+	
+	</if>
+{laoyang:$shareScript}
+<include file="Public:footer"/>
+
+
+

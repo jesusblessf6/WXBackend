@@ -1,0 +1,50 @@
+<include file="Index:header"/>
+<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+<div class="cLineB">
+<div  class="quick-actions_homepage">
+	<ul class="quick-actions">
+      <li class="bg_lb"> <a href="{laoyang::U('Index/add')}"> <i class="icon-plus-sign"></i> 添加微信公众帐号 </br> 体验智能微信 </a> </li>
+      <li class="bg_lg"> <a href="{laoyang::U('Index/autobind_add')}"> <i class="icon-user"></i> 一键智能绑定公众号 </br> 高效快速</a> </li>
+      <li class="bg_lo"> <a href="{laoyang::U('Alipay/index')}"> <i class="icon-money"></i> 在线充值 </br> 体验更多功能 </a> </li>
+      <li class="bg_ls"> <a href="{laoyang::U('User/Index/help',array('id'=>$vo['id'],'token'=>$vo['token']))}"> <i class="icon-random"></i> 手动绑定帐号 </br> 查看手动绑定教程</a> </li>
+    </ul>
+  </div>
+
+          <div class="msgWrap">
+            <table class="userinfoArea" border="0" cellspacing="0" cellpadding="0" width="100%" style="margin-left:300px;">
+              <thead>
+                 <tr>
+			<form method="post"  enctype="multipart/form-data">
+           <input type="hidden" name="id" value="{laoyang:$info.id}">
+                  <th><span class="red">*</span>微信公众帐号</th>
+                  <td><input type="text" name="username" value="{laoyang:$info.username}" class="px" tabindex="1" size="40"></td>
+                 </tr>
+
+                <tr>
+                  <th><span class="red">*</span>微信公众帐号密码：</th>
+                  <td><input type="password" required="" class="px" tabindex="1" value="{laoyang:$info.password}" name="password" size="25"></td>
+                </tr>
+
+                <tr>
+                  <th></th>
+                  <td>绑定大概要5秒钟时间，别急</td>
+                </tr>
+              
+                <tr>
+                  <th></th>
+                  <td><button type="submit" class="btnGreen" id="saveSetting">一键绑定</button></td></form>
+                </tr>
+              </tbody>
+            </table>
+            
+          </div>
+          
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>	

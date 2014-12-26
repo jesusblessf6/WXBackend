@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{laoyang::C('site_name')}" />
+<meta name="Description" content="{laoyang::C('site_name')}" />
+<title>{laoyang::C('site_name')}-后台管理登陆</title>
+<script src="{laoyang::RES}/js/jquery-1.8.0.min.js" type="text/javascript" ></script>
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/register.css"/>
+
+</head>
+<body>
+
+
+
+<div class='signup_container' >
+
+    <h1 class='signup_title'>系统后台登陆</h1>
+    <img src='{laoyang::RES}/images/people.png' id='admin'/>
+    <div id="signup_forms" class="signup_forms clearfix" >
+    		<form action="{laoyang::U('Admin/insert')}" method="post" class="signup_form_form" id="signup_form">
+
+                    <div class="form_row first_row">
+                        <label for="signup_email">请输入用户名</label><div class='tip ok'></div>
+                        <input name="username" type="text" placeholder="请输入用户名" id="signup_name" data-required="required"/>
+                    </div>
+                    <div class="form_row" >
+                        <label for="signup_password">请输入密码</label><div class='tip error'></div>
+                        <input name="password" type="password"  placeholder="请输入密码" id="signup_password" data-required="required"/>
+                        </div>
+    					</div>
+                        <input value="登录" type="submit" class="submit"/>          	          
+           			</form>
+   					
+
+    <p class='copyright'>{laoyang::C('site_name')} © 2013-2014</p>
+
+</div>
+</body>
+
+<script type="text/javascript">
+
+$(function(){
+
+    $('.rem').click(function(){
+        $(this).toggleClass('selected');
+    })
+
+    $('#signup_select').click(function(){
+        $('.form_row ul').show();
+        event.cancelBubble = true;
+    })
+
+    $('#d').click(function(){
+        $('.form_row ul').toggle();
+        event.cancelBubble = true;
+    })
+
+    $('body').click(function(){
+        $('.form_row ul').hide();
+    })
+
+    $('.form_row li').click(function(){
+        var v  = $(this).text();
+        $('#signup_select').val(v);
+        $('.form_row ul').hide();
+    })
+
+
+})
+
+
+</script>
+
+</html>

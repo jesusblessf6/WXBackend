@@ -1,0 +1,100 @@
+<include file="Store:header"/>
+<link href="tpl/static/store/css/eve.css" rel="stylesheet"/>
+<link href="tpl/static/store/css/other.css" rel="stylesheet"/>
+<div class="msg-err" style="display: none;"></div>
+<script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="{laoyang::RES}/css/guajiang/js/jquery.js">\x3C/script>')</script>
+<div id="login" class="body account">
+    <div class="wrapper">
+        <div id="login-panel" class="panel" data-tab="normal">
+            <div id="normal-panel" class="active-panel normal-panel">
+				<p><input class="input-common" type="text" onfocus="check(this)" id="username"  placeholder="设置您的账号" name="username" /></p>
+				<p><input class="input-common" type="password" onfocus="check(this)" id="password"  placeholder="设置您的密码" name="password" /></p>
+				<p><input class="input-common" type="password" onfocus="check(this)" id="password2" placeholder="再次输入您的密码" name="password2" /></p>
+				<p><input class="input-common" type="text" onfocus="check(this)" id="tel" placeholder="您的手机号" name="tel" /></p>
+				<p><input class="input-common" type="text" onfocus="check(this)" id="truename" placeholder="收货人姓名" name="truename" /></p>
+				<p><input class="input-common" type="text" onfocus="check(this)" id="address" placeholder="输入您的收货地址" name="address" /></p>					
+				<a id="J_submitReg" class="btn-large btn-large mj-submit mj-submit">注册</a>
+            </div>
+        </div>
+    </div>
+</div>
+<p class="sub-action"><a href="{laoyang::U('Store/login', array('token' => $token, 'wecha_id' => $wecha_id, 'twid' => $twid))}">已有账号，现在登录</a> <!-- <a href="">找回密码</a> --></p>
+<div id="meituan_check" style="margin:0 0 55px 0"><br><br><br></div>
+<script type="text/javascript">
+$("#J_submitReg").bind("click",function() {
+    var username = $("#username").val();
+	var tel	= $("#tel").val();
+    var password = $("#password").val();
+	var password2	= $("#password2").val();
+	var truename	= $("#truename").val();
+	var address	= $("#address").val();
+     if (username == '') {
+        alert("请设置您的账号");
+		document.getElementById('username').style.background="red";
+        return;
+    }		
+     if (password == '') {
+        alert("请设置您的密码");
+		document.getElementById('password').style.background="red";
+        return;
+    }
+     if (password2 == '') {
+        alert("请再次输入您的密码");
+		document.getElementById('password2').style.background="red";
+        return;
+    }	
+	if(tel == ''){
+		alert('手机号码必须填写');
+		document.getElementById('tel').style.background="red";
+		return;
+	}
+	var reg=/^0{0,1}(13[0-9]|145|15[0-9]|18[0-9])[0-9]{8}$/i;
+	if(!reg.test(tel)){   
+		alert("错误,请输入真实的手机号码！");
+		document.getElementById('tel').style.background="red";
+		return;
+	 }
+	var submitData = {
+        username : username,
+        tel 	  : tel,
+        password : password,
+        password2 	  : password2,
+        truename : truename,
+        address 	  : address,		
+        action: "index"
+    };
+    $.post('index.php?g=Wap&m=Store&a=register&token={laoyang:$Think.get.token}&wecha_id={laoyang:$Think.get.wecha_id}&twid={laoyang:$twid}', submitData,
+    function(data) {
+        if(data==0){
+			alert('恭喜注册成功.');
+			location.href = "{laoyang:$callbackurl}";
+		}else if(data==1){  
+			alert('您二次输入的密码不同.');
+		}else if(data==2){  
+			alert('此账号已经被抢注，换一个吧.');
+		}else{
+			alert('服务器异常，请稍候再试.');		
+		}
+    },
+    "json")	
+});
+
+function check(obj){   
+  	document.getElementById(obj.id).style.background="white";  
+}
+</script>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName" : "Store",
+            "moduleID" : "",
+            "imgUrl" : "", 
+            "timeLineLink" : "{laoyang::C('site_url') .  U('Store/products',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "sendFriendLink": "{laoyang::C('site_url') .  U('Store/products',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "weiboLink": "{laoyang::C('site_url') .  U('Store/products',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "tTitle": "{laoyang:$metaTitle}",
+            "tContent": "{laoyang:$metaTitle}"
+        };
+</script>
+{laoyang:$shareScript}
+</html>

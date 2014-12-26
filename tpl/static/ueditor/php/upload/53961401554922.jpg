@@ -1,0 +1,4 @@
+<br />
+<b>Warning</b>:  readfile() [<a href='function.readfile'>function.readfile</a>]: Couldn't resolve host name in <b>/home1/vhost/vh489222/www/wx/tpl/static/ueditor/php/getRemoteImage.php</b> on line <b>64</b><br />
+<br />
+<b>Warning</b>:  readfile(http://weixin.jingjan.com/Uploads/Editor/2014-05-23/537f4ff5b999e.jpg) [<a href='function.readfile'>function.readfile</a>]: failed to open stream: operation failed in <b>/home1/vhost/vh489222/www/wx/tpl/static/ueditor/php/getRemoteImage.php</b> on line <b>64</b><br />

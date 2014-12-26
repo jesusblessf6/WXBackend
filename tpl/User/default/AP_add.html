@@ -1,0 +1,214 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{laoyang::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{laoyang::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{laoyang::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="/tpl/static/upyun.js"></script>
+<script>
+
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#info', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+						'source','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+						'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+						'insertunorderedlist', '|', 'emoticons', 'image', 'link', 'music', 'video']
+});
+
+});
+</script>
+<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+   <include file="Wifi:menu"/>
+    <h4>添加设备</h4>
+  </div>
+  <div class="msgWrap">
+    <form class="form" method="post" action="" name="modifyform"  >
+		<input type="hidden" name="id" value='{laoyang:$ap.id}' />
+      <table class="userinfoArea" style=" margin:20px 0 20px 0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <thead>
+          <tr> 
+	<th colspan="3" >认证上网设置 (用户关注认证后可以上网，之后再次来店可免认证，取消关注后需要重新认证)</th>
+</tr>
+
+<TR>
+  <TH valign="top"><label for="acttitle">触发关键词：</label></TH>
+  <TD><input type="input" class="px" id="keyword"  name="keyword" style="width:500px"  value="{laoyang:$ap.keyword}" >    </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="acttitle">图文消息标题：</label></TH>
+  <TD><input type="input" class="px" id="title"  name="title" style="width:500px"  value="{laoyang:$ap.title}" >    </TD>
+  <TD>&nbsp;</TD>
+</TR>
+ <tr> 
+	<th>图文消息封面：</th>
+	<td>
+	<input type="input" class="px"  name="wx_pic" id="wx_pic" style="width:400px;"  value="{laoyang:$ap.wx_pic}"  />
+	<a href="###" onclick="upyunPicUpload('wx_pic',700,420,'{laoyang:$token}')" class="ChooseImage">上传</a> <a href="###" onclick="viewImg('wx_pic')" class="ChooseImage">预览</a></td> 
+	<TD>&nbsp;</TD>
+   </tr>
+
+<tr > 
+ <tr> 
+	<th>公众号二维码：</th>
+	<td><input type="input" name="ewm" value="{laoyang:$ap.ewm}" class="px" id="ewm" style="width:400px;" /><a href="###" onclick="upyunPicUpload('ewm',700,420,'{laoyang:$token}')" class="ChooseImage">上传</a> <a href="###" onclick="viewImg('ewm')" class="ChooseImage">预览</a></td> 
+	<TD>&nbsp;</TD>
+   </tr>
+
+<tr > 
+ <tr> 
+	<th>商家Logo：</th>
+	<td><input type="input" name="shoplogo" value="{laoyang:$ap.shoplogo}" class="px" id="shoplogo" style="width:400px;" /><a href="###" onclick="upyunPicUpload('shoplogo',700,420,'{laoyang:$token}')" class="ChooseImage">上传</a> <a href="###" onclick="viewImg('shoplogo')" class="ChooseImage">预览</a></td> 
+	<TD>&nbsp;</TD>
+   </tr>
+
+<tr >
+<TR>
+  <TH valign="top"><label for="acttitle">店铺标题：</label></TH>
+  <TD><input type="input" class="px" id="shop_name"  name="shop_name" style="width:500px"  value="{laoyang:$ap.shop_name}" >    </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="acttitle">店铺地址：</label></TH>
+  <TD><input type="input" class="px" id="address"  name="address" style="width:500px"  value="{laoyang:$ap.address}" >    </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="acttitle">店铺电话：</label></TH>
+  <TD><input type="input" class="px" id="phone"  name="phone" style="width:500px"  value="{laoyang:$ap.phone}" >    </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="acttitle">店铺简介：</label></TH>
+  <TD><textarea class="px" id="about"  name="about" style="width:500px;height:100px;">{laoyang:$ap.about}</textarea></TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="acttitle">绑定的微信号：</label></TH>
+  <TD><input type="input" class="px" id="wx"  name="wx" style="width:500px"  value="{laoyang:$ap.wx|default=$webs[weixin]}" >    </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="acttitle">认证页版权：</label></TH>
+  <TD><input type="input" class="px" id="copyright"  name="copyright" style="width:500px"  value="{laoyang:$ap.copyright|default=$ap[shop_name].'版权所有'}" /></TD>
+  <TD>&nbsp;</TD>
+</TR>
+ <neq name="node_info.node" value="">
+
+<if condition="$node_info.bind_name neq null">
+<TH valign="top"><label for="acttitle">设备绑定用户名：</label></TH>
+	<TD>{laoyang:$node_info.bind_name}</TD>
+	<TD>请在路由后台绑定此用户名!</TD>
+</TR>
+<TR>
+	<TH valign="top"><label for="acttitle">设备绑定密码：</label></TH>
+	<TD>{laoyang:$node_info.bind_key}</TD>
+	<TD>请在路由后台绑定此密码!</TD>
+</TR>
+</if>
+
+<TR>
+	<TH valign="top"><label for="acttitle">节点名称：</label></TH>
+	<TD>{laoyang:$node_info.name}</TD>
+	<TD></TD>
+</TR>
+<TR>
+
+<TR>
+	<TH valign="top"><label for="acttitle">创建时间：</label></TH>
+	<TD>{laoyang:$node_info.created_at}</TD>
+	<TD></TD>
+</TR>
+<TR>
+	<TH valign="top"><label for="acttitle">更新时间：</label></TH>
+	<TD>{laoyang:$node_info.updated_at}</TD>
+	<TD></TD>
+</TR>
+
+<TR>
+	<TH valign="top"><label for="acttitle">认证地址：</label></TH>
+	<TD>{laoyang:$f_siteUrl}/index.php?g=Home&m=Index&a=wifi&id={laoyang:$ap.id}<input type="hidden" name="login_url" id="login_url" value="{laoyang:$f_siteUrl}/index.php?g=Home&m=Index&a=wifi&id={laoyang:$ap.id}" ></TD>
+	<TD></TD>
+</TR>
+<TR>
+	<TH valign="top"><label for="acttitle">认证成功地址：</label></TH>
+	<TD>{laoyang:$f_siteUrl}/index.php?g=Home&m=Index&a=wifisuccess&id={laoyang:$ap.id}<input type="hidden" name="success_url" id="success_url" value="{laoyang:$f_siteUrl}/index.php?g=Home&m=Index&a=wifisuccess&id={laoyang:$ap.id}" ></TD>
+	<TD></TD>
+</TR>
+</neq>
+ <eq name="node_info.node" value="">
+ 
+<TR>
+  <TH valign="top"><label for="acttitle">节点名称：</label></TH>
+  <TD><input type="input" class="px" id="name"  name="name" style="width:300px"  value="{laoyang:$ap.name}" >    </TD>
+  <TD>填写后不能修改!</TD>
+</TR>
+</eq>
+
+
+<TR>
+	<TH valign="top"><label for="acttitle">开启认证：</label></TH>
+	<TD><input type="checkbox" name="is_portal" value="1" <eq name="node_info.is_portal" value="1">checked="checked"</eq> ></TD>
+	<TD></TD>
+</TR>
+<TR>
+	<TH valign="top"><label for="acttitle">未认证可微信聊天：</label></TH>
+	<TD> <input type="text" name="wx_unauth_timeout" id="wx_unauth_timeout" value="{laoyang:$node_info.wx_unauth_timeout|default='5'}" class="px" data-rule-number="true" data-msg-number="时间范围5-99分钟" data-rule-min="5" data-msg-min="时间范围5-99分钟" data-rule-max="99" data-msg-max="时间范围5-99分钟"> 分钟(5-99)</TD>
+	<TD>未认证可使用微信聊天的时间，无法在微信中访问网页。不填写为一直可以使用微信聊天10分钟</TD>
+</TR>
+<TR>
+	<TH valign="top"><label for="acttitle">认证后可上网：</label></TH>
+	<TD><input type="text" name="login_timeout" id="login_timeout" value="{laoyang:$node_info.login_timeout|default='1440'}" class="px" data-rule-number="true" data-msg-number="时间范围1-1440分钟" data-rule-min="1" data-msg-min="时间范围1-1440分钟" data-rule-max="1440" data-msg-max="时间范围1-1440分钟"> 分钟(1-1440)</TD>
+	<TD>认证成功后可以上网时间，不填写为可以上网1440分钟</TD>
+</TR>
+
+<TR>
+	<TH valign="top"><label for="acttitle">再次认证方式：</label></TH>
+	<TD> <select name="auth2nd" id="auth2nd" class="input-medium">
+		  <option value="1" <eq name="node_info.auth2nd" value="1"> selected="selected"</eq>>无需认证</option>
+		  <option value="0" <eq name="node_info.auth2nd" value="0"> selected="selected"</eq>>与首次一致</option>
+		  <option value="2" <eq name="node_info.auth2nd" value="2"> selected="selected"</eq>>简单认证</option>
+		</select></TD>
+	<TD>"简单认证"即在二次连接时候，需要打开浏览器点击任意网页。选择"与首次一致"，无法实现取消关注后需要重新认证。</TD>
+</TR>
+<TR>
+	<TH valign="top"><label for="acttitle">关闭主动弹窗：</label></TH>
+	<TD><input type="checkbox" name="hide_cp" value="1" <eq name="node_info.hide_cp" value="1"> checked="checked"</eq>></TD>
+	<TD>IOS终端(iPhone, iPod, iPad)和WP终端将不会主动弹窗，和Android认证流程一致</TD>
+</TR>
+<TR>
+	<TH valign="top"><label for="acttitle">网址白名单：</label></TH>
+	<TD><textarea id="white_list" name="white_list" class="px" style="resize:none; width:274px; height:120px;" data-rule-white_list="true">{laoyang:$node_info.white_list}</textarea></TD>
+	<TD>使用英文逗号(,)分隔主机名或IP地址，例如：qq.com,weibo.com</TD>
+</TR>
+        <tr>
+          <th></th>
+          <td><button type="submit" name="button" class="btn btn-success left">保存</button>
+            <a href="javascript:history.go(-1);" class="btn btn-info">取消</a>
+            <div class="clr"></div></td>
+        </tr>
+        </tbody>
+        
+      </table>
+    </form>
+  </div>
+</div>
+<!--底部-->
+</div>
+<script>
+  	<if condition="$_GET['id']">
+  	$('#token').val('{laoyang:$ap.token}');
+<else/>
+  	$('#token').val('{laoyang:$Think.session.token}');
+</if>
+  	
+  	</script>
+<include file="Public:footer"/>

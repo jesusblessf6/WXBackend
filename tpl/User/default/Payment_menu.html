@@ -1,0 +1,15 @@
+<!--tab start-->
+<div class="tab">
+<ul>
+<li class='<if condition="MODULE_NAME eq 'Wxpay'">current</if> tabli' id="tab1"><a href="{laoyang::U('Wxpay/index')}">微信支付</a></li>
+<li class='<if condition="MODULE_NAME eq 'Alipay_config'">current</if> tabli' id="tab2"><a href="{laoyang::U('Alipay_config/index')}">免签支付宝</a></li>
+<li class='<if condition="MODULE_NAME eq 'Wapalipay'">current</if> tabli' id="tab3"><a href="{laoyang::U('Wapalipay/index')}">手机支付宝</a></li>
+<li class='<if condition="MODULE_NAME eq 'Tenpay'">current</if> tabli' id="tab1"><a href="{laoyang::U('Tenpay/index')}">财付通</a></li>
+<li class='<if condition="MODULE_NAME eq 'Waptenpay'">current</if> tabli' id="tab1"><a href="{laoyang::U('Waptenpay/index')}">手机财付通</a></li>
+<li class='<if condition="MODULE_NAME eq 'Offlinepay'">current</if> tabli' id="tab1"><a href="{laoyang::U('Offlinepay/index')}">线下支付</a></li>
+<if condition="$thisUser[baofustate] eq '1'">
+<li class='<if condition="MODULE_NAME eq 'Baofu'">current</if> tabli' id="tab1"><a href="{laoyang::U('Baofu/index')}">银联支付</a></li>
+</if>
+</ul>
+</div>
+<!--tab end-->        

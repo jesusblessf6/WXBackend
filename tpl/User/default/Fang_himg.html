@@ -1,0 +1,101 @@
+<include file="Public:head"/> 
+
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/cymain.css" />
+
+<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+
+<div class="cLineB">
+
+<h4 class="left">全景图管理</h4>
+
+<div class="searchbar right">
+
+<form method="post" action="">
+
+<input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="searchkey" value="{laoyang:$key}">
+
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+
+</form>
+
+</div>
+
+<div class="clr"></div>
+
+</div>
+
+
+
+<div class="cLine">
+
+<div class="pageNavigator left"> <a href="{laoyang::U('Yiliao/add',array('token'=>$token))}" title="添加" class="btnGrayS vm bigbtn">添加子楼盘</a></div>
+
+<div class="clr"></div>
+
+</div>
+
+<div class="msgWrap">
+
+<form method="post" action="" id="info">
+
+<input name="delall" type="hidden" value="">
+
+<input name="wxid" type="hidden" value="">
+
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+<thead>
+
+
+
+<tr>
+
+<th width="160">全景图标题</th>
+
+<th width="200" class="norightborder">操作</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr></tr>
+
+<volist name="data" id="item"> 
+
+<tr>
+
+<td>{laoyang:$item.title}</td>
+
+<td class="norightborder"><a href="{laoyang::U('Yiliao/set',array('id'=>$item['id'],'token'=>$token))}">修改</a>&nbsp;&nbsp;<a href="{laoyang::U('Yiliao/del',array('id'=>$item['id'],'token'=>$token))}">删除</a></td>
+
+</tr>
+
+</volist>
+
+</tbody>
+
+</table>
+
+</form>
+
+
+
+</div>
+
+<div class="cLine">
+
+<div class="pageNavigator right">
+
+<div class="pages">{laoyang:$page}</div>
+
+</div>
+
+<div class="clr"></div>
+
+</div>
+
+</div>
+
+<include file="Public:footer"/>

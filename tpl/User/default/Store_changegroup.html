@@ -1,0 +1,60 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{laoyang::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{laoyang::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{laoyang::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script>
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#intro', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+'source','undo','clearhtml','hr',
+'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+'insertunorderedlist', '|', 'emoticons', 'image','link', 'unlink','baidumap','lineheight','table','anchor','preview','print','template','code','cut', 'music', 'video'],
+afterBlur: function(){this.sync();}
+});
+});
+</script>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+<div class="cLineB">
+
+    <h4>商品设置</h4> 
+    <a href="{laoyang::U('Store/productgroup',array('token'=>$token))}" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+   </div> 
+<form method="post" action="" id="formID">
+	<input type="hidden" name="id" value="{laoyang:$set.id}" />
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+       <tr> 
+        <th><span class="red">*</span>名称：</th> 
+        <td>{laoyang:$set.name}</td> 
+       </tr>
+       <tr> 
+        <th><span class="red">*</span>所属组别：</th>
+        <td>
+        <select name="gid" id="gid">
+        <volist name="groups" id="g">
+        	<option value="{laoyang:$g['id']}" <if condition="$set['gid'] eq $g['id']" >selected</if>>{laoyang:$g['name']}</option>
+        </volist>
+        </select>
+        </td> 
+       </tr>
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+       <button type="submit" name="button" class="btnGreen" id="save">保存</button> &nbsp; <a href="{laoyang::U('Store/index',array('token'=>$token, 'catid' => $catid))}" class="btnGray vm">取消</a></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+</form>
+</div> 
+<include file="Public:footer" />

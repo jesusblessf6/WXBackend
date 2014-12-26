@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html>
+
+        <head>
+       <if condition="$zd['status'] eq 1">
+            {laoyang:$zd['code']}
+        </if>
+
+        <meta charset="utf-8" />
+
+        <link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/187/css/reset.css?2014-02-25-10" media="all" />
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/187/css/snower.css?2014-02-25-10" media="all" />
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/187/css/home-37.css?2014-02-25-10" media="all" />
+<script type="text/javascript" src="{laoyang::RES}/css/187/js/maivl.js?2014-02-25-10"></script>
+<link rel="stylesheet" type="text/css" href="../../wm-xin-a/font-awesome.css?v=2013121900" media="all" />
+<script type="text/javascript" src="{laoyang::RES}/css/187/js/jQuery.js?2014-02-25-10"></script>
+<title>{laoyang:$tpl.wxname}sss</title>
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+
+        <meta name="Keywords" content="老杨分享、微信营销、微信代运营、微信定制开发、微信托管、微网站、微商城、微营销" />
+
+        <meta name="Description" content="老杨分享，国内最大的微信公众智能服务平台，老杨分享八大微体系：微菜单、微官网、微会员、微活动、微商城、微推送、微服务、微统计，企业微营销必备。" />
+
+        <!-- Mobile Devices Support @begin -->
+
+            <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+
+            <meta content="no-cache" http-equiv="pragma">
+
+            <meta content="0" http-equiv="expires">
+
+            <meta content="telephone=no, address=no" name="format-detection">
+
+            <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <!-- Mobile Devices Support @end -->
+
+        <link rel="shortcut icon" href="http://stc.weimob.com/img/favicon.ico" />
+
+    </head>
+
+    <body onselectstart="return true;" ondragstart="return false;">
+
+<style>
+
+	.wrapper {
+
+		position:relative;
+
+		max-width:640px;
+
+		margin:auto;
+
+		display: block;
+
+					background:url('images/20140512144917_50314.jpg') no-repeat 0;
+
+				background-size: 100% 100%;
+
+	}
+
+</style>
+
+<script>
+
+	var evtName = "ontouchstart" in window?"touchstart":"mouseover";
+
+	var evtName1 = "ontouchstart" in window?"touchend":"mouseout";
+
+	window.addEventListener("DOMContentLoaded", function(){
+
+		var nav_list = document.getElementById("nav_list");
+
+		console.log(nav_list);
+
+		var navEvt = {
+
+			handleEvent: function(e){
+
+				console.log(e.type);
+
+				if("A" == e.target.tagName){
+
+					if(evtName == e.type){
+
+						e.target.className = "on";
+
+					}else{
+
+						e.target.className = "";
+
+					}
+
+				}
+
+			}
+
+		}
+
+		nav_list.addEventListener(evtName, navEvt, false);
+
+		nav_list.addEventListener(evtName1, navEvt, false);
+
+	}, false);
+
+</script>
+
+
+
+
+
+<div class="wrapper" id="container">
+
+	<header>
+        <div class="snower">
+            <script type="text/javascript">var urls = new Array();urls.push('http://stc.weimob.com/img/template/lib/v57_snow1.png');urls.push('http://stc.weimob.com/img/template/lib/v57_snow2.png');urls.push('http://stc.weimob.com/img/template/lib/v57_snow3.png');urls.push('http://stc.weimob.com/img/template/lib/v57_snow4.png');</script>
+            <script type="text/javascript" src="{laoyang::RES}/css/187/js/snower2.js"></script>
+        </div>
+    </header>  
+
+	<div id="J_Taojia" class="taoplus">
+
+		<div id="nav_list" class="circle">
+
+			<div class="tpicons">
+
+				<ul>
+
+																								</ul>
+
+			</div>
+
+					</div>
+
+	</div>
+
+
+
+	<!--
+
+导航菜单
+
+   后台设置的快捷菜单
+
+-->
+
+
+
+<!--
+
+分享前控制
+
+-->
+
+	<script type="text/javascript">
+		
+		window.shareData = {
+			"imgUrl": "{laoyang:$homeInfo.picurl}",
+			"timeLineLink": "{laoyang::C('site_url')}{laoyang::U('Index/index',array('token'=>$vo['token']))}",
+			"sendFriendLink": "{laoyang::C('site_url')}{laoyang::U('Index/index',array('token'=>$vo['token']))}",
+			"weiboLink": "{laoyang::C('site_url')}{laoyang::U('Index/index',array('token'=>$vo['token']))}",
+			"tTitle": "欢迎访问{laoyang:$tpl.wxname}微网站",
+			"tContent": "欢迎访问{laoyang:$tpl.wxname}微网站",
+			"fTitle": "欢迎访问{laoyang:$tpl.wxname}微网站",
+			"fContent": "欢迎访问{laoyang:$tpl.wxname}微网站",
+			"wContent": "欢迎访问{laoyang:$tpl.wxname}微网站"
+		};
+
+			</script>
+
+</div> 
+		
+<include file="Index:styleInclude"/><include file="$cateMenuFileName"/> 
+	<if condition="ACTION_NAME eq 'index'">
+		<script type="text/javascript">
+			window.shareData = {  
+					"moduleName":"Index",
+					"moduleID": '0',
+					"imgUrl": "{laoyang:$homeInfo.picurl}", 
+					"timeLineLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"sendFriendLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"weiboLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"tTitle": "{laoyang:$homeInfo.title}",
+					"tContent": "{laoyang:$homeInfo.info}"
+				};
+		</script>
+	<else />
+		<script type="text/javascript">
+			window.shareData = {  
+				"moduleName":"Index",
+				"moduleID": '1',
+				"imgUrl": "{laoyang:$homeInfo.picurl}", 
+				"timeLineLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"sendFriendLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"weiboLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"tTitle": "{laoyang:$homeInfo.title}",
+				"tContent": "{laoyang:$homeInfo.info}"
+			};
+		</script>	
+	
+	</if>
+{laoyang:$shareScript}
+<include file="Public:footer"/>
+
+
+

@@ -1,0 +1,10 @@
+.copyright{color:#837872;}
+.copyright a{color:#837872;}
+#cate48 { background-color:#383433;}
+#cate48  .mainmenu li {  border:0; border-radius:6px; }
+#cate48  .mainmenu li a { background-color: #54483a;}
+#cate48 .mainmenu li a p b {color: #FFFFFF;}
+#cate48 .mainmenu li a p span {color: rgba(255, 255, 255, 0.5);}
+#cate48  .mainmenu li:nth-child(3n+1) a p{ background: url(../images/p_bg1.png) no-repeat;}
+#cate48  .mainmenu li:nth-child(3n+2) a p{ background: url(../images/p_bg2.png) no-repeat;}
+#cate48  .mainmenu li:nth-child(3n+3) a p{ background: url(../images/p_bg3.png) no-repeat;}

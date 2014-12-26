@@ -1,0 +1,42 @@
+<include file="Public:head"/>
+<include file="Estate:menu"/>
+<div class="content">
+
+<div class="cLineB">
+  <h4>添加楼盘相册</h4><a href="javascript:history.go(-1);return false;" class="right btn btn-primary btn_submit  J_ajax_submit_btn" style="margin-top:-27px">返回</a>
+ </div>
+
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action=""   >
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+				  <th valign="top"><span class="red">*</span>经选择相册名称：</th>
+				  <td>
+					  <select id="poid" name="poid" class="input-medium" schoolSet>
+                            <option value="0">请选择相册</option>
+                                <volist name="photo" id="vo">
+                                    <option value="{laoyang:$vo['id']}" <if condition="$vo['id'] eq $album['poid']">selected="selected"</if>>{laoyang:$vo['title']}</option>
+                                </volist>
+                          </select>
+                     <a href="{laoyang::U('Photo/add',array('token'=>$token,'poid'=>$poid['poid']))}" class="btn"><i class="icon-plus"></i>添加相册</a></td>
+				</tr>
+
+
+				<th>&nbsp;</th>
+				  <if condition="$album['id'] neq ''">
+                                    <input type="hidden" name="id" value="{laoyang:$album['id']}" />
+                                </if>
+					<td>
+						<button type="submit" name="button" class="btn btn-primary btn_submit  J_ajax_submit_btn">保存</button>
+						<a href="javascript:history.go(-1);" class="btn">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div>
+
+
+        </div>
+<include file="Public:footer"/>

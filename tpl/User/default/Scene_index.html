@@ -1,0 +1,183 @@
+﻿<include file="Public:head"/> 
+<style>
+.album_list {
+background:767421930;
+overflow: hidden;
+padding-top: 15px;
+}
+.album_list li {
+border: 1px #DDD solid;
+width: 250px;
+float: left;
+margin-left: 15px;
+margin-bottom: 10px;
+}
+.album_list li .album_pic {
+display: block;
+width: 250px;
+height: 365px;
+overflow: hidden;
+}
+.album_list li .album_pic img {
+width: 250px;
+}
+.album_list li .album_main {
+padding: 10px;
+overflow: hidden;
+}
+.album_list li .album_main .album_title {
+font-size: 16px;
+height: 20px;
+width: 250px;
+overflow: hidden;
+}
+.pull-right {
+float: right;
+}</style>
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/cymain.css" />
+
+
+
+
+
+
+
+<div class="content"  >
+
+
+
+
+
+
+
+<div class="cLineB">
+
+
+
+
+
+
+
+<h4 class="left">新增场景 </h4></div>
+
+
+
+<div class="tab">
+
+<ul>
+
+<li class="tabli" id="tab2"><a href="{laoyang::U('Scene/add')}">新增场景</a></li>
+
+
+
+<li class="current tabli" id="tab20"><a href="{laoyang::U('Scene/index')}">场景管理</a></li>
+
+</ul>
+
+</div>
+
+
+
+<div class="searchbar right">
+
+
+<div class="clr"></div>
+
+</div>
+
+
+<div class="cLine">
+
+
+
+<div class="clr"></div>
+
+
+
+
+
+
+
+</div>
+<div><ul class="unstyled album_list">
+<volist name="set" id="item"> 
+<li><a href="{laoyang::U('Scene/addtp',array('id'=>$item['id'],'token'=>$token))}" class="album_pic"><img src="{laoyang:$item.catp}"></a>
+<div class="album_main">
+			<p class="album_title">{laoyang:$item.name}</p>
+            <p class="album_title">浏览量：{laoyang:$item['click']}</p>
+			<p>
+				<span class="pull-right">
+				<a class="btn" href="{laoyang::U('Scene/addtp',array('id'=>$item['id'],'token'=>$token))}" title="内页"><i class="icon-plus"></i></a>
+				<a class="btn" rel="tooltip" href="{laoyang::U('Scene/edit',array('id'=>$item['id'],'token'=>$token))}" title="编辑"><i class="icon-edit"></i></a>
+				
+				<a class="btn" rel="tooltip" href="#" onclick="drop_confirm('您确定要删除吗?删除不可恢复', '{laoyang::U('Scene/del',array('id'=>$item['id'],'token'=>$token))}');" title="删除"><i class="icon-remove"></i></a>
+				<a class="btn" target="_blank" href="{laoyang:$f_siteUrl}/index.php?g=Wap&m=Scene&a=index&token={laoyang:$token}&id={laoyang:$item.id}" ><i class=" icon-eye-open"></i></a>
+				</span>
+			</p>
+		</div></li></volist>
+
+</ul></div>
+<div class="cLine">
+  
+  
+  
+  
+  
+  
+  
+  <div class="pageNavigator right">
+
+
+
+
+
+
+
+<div class="pages">{laoyang:$page}</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="clr"></div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<include file="Public:footer"/>

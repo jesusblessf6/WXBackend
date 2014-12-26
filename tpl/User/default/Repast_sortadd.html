@@ -1,0 +1,52 @@
+<if condition="$ischild neq 1" >
+   <include file="Public:head"/>
+<else/>
+   <include file="Repast:header" />
+</if>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" > 
+<div class="cLineB"> 
+<if condition="$ischild neq 1" >
+   <include file="Public:hangye"/>
+<else/>
+   <include file="Repast:head" />
+</if>
+		<h4>菜品分类设置</h4> 
+		<a href="{laoyang::U('Repast/index',array('token' => $token,'cid'=>$cid))}" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+	</div> 
+<if condition="$ischild neq 1" >
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:5px;">此处只显示总店信息，连锁店订单及菜品请进入相应平台进行管理，连锁店登录账号密码及登录地址请在LBS里设置查看</div>
+</if>
+<form method="post" action="" id="formID">
+<input type="hidden" name="id" value="{laoyang:$tableData.id}" />
+<input type="hidden" name="cid" value="{laoyang:$cid}" />
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+       <tr> 
+        <th><span class="red">*</span>分类名称：</th> 
+        <td>
+        <input type="text" name="name" id="name" value="{laoyang:$tableData.name}" class="px" style="width:400px;" />
+        </td> 
+       </tr>
+       <tr> 
+        <th>展示图片：</th>
+        <td><input type="text" name="image" value="{laoyang:$tableData.image}" class="px" id="pic" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic',700,700,'{laoyang:$token}')" class="ChooseImage">上传</a> <a href="###" onclick="viewImg('pic')">预览</a></td> 
+       </tr>
+       <tr> 
+        <th>分类描述：</th> 
+        <td><textarea name="des" class="px" style="width:400px;height:80px;">{laoyang:$tableData.des}</textarea></td> 
+       </tr>
+       <tr>
+       <th>&nbsp;</th>
+       <td>
+       <button type="submit" name="submit" class="btnGreen" id="save">保存</button> &nbsp; <a href="{laoyang::U('Repast/sort',array('token' => $token, 'cid' => $cid))}" class="btnGray vm">取消</a></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+</form>
+</div> 
+
+<include file="Public:footer" />

@@ -1,0 +1,113 @@
+﻿<include file="Public:head"/>
+<include file="Estate:menu"/> 
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+	
+        <div class="content">
+<div class="cLineB">
+<h4 class="left">公司信息</h4>
+<div class="searchbar right">
+<form method="post" action="">
+
+<script>
+function setlatlng(longitude,latitude){
+	art.dialog.data('longitude', longitude);
+	art.dialog.data('latitude', latitude);
+	// 此时 iframeA.html 页面可以使用 art.dialog.data('test') 获取到数据，如：
+	// document.getElementById('aInput').value = art.dialog.data('test');
+	art.dialog.open('{laoyang::U('Map/setLatLng',array('token'=>$token,'id'=>$id))}',{lock:false,title:'设置经纬度',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+</script>
+<if condition="($parentid neq  '0') and ($parentid neq '')"><a href="{laoyang::U('Product/cats',array('token'=>$token,'parentid'=>$parentCat['parentid']))}" class="btn btn-primary btn_submit  J_ajax_submit_btn" style="margin-top:-27px">返回上</a></if>
+</form>
+</div>
+<div class="clr"></div>
+</div>
+
+<!--tab start-->
+<div class="tab">
+
+</div>
+<!--tab end-->
+<div class="msgWrap">
+ <form class="form" method="post" id="form" name="form" action=""> 
+ <input type="hidden" name="isbranch" id="isbranch" value="1" />
+<if condition="$set.id neq ''">
+<input type="hidden" name="id" value="{laoyang:$set.id}" />
+</if>
+<input type="hidden" name="discount" id="discount" value="{laoyang:$set.discount}" />
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+       <tr> 
+        <th><span class="red">*</span>名称：</th> 
+        <td><input type="text" id="name" name="name" value="{laoyang:$set.name}" class="px require" style="width:400px;" /></td> 
+       </tr>
+       <tr style="display: none;"> 
+        <th><span class="red">*</span>简称：</th> 
+        <td><input type="text" id="shortname" name="shortname" value="loupan" class="px require" style="width:400px;" /></td> 
+       </tr>
+       <tr> 
+        <th><span class="red">*</span>电话：</th> 
+        <td><input type="text" id="tel" name="tel" value="{laoyang:$set.tel}" class="px require" style="width:400px;" /></td> 
+       </tr> 
+       <tr> 
+        <th><span class="red">*</span>手机：</th> 
+        <td><input type="text" id="mp" name="mp" value="{laoyang:$set.mp}" class="px require" style="width:400px;" /></td> 
+       </tr> 
+       <tr> 
+        <th><span class="red">*</span>地址：</th> 
+        <td><input type="text" id="address" name="address" value="{laoyang:$set.address}" class="px require" style="width:400px;" /></td> 
+       </tr> 
+       <tr> 
+        <th><span class="red">*</span>Logo地址：</th> 
+        <td><input type="text" id="logourl" name="logourl" value="{laoyang:$set.logourl}" class="px require" style="width:400px;" /> <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('logourl',700,420,'{laoyang:$token}')" class="btn btn-primary btn_submit  J_ajax_submit_btn">上传</a> <a href="###" onclick="viewImg('logourl')">预览</a></td> 
+       </tr>
+        <tr> 
+        <th><span class="red">*</span>经纬度：</th> 
+        <td>经度 <input type="text" id="longitude"  name="longitude" size="14" class="px" value="{laoyang:$set.longitude}" /> 纬度 <input type="text"  name="latitude" size="14" id="latitude" class="px" value="{laoyang:$set.latitude}" /> <a href="###" onclick="setlatlng($('#longitude').val(),$('#latitude').val())">在地图中查看/设置</a></td> 
+       </tr>
+       <tr> 
+        <th><span class="red"></span>顺序：</th> 
+        <td><input type="text" id="taxis" name="taxis" value="{laoyang:$set.taxis}" class="px require" style="width:100px;" /></td> 
+       </tr>
+        <TR>
+                  <TH valign="top"><label for="info">图文详细页内容：</label></TH>
+                  <TD><textarea name="intro" id="content"  rows="5" style="width:590px;height:360px;display:none;">{laoyang:$set.intro}</textarea>
+
+                  </TD>
+                </TR>  
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+     
+      <input type="hidden" name="token" value="{laoyang::$token}" />
+       <button type="submit" name="button" class="btn btn-primary btn_submit  J_ajax_submit_btn">保存</button></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+    
+   </form> 
+
+
+</div>
+<div class="cLine">
+
+<div class="clr"></div>
+</div>
+</div>
+<script language="javascript">
+$(function(){
+
+	$("#form").valid([
+	{ name:"name",simple:"名称",require:true},
+	{ name:"mp",type:"mobile",message:"手机号输入不正确"}
+	
+	],true,true);
+
+})
+</script>
+<include file="Public:footer"/>

@@ -1,0 +1,235 @@
+﻿<include file="Public:head"/>
+
+<php>
+
+	if(isset($_POST['PHPSESSID'])){
+
+		session_id($_POST['PHPSESSID']);
+
+	}
+
+
+
+</php>
+
+
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<script src="/tpl/static/upyun.js"></script>
+
+
+<div class="content">
+
+<script type="text/javascript" src="/tpl/static/swfupload/js/swfupload.js"></script>
+
+<script type="text/javascript" src="/tpl/static/swfupload/js/scene.js"></script>
+
+<link href="/tpl/static/swfupload/css/default.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+	
+
+<div class="cLineB">
+
+  <h4>场景单页设置</h4> <a href="{laoyang::U('Scene/addtp',array('id'=>$id,'token'=>session('token')))}" class="right  btn btn-primary btn_submit  J_ajax_submit_btn" style="margin-top:-27px">返回</a>
+
+  
+
+ </div>
+
+
+
+ <div class="msgWrap form">
+
+           
+
+
+
+<div class="bdrcontent">
+
+
+
+
+
+<volist name="info" id="photo">
+
+ <form method="post" action="{laoyang::U('Scene/list_edit',array('token'=>session('token')))}">              
+
+<div style="border: 10px solid black; float:left; width:400px"><img src="{laoyang:$photo.picurl}" ></div>
+
+	
+
+	
+	 <script language="javascript" type="text/javascript">
+ function put{laoyang:$i}() { 
+ document.getElementById("{laoyang:$i}box2").style.display ="none";
+ document.getElementById("{laoyang:$i}box3").style.display ="none";
+ document.getElementById("itype{laoyang:$i}_1").checked =true;
+  document.getElementById("itype{laoyang:$i}_1").value=1;
+ document.getElementById("itype{laoyang:$i}_2").checked=false;
+
+ document.getElementById("itype{laoyang:$i}_3").checked=false;
+
+ }
+ function showdiv{laoyang:$i}() { 
+ document.getElementById("{laoyang:$i}box2").style.display ="block";
+ document.getElementById("{laoyang:$i}box3").style.display ="none";
+ document.getElementById("itype{laoyang:$i}_1").checked =false;
+
+ document.getElementById("itype{laoyang:$i}_2").checked=true;
+
+ document.getElementById("itype{laoyang:$i}_3").checked=false;
+
+ }
+  function hidden{laoyang:$i}() { 
+ document.getElementById("{laoyang:$i}box2").style.display ="none";
+ document.getElementById("{laoyang:$i}box3").style.display ="block";
+ document.getElementById("itype{laoyang:$i}_1").checked =false;
+
+ document.getElementById("itype{laoyang:$i}_2").checked=false;
+
+ document.getElementById("itype{laoyang:$i}_3").checked=true;
+
+ }
+
+
+ </script>
+
+<input type="hidden"   name="id" value="{laoyang:$photo.id}"  />
+	
+   <div class="pull-left item" id="item_26" date-id="26">
+   
+			 <label for="itype[26]_1" class="radio inline">
+			            	展示方式</label>
+			       
+			            <label for="itype[26]_1" class="radio inline">
+			            	<input type="radio" id="itype{laoyang:$i}_1" name="style1" value="1" <if condition="$photo.style1 eq 1">checked="checked"</if>   class="radio_item" onclick="put{laoyang:$i}();">普通</label>
+			            &nbsp;&nbsp;&nbsp;
+						<label for="itype[26]_2" class="radio inline">
+							<input type="radio" id="itype{laoyang:$i}_2" name="style1" <if condition="$photo.style1 eq 2">checked="checked"</if> value="2"  class="radio_item"  onclick="showdiv{laoyang:$i}();">视频展示</label>
+			            &nbsp;&nbsp;&nbsp;
+			            <label for="itype[26]_3" class="radio inline">
+			            	<input type="radio" id="itype{laoyang:$i}_3" name="style1" <if condition="$photo.style1 eq 3">checked="checked"</if> value="3"  class="radio_item" onclick="hidden{laoyang:$i}();">地图展示</label>
+			      
+
+			   
+	      <div class="box2" id="{laoyang:$i}box2" <if condition="$photo.style1 eq 2">style="display: block;margin-left: 20px;"</if>  style="display: none;margin-left: 20px;">
+				  <label for="">视频：</label>
+				 <input type="text" name="video" id="video" value="{laoyang:$photo.video}" class="span5"><br>
+                 <p style="color:red">采用video播放器，最好为MP4格式</p>
+                
+                 
+              
+						
+				  <label for="">封面：</label>
+				  <input type="text" id="p{laoyang:$i}" name="cover" value="{laoyang:$photo.cover}"><script src="/tpl/static/upyun.js"></script> 
+              <a href="javascript:void(0)" onclick="upyunPicUpload('p{laoyang:$i}',700,420,'{laoyang:$token}')" class="btn btn-primary btn_submit  J_ajax_submit_btn">上传</a> <a href="###" onclick="viewImg('p{laoyang:$i}')" class="btn btn-primary btn_submit  J_ajax_submit_btn">预览</a><br>
+              <span><img src="{laoyang:$photo.cover}" style="width:120px"></span></div>
+						
+												
+			    <div class="box3" id="{laoyang:$i}box3" <if condition="$photo.style1 eq 3">style="display: block;margin-left: 20px;"</if>style="display: none;margin-left: 20px;">
+                     
+			      <label for="">坐标：</label>
+						<input type="text" name="lng" id="longitude" value="{laoyang:$photo.lng}" class="span3"> - <input type="text" name="lat" id="latitude"  value="{laoyang:$photo.lat}" class="span3">
+                         <label >地点：</label>
+  <input id="where" name="where" type="text" >
+  <input type="button" value="地图上找" onClick="sear(document.getElementById('where').value);" / class="btn btn-primary btn_submit  J_ajax_submit_btn">
+  <br />
+  <div style="width:520px;height:340px;border:1px solid gray" id="container"></div>
+  <br />
+  
+					<label for="">地址：</label>
+						<input type="text" name="address" value="{laoyang:$photo.address}" class="span6">
+					
+					<label for="">电话：</label>
+						<input type="text" name="tel" value="{laoyang:$photo.tel}" class="span3">
+					
+						<label for="">宣传图：</label>
+						<input type="text" name="ad" id="pic{laoyang:$i}" value="{laoyang:$photo.ad}">   <a href="javascript:void(0)" onclick="upyunPicUpload('pic{laoyang:$i}',700,420,'{laoyang:$token}')" class="btn btn-primary btn_submit  J_ajax_submit_btn">上传</a> <a href="###" onclick="viewImg('pic{laoyang:$i}')" class="btn btn-primary btn_submit  J_ajax_submit_btn">预览</a></span>
+												
+						<label for="">微信号：</label>
+						<input type="text" name="wechat" value="{laoyang:$photo.wechat}" class="span3"></div>
+
+
+<br>
+<br>
+
+<div style="margin-left: 20px;"><button type="submit" name="edit" value="true" class="btn btn-primary btn_submit  J_ajax_submit_btn" >
+
+			<strong>保存</strong>
+
+		</button></div>
+</form>
+
+
+</volist>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2"></script>
+
+ 
+
+
+
+
+</div>
+
+</div>
+
+<div class="footactions" style="padding-left:10px">
+
+  <div class="pages"></div>
+
+</div>
+
+
+
+
+
+ </div>
+
+  
+
+        </div>
+
+<include file="Public:footer"/> 
+<script type="text/javascript">
+var map = new BMap.Map("container");//在指定的容器内创建地图实例
+map.setDefaultCursor("crosshair");//设置地图默认的鼠标指针样式
+map.enableScrollWheelZoom();//启用滚轮放大缩小，默认禁用。
+map.centerAndZoom(new BMap.Point(116.124878, 24.309178), 13);
+map.addControl(new BMap.NavigationControl()); 
+map.addEventListener("click", function(e){//地图单击事件
+	document.getElementById("longitude").value = e.point.lng ;
+	document.getElementById("latitude").value = e.point.lat;
+});
+function iploac(result){//根据IP设置地图中心
+    var cityName = result.name;
+    map.setCenter(cityName);
+}
+var myCity = new BMap.LocalCity();
+myCity.get(iploac);
+function sear(result){//地图搜索
+	var local = new BMap.LocalSearch(map, {
+  		renderOptions:{map: map}
+	});
+	local.search(result);
+}
+</script>
+	
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12599330-14']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script> 
+
+ 

@@ -1,0 +1,60 @@
+﻿<include file="Public:head"/>
+	<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+          <div class="cLineB">
+		 
+    <h4>兑奖受理</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+            <div class="pageNavigator left">
+            <a href="{laoyang::U('Sharetalent/index')}" title="活动列表" class="btn btn-primary btn_submit  J_ajax_submit_btn">活动列表</a>
+             <a href="{laoyang::U('Sharetalent/sm')}" title="达人说明配置" class="btn btn-primary btn_submit  J_ajax_submit_btn">达人说明配置</a>
+              <a href="{laoyang::U('Sharetalent/user')}" title="用户管理" class="btn btn-primary btn_submit  J_ajax_submit_btn">用户管理</a>
+             <a href="{laoyang::U('Sharetalent/reply')}" title="首页回复配置" class="btn btn-primary btn_submit  J_ajax_submit_btn">首页回复配置</a>
+            </div>
+          
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+					
+					<th  width="18%" class="time"> 达到资格的用户</th>
+					<th width="10%">联系方式</th>
+                    <th width="17%">参与的活动名称</th>
+                    <th width="10%">获得的浏览量</th>
+					
+					<th width="15%">奖品</th>
+                    <th width="10%">兑奖状态</th>
+                    
+					
+					<th width="20%" class="norightborder">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr></tr>
+                  <volist id="list" name="info">
+                <tr>
+                  <td>{laoyang:$list.name}</td>
+                  <td>{laoyang:$list.tel}</td>
+                   <td>{laoyang:$list.title}</td>
+                   <td>{laoyang:$list.click}</td>
+                   <td>{laoyang:$list.prize}</td>
+                   <td> <if condition="$list.statu eq '1'  "><span style=" color:#29CA0A;font-size: 20px;">已兑奖</span><else/><span style="color:red;font-size: 20px;">未兑奖</span></if></td>
+                
+                
+                  
+                  <td class="norightborder"> <a class="btn btn-primary btn_submit  J_ajax_submit_btn" href="javascript:drop_confirm('您确定要删除吗？', '{laoyang::U('Sharetalent/userdel',array('id'=>$list['id'],'token'=>$list['token'],'wecha_id'=>$list['wecha_id']))}');">删除</a> 
+                   <if condition="$list.statu neq '1'  ">
+				   <a  class="btn btn-primary btn_submit  J_ajax_submit_btn" href="{laoyang::U('Sharetalent/sendprize',array('id'=>$list['id'],'token'=>$list['token'],'wecha_id'=>$list['wecha_id'],'id'=>$list['id'],'pid'=>$list['pid']))}">发奖</a></if> 
+                   </td>
+          
+                </tr>
+                  </volist>
+      			                
+                  
+              </tbody>
+            </table>
+            
+   </div> 
+          
+  </div>
+<include file="Public:footer"/>

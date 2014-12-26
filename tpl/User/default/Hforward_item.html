@@ -1,0 +1,90 @@
+<include file="Public:head"/>
+<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+<div class="cLineB">
+		 
+    <h4>转发记录</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+</div>  
+   <a href="{laoyang::U('Hforward/add_item',array('id'=>$id))}" class="btn btn-primary btn_submit  J_ajax_submit_btn">添加</a>
+<script>
+
+function getAll()
+{
+ var tit = document.getElementById("check_box");
+ var inputs = document.getElementsByTagName("input");
+ for(var i = 0; i < inputs.length; i++)
+ {
+  if(inputs[i].type == "checkbox")
+  {
+   if(tit.checked == true)
+   {
+    inputs[i].checked = true;
+   }else{
+    inputs[i].checked = false;
+   }
+  }
+ }
+}
+function checkSubmit(style){
+	var str = "";
+	for(var i=0;i < document.form1.ids.length;i++){
+		  if(document.form1.ids[i].checked){
+		  	if(str=="") str += document.form1.ids[i].value;
+		  	else str += "," + document.form1.ids[i].value;
+		  }
+	}
+	if(str==""){
+		alert("你没选择任何内容！");
+		return false;
+	}else{
+		document.form1.allid.value = str;
+		document.form1.style.value = style;
+		
+	}
+//alert(document.form1.allid.value+"@"+document.form1.style.value);
+    $("#form1").submit();
+}
+
+</script>
+          <div class="msgWrap">
+        <form name="form1" id="form1" method="post" action="/index.php?g=User&m=Hforward&a=shenhe&id={laoyang:$id}" >
+		<input type="hidden" name="allid" value="" />
+		<input type="hidden" name="style" value="" />
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+					<th><input type="checkbox" value="" id="check_box" onclick="getAll();"></th>
+					<th>编号</th>
+					<th>姓名</th>
+					<th>点击</th>                   
+                    <th>电话</th>
+					<th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr></tr>
+                  <volist id="list" name="list">
+                <tr>
+				    <td><input type="checkbox" value="{laoyang:$list.id}" class="cbitem" name="ids" id="ids"></td>
+					<td>{laoyang:$list.id}</td>
+					<td>{laoyang:$list.name}</td>
+					<td>{laoyang:$list.tongji}</td>
+                    <td>{laoyang:$list.phone}</td>
+                    <td><a class="btn btn-primary btn_submit  J_ajax_submit_btn" href="/index.php?g=User&m=Hforward&a=edite_item&id={laoyang:$list.id}&fid={laoyang:$list.fid}">编辑</a><a class="btn btn-primary btn_submit  J_ajax_submit_btn" href="/index.php?g=User&m=Hforward&a=delete_item&id={laoyang:$list.id}&fid={laoyang:$list.fid}" style="margin-left:50px">删除</a></td>
+                    </tr>
+                  </volist>
+              </tbody>
+            </table>
+
+   </div> 
+          <div class="cLine">
+<!-- 		    <div class="left">
+            <input type="button" value="删除" name="删除" class="btn btn-primary btn_submit J_ajax_submit_btn" onclick="checkSubmit(3)"/>
+            </div> -->
+            <div class="pageNavigator right">
+                 <div class="pages">{laoyang:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+  </form>
+  </div>
+<include file="Public:footer"/>

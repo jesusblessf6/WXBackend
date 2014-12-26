@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>摇一摇名次</title>
+  <div id="wp" class="wp"><link href="{laoyang::RES}/css/style.css?id=103" rel="stylesheet" type="text/css" />
+
+</head>
+<body style="width:600px;height:400px;">
+<h3>活动名次</h3>
+<!--
+  <ul class="rotate-tab clearfix">
+    <volist id="max" name="max" key="key">
+      <li class="<if condition="$round eq $max['round']">active</if>">
+        <a href="{laoyang::U('Scene/show_shake',array('sceneid'=>$sceneid,'id'=>$id,'round'=>$max['round']))}">第{laoyang:$key}轮</a>
+      </li>
+    </volist>
+    <span class="clear"></span>
+  </ul>-->
+<div class="member-list">
+  <table class="ListProduct" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+      <tr>
+        <th style=" width:100px;" align="center">轮次</th>
+        <th style=" width:80px;" align="center">参与人数</th>
+        <th style=" width:80px;" align="center">摇动次数</th>
+        <th style=" width:80px;" align="center">名次</th>
+      </tr>
+    </thead>
+    <tbody>
+      <volist name="info" id="info"> 
+        <tr>
+          <td align="center">第{laoyang:$info.round}轮</td>
+          <td align="center">{laoyang:$info.ucount}人</td>
+          <td align="center">{laoyang:$info.count}次</td>
+          <td align="center">第{laoyang:$info.rank}名</td>
+        </tr>
+      </volist>
+    </tbody>
+  </table>
+  {laoyang:$page}
+</div>
+
+</body>
+</html>

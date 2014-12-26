@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+       <if condition="$zd['status'] eq 1">
+            {laoyang:$zd['code']}
+        </if>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>{laoyang:$tpl.wxname}</title>
+
+<base href="." />
+
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+<meta name="format-detection" content="telephone=no" />
+
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/template/reset.css" media="all" />
+
+<link rel="stylesheet" type="text/css" href="../../wm-xin-a/font-awesome.css?v=2013121900" media="all" />
+
+<link href="{laoyang::RES}/css/allcss/cate60_0.css" rel="stylesheet" type="text/css" />
+
+<!-- <link href="{laoyang::RES}/css/160/cate20_.css" rel="stylesheet" type="text/css"> -->
+
+<link href="{laoyang::RES}/css/160/iscroll.css" rel="stylesheet" type="text/css">
+
+<script src="{laoyang::RES}/css/160/jquery.min.js" type="text/javascript"></script>
+
+<script src="{laoyang::RES}/css/160/idangerous.swiper.js" type="text/javascript"></script>
+
+<script src="{laoyang::RES}/css/160/iscroll.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+var myScroll;
+
+
+
+function loaded() {
+
+myScroll = new iScroll('wrapper', {
+
+snap: true,
+
+momentum: false,
+
+hScrollbar: false,
+
+onScrollEnd: function () {
+
+document.querySelector('#indicator > li.active').className = '';
+
+document.querySelector('#indicator > li:nth-child(' + (this.currPageX+1) + ')').className = 'active';
+
+}
+
+ });
+
+ 
+
+ 
+
+}
+
+
+
+document.addEventListener('DOMContentLoaded', loaded, false);
+
+</script>
+
+ 
+
+</head>
+
+<if condition="$homeInfo['play_wifi'] eq 'on'">
+
+<include file="Public:auth"/>
+
+</if>
+
+<if condition="$homeInfo['play_audio'] eq 'on'">
+
+<if condition="$homeInfo['musicurl'] neq false">
+
+<include file="Index:music"/>
+
+</if>
+
+</if>
+
+<body id="cate20">
+
+<div id="insert1" style="z-index:10000; position:fixed; top:20px;" ></div>
+
+	<div class="banner">
+
+		<div id="wrapper">
+
+			<div id="scroller">
+
+				<ul id="thelist"> 
+
+				<volist name="flash" id="so">
+
+						<li><p>{laoyang:$so.info}</p><if condition="$so['url'] eq ''"><img src="{laoyang:$so.img}" /><else/><if condition="$so.url neq ''"><a href="{laoyang:$so.url}"></if><img src="{laoyang:$so.img}" alt="{laoyang:$so.info}" style="width:100%;" /><if condition="$so.url neq ''"></a></if></if></li>
+
+					</volist>
+
+				</ul>
+
+			</div>
+
+		</div>
+
+		<div id="nav">
+
+			<div id="prev" onClick="myScroll.scrollToPage('prev', 0,400,3);return false">&larr; prev</div>
+
+			<ul id="indicator">
+
+			<volist name="flash" id="so">
+
+			<li   <if condition="$i eq 1">class="active"</if>  >{laoyang:$i}</li>
+
+			</volist>
+
+			</ul>
+
+			<div id="next" onClick="myScroll.scrollToPage('next', 0);return false">next &rarr;</div>
+
+		</div>
+
+		<div class="clr"></div>
+
+	</div>
+
+	<div id="insert1"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                           
+
+ <volist  name="info" id="vo">
+
+<if condition="!isset($_GET['classid']) && $vo['fid'] eq 0">
+
+<div class="catemenu">
+
+<div class="cname"><img src="{laoyang:$vo.img}">{laoyang:$vo.name}</div>
+
+<ul>  
+
+  <li>
+
+ <volist name='info2' id='zo'> 
+
+      <if condition="$zo['fid'] neq 0 && $zo['fid'] eq $vo['id']">
+
+      
+
+        <a href="<if condition="$zo['url'] eq ''">{laoyang::U('Wap/Index/lists',array('classid'=>$zo['id'],'token'=>$zo['token']))}<else/>{laoyang:$zo.url|htmlspecialchars_decode}</if>">{laoyang:$zo.name}</a>
+
+      </if>
+
+      </volist>
+
+        
+
+
+
+     <div class="clr"></div>
+
+     </li>
+
+</ul>
+
+</div>
+
+
+
+
+
+
+
+
+
+</if>
+
+ </volist>
+
+
+
+               
+
+
+
+
+
+
+
+<script>
+
+
+
+
+
+var count = document.getElementById("thelist").getElementsByTagName("img").length;	
+
+
+
+
+
+for(i=0;i<count;i++){
+
+ document.getElementById("thelist").getElementsByTagName("img").item(i).style.cssText = " width:"+document.body.clientWidth+"px";
+
+
+
+}
+
+
+
+document.getElementById("scroller").style.cssText = " width:"+document.body.clientWidth*count+"px";
+
+
+
+
+
+ setInterval(function(){
+
+myScroll.scrollToPage('next', 0,400,count);
+
+},3500 );
+
+
+
+window.onresize = function(){ 
+
+for(i=0;i<count;i++){
+
+document.getElementById("thelist").getElementsByTagName("img").item(i).style.cssText = " width:"+document.body.clientWidth+"px";
+
+
+
+}
+
+
+
+ document.getElementById("scroller").style.cssText = " width:"+document.body.clientWidth*count+"px";
+
+} 
+
+
+
+</script>
+
+
+
+ <div id="insert2" ></div>
+
+<div style="display:none"> </div>
+
+	  
+
+<script src="{laoyang::RES}/css/flash/js/zepto.min.js" type="text/javascript"></script>
+
+<script src="{laoyang::RES}/css/flash/js/plugmenu.js" type="text/javascript"></script>
+
+
+
+<include file="Public:footer"/>

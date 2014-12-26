@@ -1,0 +1,54 @@
+﻿<include file="Public:head"/>
+	<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+          <div class="cLineB">
+		  
+			<h4>用户管理</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+            <div class="pageNavigator left">
+            <a href="{laoyang::U('Sharetalent/add')}" title="添加分享活动" class="btn btn-primary btn_submit  J_ajax_submit_btn">添加分享活动</a>
+             <a href="{laoyang::U('Sharetalent/sm')}" title="达人说明配置" class="btn btn-primary btn_submit  J_ajax_submit_btn">达人说明配置</a>
+              <a href="{laoyang::U('Sharetalent/user')}" title="用户管理" class="btn btn-primary btn_submit  J_ajax_submit_btn">用户管理</a>
+             <a href="{laoyang::U('Sharetalent/reply')}" title="首页回复配置" class="btn btn-primary btn_submit  J_ajax_submit_btn">首页回复配置</a>
+            </div>
+          
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+					
+					<th  width="25%" class="time"> 用户名称</th>
+					<th width="25%">联系方式</th>
+					
+					<th width="25%">注册时间</th>
+                    
+					
+					<th width="25%" class="norightborder">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr></tr>
+                  <volist id="list" name="info">
+                <tr>
+                  <td>{laoyang:$list.name}</td>
+                  <td>{laoyang:$list.tel}</td>
+                   <td>{laoyang:$list.date}</td>
+                
+                
+                  
+                  <td class="norightborder"> <a class="btn btn-primary btn_submit  J_ajax_submit_btn" href="javascript:drop_confirm('您确定要删除吗？', '{laoyang::U('Sharetalent/userdel',array('id'=>$list['id'],'token'=>$list['token'],'wecha_id'=>$list['wecha_id']))}');">删除</a> 
+                   
+				   <a  class="btn btn-primary btn_submit  J_ajax_submit_btn" href="{laoyang::U('Sharetalent/userhd',array('id'=>$list['id'],'token'=>$list['token'],'wecha_id'=>$list['wecha_id']))}">参与的活动</a> 
+                   </td>
+          
+                </tr>
+                  </volist>
+      			                
+                  
+              </tbody>
+            </table>
+            
+   </div> 
+          
+  </div>
+<include file="Public:footer"/>

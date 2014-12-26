@@ -1,0 +1,48 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/cymain.css" />
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+ <include file="Public:shangwu"/>
+
+  <h4>打印机配置 </h4>
+ </div>
+ <!--tab start-->
+
+<!--tab end-->        
+    <div class="msgWrap bgfc" style="margin-top:10px;">
+	  <form class="form" method="post" action="" target="_top" enctype="multipart/form-data">	 
+	  
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+			<tr>
+					<th>打印机开关：</th>
+					<td><select name="enable"><option value="0" <if condition="$printerset.enable eq 0">selected</if>>关闭</option><option value="1" <if condition="$printerset.enable eq 1"> selected</if>>开启</option></select> 开启打印后，商城等b2c功能将有打印功能</td>
+				</tr>
+				<tr>
+					<th width="120">打印机URL：</th>
+					<td><input type="text" name="url" value="{laoyang:$printerset.url}" class="px" style="width:550px;">请填写http://</td>
+				</tr>
+				
+				<tr>
+					<th>打印方式：</th>
+					<td><select name="type"><option value="0" <if condition="$printerset.type eq 0">selected</if>>文字打印</option><option value="1" <if condition="$printerset.type eq 1"> selected</if>>文字加二维码打印</option></select> 两种不同打印方式</td>
+				</tr>
+				<tr>
+					<th>货（餐）到付款打印：</th>
+					<td><select name="payon"><option value="0" <if condition="$printerset.payon eq 0">selected</if>>关</option><option value="1" <if condition="$printerset.payon eq 1"> selected</if>>开</option></select> 货（餐）到付款是否需要打印的开关</td>
+				</tr>
+				<th>&nbsp;</th>
+					<td>
+					<input type="hidden" name="token" value="{laoyang:$token}" />
+						<button type="submit" name="button" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+ 
+  
+        </div>
+<include file="Public:footer"/>

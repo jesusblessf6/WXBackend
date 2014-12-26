@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html>    <head>
+       <if condition="$zd['status'] eq 1">
+            {laoyang:$zd['code']}
+        </if>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>{laoyang:$tpl.wxname}</title>
+
+<base href="." />
+
+        <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+        <meta name="format-detection" content="telephone=no" />
+
+<link href="{laoyang::RES}/css/allcss/cate{laoyang:$tpl.tpltypeid}_{laoyang:$tpl.color_id}.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/121/reset.css" media="all">
+
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/121/font-awesome.css" media="all">
+
+<!-- <link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/121/home-43.css" media="all"> -->
+
+<script type="text/javascript" src="{laoyang::RES}/css/116/jQuery.js"></script>
+
+<script type="text/javascript" src="{laoyang::RES}/css/121/zepto.js"></script>
+
+<script type="text/javascript" src="{laoyang::RES}/css/121/swipe.js"></script>
+
+</head>
+
+<body onselectstart="return true;" ondragstart="return false;"> <!--背景音乐-->
+
+<if condition="$homeInfo['musicurl'] neq false">
+
+<include file="Index:music"/>
+
+</if>
+
+<div class="body">
+
+    <section>
+
+    <div style="-webkit-transform:translate3d(0,0,0);">
+
+        <div id="banner_box" class="box_swipe" style="visibility: visible;">
+
+            <ul style="list-style: none; width: 1350px; transition: 0ms; -webkit-transition: 0ms; -webkit-transform: translate3d(-450px, 0, 0);">
+
+            <volist name="flash" id="so">
+
+                <li style="width: 450px; display: table-cell; vertical-align: top;">
+
+                    <if condition="$so.url neq ''"><a href="{laoyang:$so.url}"></if><img src="{laoyang:$so.img}" alt="{laoyang:$so.info}" style="width:100%;" /><if condition="$so.url neq ''"></a></if>
+
+                </li>
+
+            </volist>                    
+
+            </ul>
+
+            <ol>
+
+                <volist name="flash" id="so">
+
+                    <li <if condition="$i eq 1">class="on"</if>></li>
+
+                </volist>
+
+            </ol>
+
+        </div>
+
+    </div>
+
+        <script>
+
+        $(function(){
+
+            new Swipe(document.getElementById('banner_box'), {
+
+                speed:500,
+
+                auto:3000,
+
+                callback: function(){
+
+                    var lis = $(this.element).next("ol").children();
+
+                    lis.removeClass("on").eq(this.index).addClass("on");
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+        <div>
+
+            <ul class="list_ul">
+
+                <li class="box">
+
+                <volist name="info" id="vo">
+
+                    <if condition="$i lt 5">
+
+                    <dl>
+
+                    <a href="<if condition="$vo['url'] eq ''">{laoyang::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}<else/>{laoyang:$vo.url|htmlspecialchars_decode}</if>">
+
+                        <dd>
+
+                        <div>
+
+                            <span>
+
+                            <img src="{laoyang:$vo.img}" class="icon-smile" style="width:40px;height:20px;">
+
+                            </span>
+
+                        </div>
+
+                        </dd>
+
+                         <dt style="margin-left:-21px;text-align:center;font-size:9px;"><span style="padding-left:18px;">{laoyang:$vo.name}</span></dt>
+
+                    </a>
+
+                   
+
+                    </dl>
+
+                    </if>
+
+                </volist>
+
+                </li>
+
+                <li class="box">
+
+                <volist name="info" id="vo">
+
+                    <if condition="($i gt 4) and ($i lt 9)">
+
+                   <dl>
+
+                    <a href="<if condition="$vo['url'] eq ''">{laoyang::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}<else/>{laoyang:$vo.url|htmlspecialchars_decode}</if>">
+
+                        <dd>
+
+                        <div>
+
+                            <span>
+
+                            <img src="{laoyang:$vo.img}" class="icon-smile" style="width:40px;height:20px;">
+
+                            </span>
+
+                        </div>
+
+                        </dd>
+
+                            <dt style="margin-left:-21px;text-align:center;font-size:9px;"><span style="padding-left:18px;">{laoyang:$vo.name}</span></dt>
+
+                    </a>
+
+                    </dl>
+
+                    </if>
+
+                </volist>
+
+                    
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div>
+
+            <ul class="list_card" style="margin:10px auto">
+
+                 <volist name="info" id="vo">
+
+                    <if condition="$i gt 8">  
+
+                    <li style="width:49.5%;float:left;text-align:center"> <a href="<if condition="$vo['url'] eq ''">{laoyang::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}<else/>{laoyang:$vo.url|htmlspecialchars_decode}</if>"><img src="{laoyang:$vo.img}" style="width:145px;height:81px;"></a></li>
+
+                     </if>
+
+                </volist>
+
+            </ul>
+
+            <div style="clear:both"></div>
+
+        </div>
+
+
+
+    </section>
+
+
+
+</div>
+
+
+
+                    
+
+<include file="Index:styleInclude"/><include file="$cateMenuFileName"/>   
+
+	<if condition="ACTION_NAME eq 'index'">
+
+		<script type="text/javascript">
+
+			window.shareData = {  
+
+					"moduleName":"Index",
+
+					"moduleID": '0',
+
+					"imgUrl": "{laoyang:$homeInfo.picurl}", 
+
+					"timeLineLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+
+					"sendFriendLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+
+					"weiboLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+
+					"tTitle": "{laoyang:$homeInfo.title}",
+
+					"tContent": "{laoyang:$homeInfo.info}"
+
+				};
+
+		</script>
+
+	<else />
+
+		<script type="text/javascript">
+
+			window.shareData = {  
+
+				"moduleName":"Index",
+
+				"moduleID": '1',
+
+				"imgUrl": "{laoyang:$homeInfo.picurl}", 
+
+				"timeLineLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+
+				"sendFriendLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+
+				"weiboLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+
+				"tTitle": "{laoyang:$homeInfo.title}",
+
+				"tContent": "{laoyang:$homeInfo.info}"
+
+			};
+
+		</script>	
+
+	
+
+	</if>
+
+{laoyang:$shareScript} 
+
+<include file="Public:footer"/>

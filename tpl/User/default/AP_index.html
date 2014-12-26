@@ -1,0 +1,103 @@
+<include file="Public:head"/>  
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+    <include file="Wifi:menu"/>
+          
+              <h4 class="left">设备列表</h4>
+                  <div class="searchbar right">  <form method="get" action="index.php">
+                  <input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="keyz" value="">
+                  
+                  <input type="hidden" name="ac" value="mp3list">
+                  <input type="hidden" name="id" value="9878">
+                  <input type="hidden" name="wxid" value="gh_423dwjkewad">
+                 
+                  <input type="submit" value="搜索" id="msgSearchBtn" href="javascript:;" class="btn btn-info" title="搜索">
+                  </form>
+                  </div>
+              <div class="clr"></div>
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator left">
+				<a href="{laoyang::U('AP/add')}" title="新增设备" class="btn btn-primary">新增设备</a>　
+
+              
+            </div>
+          
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+          <form method="post" action="index.php?ac=apilist&amp;id=9878&amp;wxid=gh_423dwjkewad" id="info">
+          <input name="delall" type="hidden" value="del">
+           <input name="wxid" type="hidden" value="gh_423dwjkewad">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+					<th class="select">选择</th>
+					<th class="">关键词</th>
+					<th class="">图文标题</th>
+					<th class="">图文图片</th>
+					<th class="">店铺名称</th>
+					<th class="">节点名称</th>
+					<th class="edit norightborder">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+			  <script>
+				function delete_confirm(e) 
+					{
+						if (event.srcElement.outerText == "删除") 
+						{
+							event.returnValue = confirm("删除是不可恢复的，你确认要删除吗？");
+						}
+					}
+			  </script>
+			  <volist name="list" id="o">
+                <tr  align="center">
+                  <td>  <input type="checkbox" name="del_id[]" value="{laoyang:$o.id}" class="checkitem"></td>
+                  <td>{laoyang:$o.keyword}</td>
+                  <td>{laoyang:$o.title}</td>
+                   <td><img src="{laoyang:$o.wx_pic}" height="80" width="120" /></td>
+					 <td>{laoyang:$o.shop_name}</td>
+					<td>{laoyang:$o.name}</td>
+                   <td class="norightborder"> 					
+					<a class="btn btn-primary btn-mini" href="{laoyang::U('AP/add',array('id'=>$o['id']))}" title="">编辑</a> 
+					<a class="btn btn-danger btn-mini" href="{laoyang::U('AP/deleteAP',array('id'=>$o['id']))}">删除</a></td>
+				</tr>
+				</volist>
+              
+              </tbody>
+            </table>
+           </form> 
+           <script>
+   function checkvotethis() {
+var aa=document.getElementsByName('del_id[]');
+var mnum = aa.length;
+j=0;
+for(i=0;i<mnum;i++){
+if(aa[i].checked){
+j++;
+}
+}
+if(j>0) {
+document.getElementById('info').submit();
+} else {
+alert('未选中任何文章或回复！')
+}
+}
+
+   </script>
+          </div>
+            
+
+
+ 
+ 
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages"></div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>  <!--底部-->
+
+<include file="Public:footer"/>

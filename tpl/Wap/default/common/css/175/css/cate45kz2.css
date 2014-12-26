@@ -1,0 +1,10 @@
+#cate45 { background-color:#222;  }
+#cate45  .mainmenu {border:0; overflow: hidden;}
+#cate45  .mainmenu {margin:8px;}
+#cate45  .mainmenu li { border:0; margin-bottom:8px; border-radius:5px; background:none;}
+#cate45  .mainmenu li a{ box-shadow: none;background-color: #3F3F3F;}
+#cate45 .mainmenu li a i { color: #888;}
+#cate45 .mainmenu li a b { opacity: 0.3;-moz-opacity: 0.3;filter:alpha(opacity=30);}
+#cate45 .mainmenu li a span {color:#fff}
+#cate45  .mainmenu li:last-child{ border-bottom:none;}
+

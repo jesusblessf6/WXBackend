@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+       <if condition="$zd['status'] eq 1">
+            {laoyang:$zd['code']}
+        </if>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/159/css/reset.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/159/css/snower.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/159/css/cate12_2.css" media="all" /><!--模版风格-->
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/159/css/iscroll.css" media="all" /><!--幻灯下的小点点-->
+<!--<script type="text/javascript" src="{laoyang::RES}/css/159/js/maivl.js"></script>-->
+<script type="text/javascript" src="{laoyang::RES}/css/159/js/jQuery.js"></script>
+<script type="text/javascript" src="{laoyang::RES}/css/159/js/jquery_min.js"></script>
+<!--<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/159/css/font-awesome.css" media="all" />-->
+<script type="text/javascript" src="{laoyang::RES}/css/159/js/idangerous_swiper.js"></script>
+<script type="text/javascript" src="{laoyang::RES}/css/159/js/iscroll.js"></script>
+<script type="text/javascript" src="{laoyang::RES}/css/159/js/swipe.js"></script>
+<!--<script type="text/javascript" src="{laoyang::RES}/css/159/js/zepto.js"></script>-->
+<title>{laoyang:$tpl.wxname}</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta name="Keywords" content="老杨分享、微信营销、微信代运营、微信定制开发、微信托管、微网站、微商城、微营销" />
+<meta name="Description" content="老杨分享，国内最大的微信公众智能服务平台，老杨分享八大微体系：微菜单、微官网、微会员、微活动、微商城、微推送、微服务、微统计，企业微营销必备。" />
+
+<!-- Mobile Devices Support @begin -->
+
+<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- apple devices fullscreen -->
+
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<!-- Mobile Devices Support @end -->
+
+<!--<link rel="shortcut icon" href="http://www.weimob.com/weismob.ico" />-->
+</head>
+
+<body onselectstart="return true;" ondragstart="return false;">
+
+<script type="text/javascript">
+
+	var myScroll;
+
+	function loaded() {
+
+		myScroll = new iScroll('wrapper', {
+
+			snap: true,
+
+			momentum: false,
+
+			hScrollbar: false,
+
+			onScrollEnd: function() {
+
+				document.querySelector('#indicator > li.active').className = '';
+
+				document.querySelector('#indicator > li:nth-child(' + (this.currPageX + 1) + ')').className = 'active';
+
+			}
+
+		});
+
+	}
+
+	document.addEventListener('DOMContentLoaded', loaded, false);
+
+</script>
+
+<body id="cate12">
+<div class="body"> 
+  
+  <!--
+
+	幻灯片管理
+
+	-->
+  
+  <div class="banner">
+  <div id="wrapper" style="overflow: hidden;">
+    <div id="scroller" style="width: {laoyang:$num*1349}px; -webkit-transition: 0ms; transition: 0ms;">
+      <ul id="thelist">
+        <volist name="flash" id="so">
+          <li>
+            <p>{laoyang:$so.info}</p>
+            <if condition="$so.url neq ''">
+            <a href="{laoyang:$so.url}">
+            </if>
+            <img src="{laoyang:$so.img}" alt="{laoyang:$so.info}" style="width:100%;" />
+            <if condition="$so.url neq ''">
+            </a>
+            </if>
+          </li>
+        </volist>
+      </ul>
+    </div>
+  </div>
+  <div id="nav">
+    <div id="prev" onclick="myScroll.scrollToPage(&#39;prev&#39;, 0,400,3);return false">← prev</div>
+    <ul id="indicator">
+      <volist name="flash" id="so"> <li 
+        <if condition="$i eq 1">class="active"</if>
+        >
+        </li>
+      </volist>
+    </ul>
+    <div id="next" onclick="myScroll.scrollToPage(&#39;next&#39;, 0);return false">next →</div>
+  </div>
+  <div class="clr"></div>
+</div>
+
+  <script>
+
+		$(function(){
+
+			new Swipe(document.getElementById('banner_box'), {
+
+				speed:500,
+
+				auto:3000,
+
+				callback: function(){
+
+					var lis = $(this.element).next("ol").children();
+
+					lis.removeClass("on").eq(this.index).addClass("on");
+
+				}
+
+			});
+
+		});
+
+	</script> 
+  <br/>
+  <header>
+    <div class="snower"> 
+      <script type="text/javascript">var urls = new Array();urls.push('http://stc.weimob.com/img/template/lib/v57_snow1.png');urls.push('http://stc.weimob.com/img/template/lib/v57_snow2.png');urls.push('http://stc.weimob.com/img/template/lib/v57_snow3.png');urls.push('http://stc.weimob.com/img/template/lib/v57_snow4.png');</script> 
+      <script type="text/javascript" src="{laoyang::RES}/css/159/js/snower2.js"></script> 
+    </div>
+  </header>
+  <!--
+
+		用户分类管理
+
+        -->
+  
+  <div id="insert1"></div>
+  <volist name="info" id="vo" key ="k" >
+    <div class="Category">
+      <div class="cname"> {laoyang:$vo.name} <a href="<if condition="$vo['url'] eq ''">{laoyang::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}
+        <else/>
+        {laoyang:$vo.url}
+        </if>
+        " class="more">查看更多</a> </div>
+      <div class="clist clist{laoyang:$k} swiper-container">
+        <div class="swiper-wrapper">
+          <volist name="vo['sub']" id="vo">
+            <if condition="$i%8 == 1">
+            <div class="swiper-slide">
+              <ul>
+                </if>
+                <li> <a href="<if condition="$vo['url'] eq ''">{laoyang::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}
+                  <else/>
+                  {laoyang:$vo.url|htmlspecialchars_decode}
+                  </if>
+                  ">
+                  <div><img src="{laoyang:$vo.img}" /></div>
+                  <span>{laoyang:$vo.name}</span> </a> </li>
+                <if condition="$i%8 == 0 || $i == count($vo['sub'])">
+              </ul>
+            </div>
+            </if>
+          </volist>
+        </div>
+        
+        <script>
+
+						$(function() {
+
+							new Swiper('.clist{laoyang:$k}', {
+
+								pagination: '.clist{laoyang:$k} .cpager'
+
+							});
+
+						});
+
+					</script> 
+      </div>
+      <div class="cpager"> <span class="swiper-pagination-switch swiper-visible-switch swiper-active-switch"> </span> <span class="swiper-pagination-switch"> </span></div>
+    </div>
+  </volist>
+</div>
+<script>
+
+	var count = document.getElementById("thelist").getElementsByTagName("img").length;
+
+	for (i = 0; i < count; i++) {
+
+		document.getElementById("thelist").getElementsByTagName("img").item(i).style.cssText = " width:" + document.body.clientWidth + "px";
+
+	}
+
+
+
+	document.getElementById("scroller").style.cssText = " width:" + document.body.clientWidth * count + "px";
+
+
+
+	setInterval(function() {
+
+			myScroll.scrollToPage('next', 0, 400, count);
+
+		},
+
+		3500);
+
+
+
+	window.onresize = function() {
+
+		for (i = 0; i < count; i++) {
+
+			document.getElementById("thelist").getElementsByTagName("img").item(i).style.cssText = " width:" + document.body.clientWidth + "px";
+
+
+
+		}
+
+
+
+		document.getElementById("scroller").style.cssText = " width:" + document.body.clientWidth * count + "px";
+
+	}
+
+</script> 
+<include file="Index:styleInclude"/><include file="$cateMenuFileName"/>
+<if condition="ACTION_NAME eq 'index'"> 
+  <script type="text/javascript">
+			window.shareData = {  
+					"moduleName":"Index",
+					"moduleID": '0',
+					"imgUrl": "{laoyang:$homeInfo.picurl}", 
+					"timeLineLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"sendFriendLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"weiboLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"tTitle": "{laoyang:$homeInfo.title}",
+					"tContent": "{laoyang:$homeInfo.info}"
+				};
+		</script>
+  <else />
+  <script type="text/javascript">
+			window.shareData = {  
+				"moduleName":"Index",
+				"moduleID": '1',
+				"imgUrl": "{laoyang:$homeInfo.picurl}", 
+				"timeLineLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"sendFriendLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"weiboLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"tTitle": "{laoyang:$homeInfo.title}",
+				"tContent": "{laoyang:$homeInfo.info}"
+			};
+		</script> 
+</if>
+{laoyang:$shareScript} <include file="Public:footer"/> 

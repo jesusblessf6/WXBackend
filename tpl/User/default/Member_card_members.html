@@ -1,0 +1,282 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{laoyang::RES}/js/date/WdatePicker.js"></script>  
+<script src="/tpl/static/upyun.js?{laoyang::date('YmdHis',time())}"></script>
+<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLine">
+
+	 
+
+
+              <h4 class="left">当前位置：<a href="{laoyang::U('Member_card/index',array('token'=>$token))}">会员卡</a> >> {laoyang:$thisCard.cardname}会员管理</h4>
+
+                 
+
+              <div class="clr"></div>
+
+          </div>
+
+          <div class="cLineD">
+
+<p>查询资料[仅支持按照会员卡号查询]</p>
+
+	<form method="post" action="">
+
+		<a href='{laoyang::U("Member_card/members",array("token"=>$token,"id"=>$thisCard["id"]))}&download=1' title='导出会员卡' class='btnGrayS vm'>导出会员卡</a>&nbsp;&nbsp;&nbsp;
+		
+		<input size="35" value="" name="searchkey" class="px"  placeholder="输入会员卡号"><button type="submit" name="appidsubmit" value="true" class="ChooseImage"><strong>查询</strong></button>  
+
+	</form>
+
+ </div>
+ <TABLE border="0" cellSpacing="0" cellPadding="0" width="450px">
+
+  <THEAD>
+
+	<TR>
+	 <form method="post"  action="/index.php?g=User&m=Member_card&a=setdiyname&token={laoyang:$Think.get.token}&id={laoyang:$thisCard.id}" >
+
+		  <TD>
+		 DIY字段1： <input type="text" name="diyname1" value="{laoyang:$card_set_info.diyname1}" class="px" style="width:104px;"> 
+		 DIY字段2： <input type="text" name="diyname2" value="{laoyang:$card_set_info.diyname2}" class="px" style="width:104px;">
+		   </TD>
+
+		   <TD>  <button type="submit" class="ChooseImage"><strong>保存</strong></button> </TD>
+
+	</form>
+		</TR>
+
+	  </THEAD>
+
+	</TABLE>
+          <div class="msgWrap">
+
+           <div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:5px;">注意:在每行的输入框里可以通过输入消费金额（可以填写负数）来增减会员积分   </div>
+
+          <input name="delall"  type="hidden" value="del" />
+
+           <input name="wxid"  type="hidden" value="gh_423dwjkewad" />
+
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+
+              <THEAD>
+
+                <TR>
+
+				<TH>卡号</TH>
+
+				<TH>微信名</TH>
+
+				<TH><input  type="checkbox" <if condition="$card_set_info.truename_dis eq 1">checked="checked"</if>  onchange="changeapp(this,'{laoyang:$Think.session.token}','{laoyang:$card_set_info.id}','truename_dis')"  value="truename_dis"> 姓名</TH>
+
+				<TH><input  type="checkbox" <if condition="$card_set_info.sex_dis eq 1">checked="checked"</if> onchange="changeapp(this,'{laoyang:$Think.session.token}','{laoyang:$card_set_info.id}','sex_dis')"  value="sex_dis"> 性别</TH>
+
+				<TH><input  type="checkbox" <if condition="$card_set_info.bornyear_dis eq 1">checked="checked"</if>  onchange="changeapp(this,'{laoyang:$Think.session.token}','{laoyang:$card_set_info.id}','born_dis')"  value="born_dis"> 生日</TH>
+
+				<TH><input  type="checkbox" <if condition="$card_set_info.tel_dis eq 1">checked="checked"</if>  onchange="changeapp(this,'{laoyang:$Think.session.token}','{laoyang:$card_set_info.id}','tel_dis')"  value="tel_dis"> 电话&nbsp;<input  type="checkbox" <if condition="$card_set_info.mobile_code_dis eq 1">checked="checked"</if>  onchange="changeapp(this,'{laoyang:$Think.session.token}','{laoyang:$card_set_info.id}','mobile_code_dis')"  value="mobile_code_dis"> 验证码</TH>
+
+				<TH><input  type="checkbox" <if condition="$card_set_info.qq_dis eq 1">checked="checked"</if>  onchange="changeapp(this,'{laoyang:$Think.session.token}','{laoyang:$card_set_info.id}','qq_dis')"  value="qq_dis"> QQ号码</TH> 
+				
+				<if condition="$card_set_info.diyname1 neq ''">
+				
+				<TH>{laoyang:$card_set_info.diyname1}</TH> 
+				
+				</if>
+				
+				<if condition="$card_set_info.diyname2 neq ''">
+				
+				<TH>{laoyang:$card_set_info.diyname2}</TH> 
+				
+				</if>
+        <TH>领卡时间</TH>
+
+        <TH>余额</TH>
+		
+        <TH>积分</TH>
+
+        <TH>消费总额(元)</TH>
+
+        <TH>消费金额(元)</TH> 
+
+        <TH class="norightborder">添加</TH>              
+
+				<TH >操作</TH>
+
+                </TR>
+
+              </THEAD>
+
+              <TBODY>
+
+                <TR></TR>
+
+
+
+				 <volist id="list" name="members">
+
+                <TR>
+
+                  <TD>{laoyang:$list.number}</TD>
+
+                  <TD>{laoyang:$list.wechaname}</TD>
+
+                  <TD>{laoyang:$list.truename}</TD>
+
+                  <TD><if condition="$list['sex'] eq 1">男</if><if condition="$list['sex'] eq 2">女</if></TD>
+
+                  <TD>{laoyang:$list.bornyear}-{laoyang:$list.bornmonth}-{laoyang:$list.bornday}</TD>
+
+                  <TD>{laoyang:$list.tel}</TD>
+
+                  <TD>{laoyang:$list.qq}</TD> 
+				  
+				<if condition="$card_set_info.diyname1 neq ''">
+				
+				<TD>{laoyang:$list.diyname1}</TD> 
+				
+				</if>
+				
+				<if condition="$card_set_info.diyname2 neq ''">
+				
+				<TD>{laoyang:$list.diyname2}</TD> 
+				
+				</if>
+                  <TD>
+
+                   <if condition="$list['getcardtime'] gt 0">
+
+                        {laoyang:$list.getcardtime}
+
+                    <else/>
+
+                    无时间记录
+
+                    </if>                      
+
+                  </TD>
+
+                  <TD>{laoyang:$list.balance}</TD> 
+				  
+                  <TD>{laoyang:$list.total_score}</TD> 
+			  
+                  <TD>{laoyang:$list.expensetotal}</TD> 
+
+				<form method="post"  action="/index.php?g=User&m=Member_card&a=memberExpense&token={laoyang:$Think.get.token}&id={laoyang:$thisCard.id}" >
+
+                  <TD>
+
+                  <input type="text" name="money" value="0" class="px" style="width:40px;">
+
+                  <input type="hidden" name="wecha_id" value="{laoyang:$list.wecha_id}">
+
+                   </TD>
+
+                   <TD>  <button type="submit" style="cursor:pointer">设置</button></TD>
+
+</form>
+
+                  <TD class="norightborder">				  
+
+				            <a href="index.php?g=User&m=Member_card&a=member&itemid={laoyang:$list.id}&id={laoyang:$thisCard.id}"><strong>查看详情</strong></a>  <a href="###" onclick="memberCardRecharge({laoyang:$list.uid})" class="ChooseImage"><strong>充值</strong></a>  <a href="/index.php?g=User&m=Member_card&a=member&token={laoyang:$Think.get.token}&id={laoyang:$thisCard.id}&itemid={laoyang:$list.id}"><strong>消费记录</strong></a>  <a href="/index.php?g=User&m=Member_card&a=signrecords&token={laoyang:$Think.get.token}&id={laoyang:$thisCard.id}&itemid={laoyang:$list.id}"><strong>签到记录</strong></a>  <a href="javascript:drop_confirm('您确定要删除吗?', '/index.php?g=User&m=Member_card&a=member_del&token={laoyang:$Think.get.token}&itemid={laoyang:$list.id}&id={laoyang:$thisCard.id}');"><strong>删除</strong></a> 
+
+                  </TD>
+
+                </TR>
+
+				</volist>
+
+
+
+
+
+              </TBODY>
+
+            </TABLE>
+
+          
+
+
+
+          </div>
+
+            
+
+
+
+ 
+
+ 
+
+          <div class="cLine">
+
+            <div class="pageNavigator right">
+
+                <div class="pages">{laoyang:$page}</div>
+
+              </div>
+
+            <div class="clr"></div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="clr"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+             <script>
+function changeapp(obj,token,id,name){
+if(obj.checked==true){
+   
+var myurl='index.php?g=User&m=Member_card&a=setdiyname&token='+token+'&id='+id+'&name='+name+'&p='+1+'&r='+Math.random(); 
+$.get(myurl,function(data){
+	 if(data==1){
+		alert('已经添加显示');
+	}
+});
+}else{
+  
+var myurl='index.php?g=User&m=Member_card&a=setdiyname&token='+token+'&id='+id+'&name='+name+'&p='+0+'&r='+Math.random(); 
+$.get(myurl,function(data){
+ if(data==1){
+		alert('已经取消显示');
+	}
+});
+}
+}
+</script>
+
+  <script>
+
+
+
+function checkAll(form, name) {
+
+for(var i = 0; i < form.elements.length; i++) {
+
+var e = form.elements[i];
+
+if(e.name.match(name)) {
+
+e.checked = form.elements['chkall'].checked;
+
+}
+
+}
+
+}
+
+  </script>
+
+  <!--底部-->
+
+  	</div>
+
+<include file="Public:footer"/>  

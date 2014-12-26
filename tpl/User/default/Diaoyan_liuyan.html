@@ -1,0 +1,58 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/cymain.css" />
+<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+   <div class="cLineB"> 
+	<include file="Public:yingxiao"/>
+<h4 class="left">
+<span style="font-size:18px; text-align:inherit; color:#666">{laoyang:$diaoyan.title} </span> 用户留言：</h4>
+<div class="searchbar right">
+<form method="post" action="">
+</form>
+</div>
+<div class="clr"></div>
+</div>
+
+<div class="cLine">
+<div class="clr"></div>
+ <a href="{laoyang::U('Diaoyan/index',array('token'=>$token))}" class="right  btnGreen" style="margin-top:0">返回</a> 
+</div>
+
+<div class="msgWrap">
+
+
+	<form method="post" action="" id="info">
+	<input name="delall" type="hidden" value="">
+	<input name="wxid" type="hidden" value="">
+	<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+		
+			<thead>
+				<tr>
+					<th width="100">用户名</th>
+					<th width="100">电话</th>
+					<th width="100">留言</th>
+				</tr>
+			</thead>
+			<tbody>
+				<volist name="count" id="item"> 
+					<tr>
+						<td>{laoyang:$item.username}</td>
+						<td>{laoyang:$item.phone}</td>
+						<td>{laoyang:$item.jianyi}</td>
+					</tr>
+				</volist>
+			</tbody>
+		
+		
+	</table>
+	</form>
+
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{laoyang:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

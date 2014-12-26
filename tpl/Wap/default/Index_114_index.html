@@ -1,0 +1,82 @@
+<html>    <head>
+       <if condition="$zd['status'] eq 1">
+            {laoyang:$zd['code']}
+        </if><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <link rel="stylesheet" type="text/css" href="../../wm-xin-a/font-awesome.css?v=2013121900" media="all" />
+
+	<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/template/reset.css" media="all" />
+
+	<title>{laoyang:$tpl.wxname}</title>
+
+        <base href="." />
+
+        <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+        <meta name="format-detection" content="telephone=no" />
+
+        <link href="{laoyang::RES}/css/allcss/cate{laoyang:$tpl.tpltypeid}_{laoyang:$tpl.color_id}.css" rel="stylesheet" type="text/css" />
+
+		<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/template/music-right.css" media="all" />
+
+    </head>
+
+
+
+    <body id="cate16">
+
+        <div class="mainbg">
+
+                <img src="<if condition="$homeInfo.homeurl neq false">{laoyang:$homeInfo.homeurl}<else/>{laoyang::RES}/images/themes/bg1.jpg</if> "/>
+
+        </div>
+
+        <div id="insert1"></div>
+
+        <div class="mainmenu">
+
+            <ul>
+
+                <volist name="info" id="vo">
+
+                    <li>
+
+                        <div class="menubtn"><a href="<if condition="$vo['url'] eq ''">{laoyang::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}<else/>{laoyang:$vo.url|htmlspecialchars_decode}</if>">
+
+                                <div class="menuimg"><img src="{laoyang:$vo.img}"></div>
+
+                                <div class="menutitle" style="color:{laoyang:$vo.nameyanse}">{laoyang:$vo.name}</div></a>
+
+                        </div>
+
+
+
+                    </li>
+
+                </volist>
+
+
+
+                <div class="clr"></div>            </ul>
+
+        </div>
+
+
+
+        <div id="insert2"></div>
+
+
+
+        <div style="display:none"> </div>
+
+		
+
+		<script src="{laoyang::RES}/css/flash/js/zepto.min.js" type="text/javascript"></script>
+
+		<script src="{laoyang::RES}/css/flash/js/plugmenu.js" type="text/javascript"></script>
+
+		 <include file="Public:footer"/>

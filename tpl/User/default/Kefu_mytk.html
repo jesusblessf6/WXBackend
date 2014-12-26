@@ -1,0 +1,70 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" href="{powkey::RES}/css/kefu/admin.css">
+
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="{powkey::U('Taobao/index',array('token'=>$token))}"> <i class="icon-bullhorn"></i> 淘宝天猫 </a> </li>
+      <li class="bg_dy"> <a href="{powkey::U('Api/index',array('token'=>$token))}"> <i class="icon-resize-full"></i> 第三方</a> </li>
+      <li class="bg_lg"> <a href="{powkey::U('Reply/index',array('token'=>$token))}"> <i class="icon-book"></i> 留言板</a> </li>
+      <li class="bg_ly"> <a href="{powkey::U('Greeting_card/index',array('token'=>$token))}"> <i class="icon-envelope"></i> 微贺卡 </a> </li>
+      <li class="bg_lo"> <a href="{powkey::U('Shake/index',array('token'=>$token))}"> <i class="icon-bolt"></i> 摇一摇 </a> </li>
+      <li class="bg_ls"> <a href="{powkey::U('Wall/index',array('token'=>$token))}"> <i class="icon-reorder"></i> 微信墙</a> </li>
+      <li class="bg_lr"> <a href="{powkey::U('Kefu/index',array('token'=>$token))}"> <i class="icon-question-sign"></i> 智能客服</a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+  </div>
+<h4 class="left">我的题库</h4>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+	<div class="pagination">
+  <ul>
+
+    <li class="disabled"></li>
+  </ul>
+  
+</div>
+	<div class="tb-toolbar">
+		<!-- <a href="ggkadd.html" class="btn btn-small btn-primary">新增</a> -->
+		<button class="btn btn-small" onclick="javascript:window.history.go(-1)" id="del">返回</button>
+	</div> 
+	<table class="table table-bordered">
+			<thead>
+				<tr>
+					<!-- <th style="width:10px;"><input type="checkbox" onclick="selallck(this);"></th> -->
+					<th>我的问题</th>
+					<th>我的回答</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+			<volist name="res" id="i" >			 
+			      <tr>
+						<td>{powkey:$i.question}</td>
+						<td>{powkey:$i.answer}</td>
+				  </tr>
+			  </volist>
+			</tbody>
+		</table>
+	
+	
+
+
+<div class="pagination">
+  <ul>
+
+    <li class="disabled"><span>{powkey:$page}</span></li>
+  </ul>
+  
+</div>
+
+
+<div id="gotonext">
+</div>
+	</div>
+	<div class="clr"></div>
+</div>
+
+<include file="Public:footer"/>

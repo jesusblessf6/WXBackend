@@ -1,0 +1,62 @@
+<link rel="stylesheet" type="text/css" href="{laoyang::STATICS}/vhouse/font-awesome.css" media="all">
+<p><br/><br/><br/><br/><br/></p>
+<section>
+            <div style="visibility: visible;" id="navList_box" class="box_swipe">
+<ul style="list-style: none; width: 1280px; transition: 0ms; -webkit-transition: 0ms; -webkit-transform: translate3d(0px, 0, 0);">
+                <li style="width: 640px; display: table-cell; vertical-align: top;">
+                <a href="{laoyang::U('Shipin/index',array('token'=>$token,'wecha_id'=>$wecha_id))}">
+                    <span class="icon-home"></span>
+                        <img src="" alt="公司介绍">
+                        <div>公司介绍</div>
+                </a>
+                <a href="{laoyang::U('Shipin/album',array('token'=>$token,'wecha_id'=>$wecha_id))}" class="laoyang-list-item">
+                    <span class="icon-picture"></span>
+                    <img src="" alt="环境相册">
+                    <div>环境相册</div>
+                            </a>
+                <a href="{laoyang::U('Shipin/housetype',array('token'=>$token,'wecha_id'=>$wecha_id))}" class="laoyang-list-item">
+                        <span class="icon-building"></span>
+                        <img src="" alt="食品分类">
+                        <div>食品分类</div>
+                </a>
+                <a href="{laoyang::U('Shipin/impress',array('token'=>$token,'wecha_id'=>$wecha_id))}" class="laoyang-list-item">
+                    <span class="icon-check"></span>
+                        <img src="" alt="客人印象">
+                        <div>客人印象</div>
+                </a>
+                </li>
+                    <li style="width: 640px; display: table-cell; vertical-align: top;">
+                    <a href="{laoyang::U('Shipin/news',array('token'=>$token,'wecha_id'=>$wecha_id))}" class="laoyang-list-item">
+                        <span class="icon-rss-sign"></span>
+                        <img src="" alt="新闻动态">
+                        <div>新闻动态</div>
+                    </a>
+                    <a href="{laoyang::U('Reservation/index',array('token'=>$token,'wecha_id'=>$wecha_id,'rid'=>$rid,'thetype'=>shipin))}" class="laoyang-list-item">
+                    <span class="icon-edit"></span>
+                        <img src="" alt="服务预约">
+                        <div>服务预约</div>
+                    </a>
+                    <a href="{laoyang::U('Card/vip',array('token'=>$token,'wecha_id'=>$wecha_id))}" class="laoyang-list-item">
+                    <span class="icon-credit-card"></span>
+                    <img src="" alt="加入会员">
+                    <div>加入会员</div>
+                    </a>
+                    <!--a href="{laoyang::U('Shipin/aboutus',array('token'=>$token,'wecha_id'=>$wecha_id))}" class="laoyang-list-item"-->
+                    <a href="tel:{laoyang:$es_data.tel}" class="laoyang-list-item">
+                    <span class="icon-phone"></span>
+                    <img src="" alt="联系我们">
+                    <div>联系我们</div>
+                    </a>
+                        </li>
+                </ul>
+                <ol>
+                    <a href="javascript:navList_box.prev();">&nbsp;</a>
+                    <a href="javascript:navList_box.next();">&nbsp;</a>
+                </ol>
+            </div>
+        </section>
+        <script>
+            $(document).ready(function(){
+                window.navList_box = new Swipe(document.getElementById('navList_box'), {auto:0});
+            });
+        </script>

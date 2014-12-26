@@ -1,0 +1,913 @@
+
+
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <meta charset="utf-8" />
+
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/template/common.css" media="all" />
+
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/template/reset.css" media="all" />
+
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/template/list-10.css" media="all" />
+
+<script type="text/javascript" src="{laoyang::RES}/src/jQuery.js"></script>
+
+<script type="text/javascript" src="{laoyang::RES}/src/template/zepto.js"></script>
+
+<script type="text/javascript" src="{laoyang::RES}/src/template/swipe.js"></script>
+
+<title>{laoyang:$tpl.wxname}</title>
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+
+        <meta name="Keywords" content="微盟、微信营销、微信代运营、微信定制开发、微信托管、微网站、微商城、微营销" />
+
+        <meta name="Description" content="微盟，国内最大的微信公众智能服务平台，微盟八大微体系：微菜单、微官网、微会员、微活动、微商城、微推送、微服务、微统计，企业微营销必备。" />
+
+        <!-- Mobile Devices Support @begin -->
+
+            <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+
+            <meta content="no-cache" http-equiv="pragma">
+
+            <meta content="0" http-equiv="expires">
+
+            <meta content="telephone=no, address=no" name="format-detection">
+
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+            <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <!-- Mobile Devices Support @end -->
+
+        <link rel="shortcut icon" href="{laoyang::RES}/img/favicon.ico" />
+
+    </head>
+
+    <body onselectstart="return true;" ondragstart="return false;">
+
+        <link rel="stylesheet" type="text/css" href="../../wm-xin-a/font-awesome.css?v=2013122901" media="all" />
+
+<style>
+/************************************************************/
+*{padding:0; margin:0;}
+html, body{ height:100%;}
+li{ list-style:none;}
+footer{
+    height:35px;
+    overflow:hidden;
+    margin-top:-35px;
+    position:relative;
+    z-index:10;
+}
+footer .weimob-copyright{
+text-align: center;
+    color:#000;}
+footer a{color:#000!important; font-size:12px;}
+.weimob-page{
+    min-height: 100%;
+    padding-bottom: 10px;
+    -webkit-box-sizing: border-box;
+    word-wrap: break-word;
+    word-break: keep-all;
+}
+
+
+.weimob-list-item{
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4);
+}
+/*************************************************************/
+.box_swipe{
+    overflow:hidden;
+    position:relative;
+}
+.box_swipe ul{
+    -webkit-padding-start: 0px;
+}
+
+.box_swipe>ol{
+    height:20px;
+    position: relative;
+    z-index:10;
+    margin-top:-25px;
+    text-align:right;
+    padding-right:15px;
+    background-color:rgba(0,0,0,0.3);
+}
+.box_swipe>ol>li{
+    display:inline-block;
+    margin:5px 0;
+    width:8px;
+    height:8px;
+    background-color:#757575;
+    border-radius: 8px;
+}
+.box_swipe>ol>li.on{
+    background-color:#ffffff;
+}
+
+.recommend>label{
+    font-size:15px;
+    line-height:30px;
+    background:url("../../img/msg.png") no-repeat left center;
+    -webkit-background-size:25px auto;
+    background-size:25px auto;
+    padding-left:30px;
+}
+.recommend>ul{
+    -webkit-padding-start: 0px;
+}
+.recommend>label>img{
+    vertical-align: middle;
+    margin-right:10px;
+}
+.recommend li{
+    border-top:1px solid #aaa;
+    list-style:none;
+}
+.recommend li>a{
+    text-decoration: none;
+    color:#000;
+    display:block;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space: normal;
+    line-height:30px;
+    background:url("../../img/arr.png") no-repeat right center;
+    margin-right:10px;
+}
+
+.head_logo{
+    color:#000;
+    padding:5px 0;
+    position:relative;
+    background:url("../../img/5.png") no-repeat center 0, url("../../img/5.png") no-repeat center 66px;
+    -webkit-background-size:85% 3px;
+    background-size:85% 3px;
+    margin:5px 0;
+}
+.head_logo:after{
+    font-size:20px;
+    content:">";
+    display:inline-block;
+    width:20px;
+    height:20px;
+    position:absolute;
+    right:10px;
+    z-index:10;
+    top:25px;
+    color:#aaa;
+}
+.head_logo>div{
+    vertical-align: middle;
+    display: table-cell;
+}
+.head_logo>div:nth-of-type(2){
+
+}
+.head_logo span{
+    display:inline-block;
+    width:60px;
+    height:60px;
+    margin-right:10px;
+    border-radius:60px;
+    border:1px solid #fff;
+    background-repeat:no-repeat;
+    background-position: center center;
+    -webkit-background-size:100% auto;
+    background-size:100% auto;
+    -webkit-box-shadow:1px 1px 1px #ccc;
+}
+.head_logo label{
+    font-size:16px;
+}
+
+.link_tel{
+    display:block!important;
+    line-height:40px!important;
+    margin:10px 10px 0 10px;
+    margin-top:10px!important;
+    background:#ea5946;
+    color:#fff!important;
+    text-align:center;
+    border-radius:5px;
+    word-spacing:nowrap;
+    overflow:hidden;
+    font-size:18px;
+    position:relative;
+}
+.link_tel:before{
+    font-size:20px;
+    margin-left:0;
+    position:absolute;
+    left:10px;
+    top:2px;
+    font-size:25px;
+}
+
+.list_font{
+	padding:5px;
+}
+.list_font li{
+	overflow:hidden;
+	color:#fff;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+	height:100px;
+	width:50%!important;
+	display:inline-block;
+	float:left;
+	padding:2px;
+	background:#d87570;
+	-webkit-background-clip:content;
+	-moz-background-clip:content;
+	background-clip:content;
+	text-align:center;
+}
+.list_font li a{
+    color:#fff;
+    display:inline-block;
+    width:100%;
+    height:100%;
+    /*border:1px solid transparent;*/
+}
+.list_font span[class^="icon"]{
+	display:inline-block;
+	width:30px;
+	height:30px;
+	/*background:#fff;*/
+	font-size:30px;
+	
+}
+.list_font div:first-child{
+	margin-top:20px;
+	margin-bottom:5px;
+}
+
+.list_font li a p{
+	font-size:16px;
+}
+.list_font li a p>small{
+	font-size:12px;
+	display:block;
+}
+
+/*********************************************/
+.menu_font1{
+	background:rgba(0,0,0,0.8);
+	border-radius:5px;
+	width:120px;
+	position:relative;
+	margin-top:10px;
+}
+.menu_font1:after{
+	position: absolute;
+	content:"";
+	display: inline-block;
+	width:0;
+	height:0;
+	border-width:0px 6px 6px 6px;
+	border-style:solid;
+	border-color:transparent transparent rgba(0,0,0,0.8) transparent;
+	top:-6px;
+	left:70%;
+}
+
+.menu_font1 li{
+	border-top:1px solid rgb(64, 72, 75);
+	border-bottom:1px solid rgb(0, 6, 9);
+}
+.menu_font1 li:first-of-type{
+	border-top:0;
+}
+.menu_font1 li:last-of-type{
+	border-bottom:0;
+}
+.menu_font1 a{
+	height:35px;
+	line-height:35px;
+	/*background:#fff;*/
+	position:relative;
+	color:#fff;	
+	display:block;
+	width:100%;
+	text-indent:5px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
+}
+.menu_font1 a:before{
+	margin-right:5px;
+}
+
+
+/*pages*/
+#Page_wrapper .c-pnav-con {
+	text-align:center;
+	font-size:18px;
+}
+#Page_wrapper .c-pnav-con ul {
+	list-style:none;
+	display:inline-block;
+}
+#Page_wrapper .c-pnav-con ul li {
+	display:inline-block;
+	padding:5px 15px;
+}
+#Page_wrapper .c-pnav-con ul li:nth-child(2) {
+width:85px;
+}
+#Page_wrapper .c-pnav-con ul li:nth-child(3) {
+margin-left:-110px;
+}
+#Page_wrapper .c-pnav-con ul li:last-child {
+	margin-left:0;
+}
+#Page_wrapper .c-pnav-con .c-p-sec {
+	display:inline-block;
+	margin:20px auto;
+}
+#Page_wrapper .c-pnav-con .c-p-sec div {
+	display:inline-block;
+}
+#Page_wrapper .c-pnav-con .c-p-sec .c-p-pre {
+	width:88px;
+}
+#Page_wrapper .c-pnav-con .c-p-sec .c-p-pre a {
+	display:inline-block;
+	width:70px;
+	height:30px;
+	line-height:30px;
+	background-image:-webkit-gradient(linear, left top, right bottom, from(#fefefe), to(#e8e8e8));
+	background-image:-webkit-linear-gradient(#fefefe, #e8e8e8);
+	background-image:-moz-linear-gradient(#fefefe, #e8e8e8);
+	background-image:-ms-linear-gradient(#fefefe, #e8e8e8);
+	background-image:-o-linear-gradient(#fefefe, #e8e8e8);
+	background-image:linear-gradient(#fefefe, #e8e8e8);
+	border:1px #D5D5D5 solid;
+	overflow:hidden;
+	border-radius:2px;
+	-webkit-border-radius:2px;
+	border-left:0 #d5d5d5 solid;
+	border-right:1px #d5d5d5 solid;
+}
+#Page_wrapper .c-pnav-con .c-p-sec .c-p-pre .c-p-p {
+	display:inline-block;
+	width:17px;
+	height:30px;
+	position:relative;
+	overflow:hidden;
+	vertical-align:top;
+}
+#Page_wrapper .c-pnav-con .c-p-sec .c-p-pre .c-p-p em {
+	display:inline;
+	-webkit-transform:rotate(45deg);
+	background-image:-webkit-gradient(linear, left top, right bottom, from(#fefefe), to(#e8e8e8));
+	background-image:-webkit-linear-gradient(#fefefe, #e8e8e8);
+	background-image:-moz-linear-gradient(#fefefe, #e8e8e8);
+	background-image:-ms-linear-gradient(#fefefe, #e8e8e8);
+	background-image:-o-linear-gradient(#fefefe, #e8e8e8);
+	background-image:linear-gradient(#fefefe, #e8e8e8);
+	position:absolute;
+	top:4px;
+	left:6px;
+	width:21px;
+	height:21px;
+	border:1px solid #ddd;
+}
+#Page_wrapper .c-pnav-con .c-p-sec .c-p-next {
+	width:88px;
+	margin-left:5px;
+}
+#Page_wrapper .c-pnav-con .c-p-sec .c-p-next a {
+	display:inline-block;
+	width:70px;
+	height:30px;
+	line-height:30px;
+	background-image:-webkit-gradient(linear, left top, right bottom, from(#fefefe), to(#e8e8e8));
+	background-image:-webkit-linear-gradient(#fefefe, #e8e8e8);
+	background-image:-moz-linear-gradient(#fefefe, #e8e8e8);
+	background-image:-ms-linear-gradient(#fefefe, #e8e8e8);
+	background-image:-o-linear-gradient(#fefefe, #e8e8e8);
+	background-image:linear-gradient(#fefefe, #e8e8e8);
+	border:1px #D5D5D5 solid;
+	overflow:hidden;
+	border-radius:2px;
+	-webkit-border-radius:2px;
+	border-left:1px #d5d5d5 solid;
+	border-right:0 #d5d5d5 solid;
+}
+#Page_wrapper .c-pnav-con .c-p-sec .c-p-next .c-p-p {
+	display:inline-block;
+	width:17px;
+	height:30px;
+	position:relative;
+	overflow:hidden;
+	vertical-align:top;
+}
+#Page_wrapper .c-pnav-con .c-p-sec .c-p-next .c-p-p em {
+	display:inline;
+	-webkit-transform:rotate(45deg);
+	background-image:-webkit-gradient(linear, left top, right bottom, from(#fefefe), to(#e8e8e8));
+	background-image:-webkit-linear-gradient(#fefefe, #e8e8e8);
+	background-image:-moz-linear-gradient(#fefefe, #e8e8e8);
+	background-image:-ms-linear-gradient(#fefefe, #e8e8e8);
+	background-image:-o-linear-gradient(#fefefe, #e8e8e8);
+	background-image:linear-gradient(#fefefe, #e8e8e8);
+	position:absolute;
+	top:4px;
+	left:-12px;
+	width:21px;
+	height:21px;
+	border:1px solid #ddd;
+}
+#Page_wrapper .c-pnav-con .c-p-sec .c-p-cur {
+	position:relative;
+	height:30px;
+	vertical-align:baseline;
+	text-align:center;
+	margin-left:5px;
+}
+#Page_wrapper .c-pnav-con .c-p-sec .c-p-cur .c-p-arrow {
+	display:inline-block;
+	width:88px;
+	line-height:30px;
+	border:1px solid #ddd;
+	background-image:-webkit-gradient(linear, left top, right bottom, from(#fefefe), to(#e8e8e8));
+	background-image:-webkit-linear-gradient(#fefefe, #e8e8e8);
+	background-image:-moz-linear-gradient(#fefefe, #e8e8e8);
+	background-image:-ms-linear-gradient(#fefefe, #e8e8e8);
+	background-image:-o-linear-gradient(#fefefe, #e8e8e8);
+	background-image:linear-gradient(#fefefe, #e8e8e8);
+}
+#Page_wrapper .c-pnav-con .c-p-sec .c-p-cur .c-p-arrow span:first-child {
+	margin-right:5px;
+	width:50px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+#Page_wrapper .c-pnav-con .c-p-sec .c-p-cur .c-p-down span:last-child {
+	display:inline-block;
+	font-size:0;
+	border-top:3px solid #666;
+	border-left:3px solid #666;
+	width:6px;
+	height:6px;
+	background-color:transparent;
+	-webkit-transform:rotate(225deg);
+	margin-bottom:3px;
+}
+#Page_wrapper .c-pnav-con .c-p-sec .c-p-cur .c-p-up span:last-child {
+	display:inline-block;
+	font-size:0;
+	border-top:3px solid #666;
+	border-left:3px solid #666;
+	width:6px;
+	height:6px;
+	background-color:transparent;
+	-webkit-transform:rotate(45deg);
+}
+#Page_wrapper .c-pnav-con .c-p-sec .c-p-grey {
+	display:inline-block;
+}
+#Page_wrapper .c-pnav-con .c-p-sec .c-p-grey a {
+	color:#999;
+}
+#Page_wrapper .c-pnav-con .c-p-sec .c-p-select {
+	position:absolute;
+	top:0;
+	left:0;
+	height:30px;
+	width:90px;
+	opacity:0;
+}
+
+/****************************************for font template****************************************************/
+.body{
+    padding-bottom:40px;
+    -webkit-box-sizing:border-box;
+}
+.body ~ footer{
+    text-align:center;
+    position:relative;
+}
+
+.top_bar1{
+    position:fixed;
+    width:100%;
+    left:0;
+    top:0;
+    z-index:100;
+}
+.top_menu1{
+    display:-webkit-box;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#212C30), to(#121619));
+}
+
+.top_bar1 .top_menu1>li{
+    -webkit-box-flex:1;
+    height:35px;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255,255,255,0.1)),color-stop(50%,rgba(255,255,255,0.8)), to(rgba(255,255,255,0.1)));
+    -webkit-background-size:1px 80%;
+    background-size:1px 80%;
+    background-position: right center;
+    background-repeat: no-repeat;
+    position:relative;
+    text-align:center;
+}
+.top_menu1>li:last-of-type{background:none;}
+.top_menu1>li span{
+    display:inline-block;
+    height:100%;
+    width:25px;
+    margin:auto;
+    font-size:24px;
+    color:#fff;
+    line-height:35px;
+    /*background: url(../../img/weimob-icons.png) no-repeat 0 5px;*/
+}
+.top_menu1>li span.i_back{
+    background-position:0 5px;
+}
+.top_menu1>li span.i_home{
+    background-position:-33px 5px;
+}
+.top_menu1>li span.i_tel{
+    background-position:-65px 5px;
+}
+.top_menu1>li span.i_menu{
+    background-position:-95px 5px;
+}
+
+.menu_font1{
+    text-align:left;
+    position:absolute;
+    top:35px;
+    right:10px;
+    z-index:500;
+}
+.menu_font1.hidden{
+    display:none;
+}
+
+/*******************************************/
+#mcover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    z-index: 20000;
+}
+#mcover img {
+    position: fixed;
+    right: 18px;
+    top: 5px;
+    width: 260px!important;
+    height: 180px!important;
+    z-index: 20001;
+}
+.text {
+    margin: 15px 0;
+    font-size: 14px;
+    word-wrap: break-word;
+    color: #727272;
+}
+#mess_share {
+    margin: 15px 0;
+    display: block;
+}
+#share_1 {
+    float: left;
+    width: 49%;
+    display: block;
+}
+#share_2 {
+    float: right;
+    width: 49%;
+    display: block;
+}
+.clr {
+    display: block;
+    clear: both;
+    height: 0;
+    overflow: hidden;
+}
+.button2 {
+    font-size: 16px;
+    padding: 8px 0;
+    border: 1px solid #adadab;
+    color: #000000;
+    background-color: #e8e8e8;
+    background-image: linear-gradient(to top, #dbdbdb, #f4f4f4);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.45), inset 0 1px 1px #efefef;
+    text-shadow: 0.5px 0.5px 1px #fff;
+    text-align: center;
+    border-radius: 3px;
+    width: 100%;
+}
+#mess_share img {
+    width: 22px!important;
+    height: 22px!important;
+    vertical-align: top;
+    border: 0;
+}
+
+
+/**********************audio***********************/
+.btn_music{
+    display:inline-block;
+    width:35px;
+    height:35px;
+    background:url('../../img/play.png') no-repeat center center;
+    background-size:100% auto;
+    position:absolute;
+    z-index:100;
+    left:15px;
+    top:20px;
+}
+.btn_music.on{
+    background-image:url('../../img/stop.png');
+}
+
+/******************************动画*************************/
+#iframe_screen{
+    background:#fff;
+    position:absolute;
+    width:100%;
+    height:100%;
+    left:0;
+    top:0;
+    z-index:300000;
+    overflow:hidden;
+}
+/******************************/
+a.btn_music[data-type="2"]{
+	display:inline-block;
+	width:25px;
+	height:25px;
+	margin:5px 10px;
+	min-width:25px;
+	background:url("../../img/template/lib/v72_2.png") no-repeat right center;
+	background-size:auto 100%;
+}
+a.btn_music[data-type="2"].on{
+	background-position:0 center!important;
+}
+/*****************************/
+
+</style>
+
+<div class="weimob-page">
+
+		<div style="height:35px!important;"></div>
+
+	<div class="top_bar1">
+
+		<nav>
+
+			<ul class="top_menu1">
+
+				<li onClick="window.history.go(-1);"><span class="icon-chevron-sign-left"></span></li>
+
+				<li onClick="location.href='{laoyang::U('Index/index',array('token'=>$tpl['token']))}'"><span class="icon-home"></span></li>
+
+									<li><a href="tel:<if condition="$homeInfo.dianhua neq false">{laoyang:$homeInfo.dianhua}<else/>没有留电话</if>"><span class="icon-phone"></span></a></li>
+
+								<li onClick="$('#menu_font1').toggleClass('hidden');">
+
+					<span class="icon-list-ul"></span>
+
+					<ul id="menu_font1" class="menu_font1 hidden" onClick="$('#menu_font').toggleClass('hidden');">
+
+				<volist name="info" id="vo">
+				<li>
+					<a href="<if condition="$vo['url'] eq ''">{laoyang::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}<else/>{laoyang:$vo.url|htmlspecialchars_decode}</if>" class="icon-smile">
+					{laoyang:$vo.name}
+					</a>
+				</li>
+				</volist> 
+
+				</ul>
+
+				</li>
+
+			</ul>
+
+		</nav>
+
+	</div>
+
+
+
+	<section>
+
+				<div>
+
+			<ul class="list_ul">
+			<if condition="$info neq false">
+			<volist name="info" id="so">
+
+							 					<li>
+
+					<if condition="$so['url']"><a href="{laoyang:$so.url}" class="tbox"><else /><a href="{laoyang::U('Wap/Index/lists',array('classid'=>$so['id'],'token'=>$so['token']))}" class="tbox"></if>
+
+						<dd>
+
+							<div>
+
+								<img src="{laoyang:$so.img}" />
+
+							</div>
+
+						</dd>
+
+						<dt>
+
+							<hgroup>
+
+								<h1>{laoyang:$so.name}</h1>
+
+
+							</hgroup>
+
+						</dt>
+
+					</a>
+
+				</li>
+
+				</volist>
+				</if>
+				<if condition="$info neq true">
+				<volist name="info" id="so">
+
+							 					<li>
+
+					<if condition="$so['url']"><a href="{laoyang:$so.url}" class="tbox"><else /><a href="{laoyang::U('Index/content',array('id'=>$so['id'],'token'=>$so['token']))}" class="tbox"></if>
+
+						<dd>
+
+							<div>
+
+								<img src="{laoyang:$so.pic}" />
+
+							</div>
+
+						</dd>
+
+						<dt>
+
+							<hgroup>
+
+								<h1>{laoyang:$so.title}</h1>
+
+								<h2>{laoyang:$so.text}</h2>
+
+							</hgroup>
+
+						</dt>
+
+					</a>
+
+				</li>
+
+				</volist>
+				</if>
+							</ul>
+
+		</div>
+
+			</section>
+
+					<!--
+
+下一页 上一页 开始
+
+-->
+
+<section id="Page_wrapper">
+
+<div id="pNavDemo" class="c-pnav-con">
+
+<section class="c-p-sec">
+
+<div class='c-p-pre <eq name="p" value="1"> c-p-grey </eq> '><span class="c-p-p"><em></em></span><a <eq name="p" value="1"><else/>href="{laoyang::C('site_url')}/index.php?g=Wap&m=Index&a=lists&classid=<php>echo $_GET['classid'];</php>&token={laoyang:$tpl.token}&p=<php>echo $p-1;</php>"</eq>  >上一页</a></div>
+
+<div class="c-p-cur">
+
+<div class="c-p-arrow c-p-down"><span>{laoyang:$p}/{laoyang:$page}</span><span></span></div>
+
+	<select class="c-p-select" onChange="dourl('{laoyang::C('site_url')}/index.php?g=Wap&m=Index&a=lists&classid=<php>echo $_GET['classid'];</php>&token={laoyang:$tpl.token}&p='+this.value)">
+
+		<?php
+
+			for($i=1;$i<=$page;$i++){
+
+				if($i==$p){
+
+					echo '<option value="'.$i.'" selected>第'.$i.'页</option>';
+
+				}else{
+
+					echo '<option value="'.$i.'">第'.$i.'页</option>';
+
+				}
+
+			}
+
+		?>
+
+	</select>
+
+</div>
+
+<div class='c-p-next <eq name="p" value="$page"> c-p-grey </eq>'  >
+
+
+
+<?php
+
+	if($p<$page){
+
+		echo '<a href="'.C('site_url').'/index.php?g=Wap&m=Index&a=lists&classid='.(int)$_GET['classid'].'&token='.$tpl['token'].'&p='.($p+1).'">';
+
+	}else{
+
+		echo '<a>';
+
+	}
+
+?>
+
+下一页</a><span class="c-p-p"><em></em></span></div>
+
+</section>
+
+</div>
+
+</section>
+
+<!--
+
+下一页 上一页 结束
+
+-->
+
+</div>  
+
+<script>
+
+function dourl(url){
+
+location.href= url;
+
+}
+
+</script>
+
+<include file="Index:styleInclude"/><include file="$cateMenuFileName"/>
+	<if condition="ACTION_NAME eq 'index'">
+		<script type="text/javascript">
+			window.shareData = {  
+					"moduleName":"Index",
+					"moduleID": '0',
+					"imgUrl": "{laoyang:$homeInfo.picurl}", 
+					"timeLineLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"sendFriendLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"weiboLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"tTitle": "{laoyang:$homeInfo.title}",
+					"tContent": "{laoyang:$homeInfo.info}"
+				};
+		</script>
+	<else />
+		<script type="text/javascript">
+			window.shareData = {  
+				"moduleName":"Index",
+				"moduleID": '1',
+				"imgUrl": "{laoyang:$homeInfo.picurl}", 
+				"timeLineLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"sendFriendLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"weiboLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"tTitle": "{laoyang:$homeInfo.title}",
+				"tContent": "{laoyang:$homeInfo.info}"
+			};
+		</script>	
+	
+	</if>
+{laoyang:$shareScript}
+<include file="Public:footer"/>

@@ -1,0 +1,68 @@
+<include file="Public:head"/>
+<script>
+function ccolumns(value){
+	if(value=='none'){
+		$('.feiyin').css('display','none');
+		$('.laoyang').css('display','none');
+		$('.btnGray').css('display','none');
+	}
+	if(value=='feiyin'){
+		$('.feiyin').css('display','');
+		$('.laoyang').css('display','none');
+		$('.btnGray').css('display','');
+	}
+	if(value=='laoyang'){
+		$('.feiyin').css('display','none');
+		$('.laoyang').css('display','');
+		$('.btnGray').css('display','none');
+	}
+}
+</script>
+<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+<div class="cLineB">
+<h4>&nbsp;&nbsp;无线打印设置</h4>
+<span class="FAQ">填写错误将不能打印,接口请向管理员申请！</span>
+</div>
+<div class="msgWrap">
+<form method="post"  action="">
+<table class="userinfoArea" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="100">打印机品牌：</th>
+<td>
+<select name="printtype" onchange="ccolumns(this.value)">
+<option value="none" <if condition="$set.printtype eq ''">selected</if>>请选择</option>
+<option value="laoyang" <if condition="$set.printtype eq 'laoyang'"> selected</if>>老杨</option>
+<option value="feiyin" <if condition="$set.printtype eq 'feiyin'">selected</if>>飞印</option>
+</select>
+</td>
+</tr>
+<tr class="feiyin" <if condition="$set.printtype neq 'feiyin'">style="display:none"</if>><th><span class="red">*</span>商户代码：</th><td><input type="text" class="px" name="memberCode" value="{laoyang:$set.memberCode}" tabindex="1" size="35"> <span class="red">&nbsp;&nbsp;&nbsp;登录飞印后在"API集成"-&gt;"获取API集成信息"获取</span></td></tr>
+<tr class="feiyin" <if condition="$set.printtype neq 'feiyin'">style="display:none"</if>><th><span class="red">*</span>API 密钥：</th><td><input type="text" class="px" name="feiyin_key" value="{laoyang:$set.feiyin_key}" tabindex="1" size="25"> <span class="red">&nbsp;&nbsp;&nbsp;获取方法同上</span></td></tr>
+<tr class="feiyin" <if condition="$set.printtype neq 'feiyin'">style="display:none"</if>><th><span class="red">*</span>设备编码：</th><td><input type="text" class="px" name="deviceNo" value="{laoyang:$set.deviceNo}" tabindex="1" size="25"> <span class="red">&nbsp;&nbsp;&nbsp;通过打印机后面的激活按键获取，为16位数字，例如"4600365507768327"</span></td></tr>
+<tr class="laoyang" <if condition="$set.printtype neq 'laoyang'">style="display:none"</if>><th><span class="red">*</span>设备编码：</th><td><input type="text" class="px" name="bwdeviceNo" value="{laoyang:$set.bwdeviceNo}" tabindex="1" size="25"> <span class="red">&nbsp;&nbsp;&nbsp;老杨无线打印设备编码</span></td></tr>
+<tr>
+<th><span class="red">*</span>打印联数：</th>
+	<td>
+		1联&nbsp;<input type="radio" name="printpage" <if condition="$set.printpage eq 1">checked</if> id="statu-1" value="1">&nbsp;&nbsp;
+		2联&nbsp;<input type="radio" name="printpage" <if condition="$set.printpage eq 2">checked</if> id="statu-0" value="2">&nbsp;&nbsp;
+		3联&nbsp;<input type="radio" name="printpage" <if condition="$set.printpage eq 3">checked</if> id="statu-0" value="3">
+	</td>	
+</tr>
+<tr>
+<th><span class="red">*</span>是否开启：</th>
+	<td>
+		开启&nbsp;<input type="radio" name="status" <if condition="$set.status eq 1">checked</if> id="statu-1" value="1">&nbsp;&nbsp;
+		关闭&nbsp;<input type="radio" name="status" <if condition="$set.status eq 0">checked</if> id="statu-0" value="0">
+	</td>	
+</tr>
+<tr>
+<td height="50" colspan="2">
+<input type="submit" value="保存"  name="sbmt"  class="btnGreen"  style="float:left; margin-right:20px;" /> <a href="{laoyang::U('Printer/test',array('token'=>$token))}" class="btnGray" <if condition="$set.printtype neq 'feiyin'">style="display:none"</if>>测试打印</a>&nbsp;&nbsp;&nbsp;<a href="http://my.feyin.net/simulator/show" target="_blank" <if condition="$set.printtype neq 'feiyin'">style="display:none"</if>>无打印机，请进入模拟打印地址看效果：http://my.feyin.net/simulator/show</a></td>
+</tr></tbody></table></div>
+</form>
+
+</div>
+</div>
+
+<include file="Public:footer"/>	

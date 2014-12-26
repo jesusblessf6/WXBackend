@@ -1,0 +1,62 @@
+<include file="Public:head"/>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+	<div class="cLineB">
+		<include file="Wifi:menu"/>
+		<h4 class="left">广告点击列表</h4>
+	</div>
+
+
+<style>
+td,th{text-align:center;}
+</style>
+<script>
+function showtr(id){
+	$("#adinfo_"+id).toggle();
+}
+</script>
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+<th style=" width:100px;">广告图片</th>
+<th>广告地址</th>
+<th style=" width:100px;">广告标题</th>
+<th style=" width:100px;">点击量</th>     
+<th style=" width:100px;">详细</th>                
+</tr>
+</thead>
+<volist name="list" id="ads">
+<tr>
+<td><img src="{laoyang:$ads.pic}" width="75" height="50" /></td>
+<td><a href="{laoyang:$ads.links}" target="_blank">{laoyang:$ads.links}</a></td>
+<td>{laoyang:$ads.title}</td>
+<td>{laoyang:$ads.count}</td>
+<td><a href="javascript:showtr({laoyang:$ads.id})">查看详细</a></td>
+</tr>
+<tr style="display:none;" id="adinfo_{laoyang:$ads.id}">
+	<td colspan="5" align="right" style="padding:0">
+		<table width="50%" style="float:right" border="1">
+			<tr>
+				<td>点击客户</td>
+				<td>点击时间</td>
+			</tr>
+		<?php foreach ($ads['list_info'] as $val){
+			echo '<tr><td>'.$val['user'].'</td>';			
+			echo '<td>'.date("Y-m-d H:i:s",$val["hittime"]).'</td></tr>';
+		} ?>
+		</table>
+	</td>
+</tr>
+</volist>
+
+</table>
+
+</div>
+</div>
+<div class="footactions" style="padding-left:10px">
+  <div class="pages">{laoyang:$page}</div>
+</div>
+          </div>
+          
+        </div>
+<include file="Public:footer"/>

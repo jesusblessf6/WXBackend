@@ -1,0 +1,474 @@
+@font-face {
+	font-family: fontello;
+	src: url(fontello.eot?39525876#iefix) format("embedded-opentype"), url(fontello.ttf?39525876) format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+* {
+	margin: 0px; padding: 0px;
+}
+body {
+	background: url("../img/bg.jpg") no-repeat left bottom / 100% 100% rgb(0, 98, 164); line-height: 1.62; overflow: hidden; font-family: arial; font-size: 13px; -ms-overflow-y: auto; min-height: 100%; -webkit-text-size-adjust: none;
+}
+html {
+	overflow: hidden; -ms-overflow-y: auto; min-height: 100%;
+}
+table {
+	border-collapse: collapse; border-spacing: 0;
+}
+h1 {
+	font-size: 100%;
+}
+h2 {
+	font-size: 100%;
+}
+h3 {
+	font-size: 100%;
+}
+h4 {
+	font-size: 100%;
+}
+h5 {
+	font-size: 100%;
+}
+h6 {
+	font-size: 100%;
+}
+ul {
+	list-style: none;
+}
+ol {
+	list-style: none;
+}
+li {
+	list-style: none;
+}
+em {
+	font-style: normal;
+}
+img {
+	border: currentColor; border-image: none;
+}
+input {
+	vertical-align: middle;
+}
+img {
+	vertical-align: middle;
+}
+q::before {
+	content: "";
+}
+q::after {
+	content: "";
+}
+.fn-clear::after {
+	height: 0px; clear: both; font-size: 0px; display: block; visibility: hidden; content: " ";
+}
+.fn-clear {
+	
+}
+a {
+	color: rgb(51, 51, 51); text-decoration: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+a:active {
+	color: rgb(102, 102, 102); -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+section {
+	display: block;
+}
+aside {
+	display: block;
+}
+header {
+	display: block;
+}
+footer {
+	display: block;
+}
+hgroup {
+	display: block;
+}
+article {
+	display: block;
+}
+.btn {
+	border: 0px currentColor; border-image: none; width: 100%; height: 45px; text-align: center; color: rgb(255, 255, 255); line-height: 45px; font-size: 16px; font-weight: bold; display: inline-block; box-shadow: 0px 2px 2px rgba(40,40,40,0.5);
+}
+.input {
+	background: rgb(255, 255, 255); padding: 8px 0px; border-radius: 3px; border: 0px currentColor; border-image: none; width: 100%; height: 24px; line-height: 24px; text-indent: 8px; font-size: 14px; -webkit-appearance: none;
+}
+.border-box {
+	box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+.regular {
+	box-shadow: 0px 0px 10px rgba(40,40,40,0.5); background-color: rgb(255, 255, 255);
+}
+.regular img {
+	max-width: 100%;
+}
+.main {
+	width: 100%; min-width: 300px;
+}
+.register-box {
+	background: url("../img/register-bg.jpg") no-repeat left top / 100% 100%; padding: 30px 5% 15px;
+}
+.register-logo {
+	background: url("../img/register-logo.png") no-repeat; left: 50%; top: 10px; width: 243px; height: 81px; margin-left: -110px; position: relative;
+}
+.register-input {
+	padding: 20px; margin-top: 12px;
+}
+.register-input i {
+	color: rgb(206, 206, 206); line-height: 1.6; font-size: 24px;
+}
+.register-input p:first-child {
+	border-bottom-color: rgb(225, 225, 225); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.register-input label {
+	width: 15%; text-align: center; float: left;
+}
+.register-input input {
+	width: 85%; float: right;
+}
+.register-btn {
+	margin-top: 50px;
+}
+.tips {
+	text-align: center; margin-top: 10px;
+}
+.tips a {
+	color: rgb(255, 255, 255); text-decoration: underline;
+}
+.rb-submit {
+	margin-top: 20px;
+}
+.main-box {
+	padding: 30px 5%;
+}
+.activity-box {
+	padding: 10px; margin-bottom: 10px; position: relative;
+}
+:last-child.activity-box {
+	margin-bottom: 0px;
+}
+.activity-box h1 {
+	color: rgb(62, 62, 62); font-size: 14px; margin-bottom: 11px;
+}
+.activity-box .figure {
+	margin-bottom: 10px;
+}
+.activity-box .figure img {
+	width: 100%; min-height: 120px; max-height: 240px;
+}
+.activity-rule {
+	color: rgb(62, 62, 62);
+}
+.activity-rule span {
+	color: rgb(166, 166, 166); font-weight: bold; margin-right: 10px;
+}
+.activity-btn {
+	margin-top: 20px;
+}
+.activity-btn a {
+	width: 45%; height: 40px; text-align: center; color: rgb(255, 255, 255); line-height: 40px; display: block; background-color: rgb(239, 69, 69);
+}
+.activity-btn a.enter {
+	border-radius: 3px; float: left;
+}
+.activity-btn a.rule-btn {
+	border-radius: 3px; float: right;
+}
+.activity-btn a.btn-disabled {
+	color: rgb(221, 221, 221); cursor: default; background-color: rgb(119, 119, 119);
+}
+.icon {
+	top: 37px; width: 133px; height: 134px; right: -41px; display: block; position: absolute;
+}
+.icon-hot {
+	background: url("../img/icon-hot.png") no-repeat 0% 0% / 66%;
+}
+.icon-end {
+	background: url("../img/icon-end.png") no-repeat 0% 0% / 66%;
+}
+.icon-start {
+	background: url("../img/icon-start.png") no-repeat 0% 0% / 66%;
+}
+.more {
+	padding: 10px; height: 90px; margin-top: 15px; display: block; position: relative; box-shadow: 0px 0px 10px rgba(40,40,40,0.5); background-color: rgba(117, 195, 246, 0.6);
+}
+.more .know-more {
+	background: url("../img/know-more.png") no-repeat; margin: 22px auto 0px; width: 221px; height: 68px;
+}
+.more i {
+	top: 40px; right: 10px; color: rgb(255, 255, 255); line-height: 1.2; font-size: 24px; position: absolute;
+}
+.nav {
+	left: 0px; width: 100%; bottom: 0px; position: fixed;
+}
+.nav a {
+	padding: 5px 0px 0px; width: 33%; text-align: center; float: left; display: block; background-color: rgb(255, 255, 255);
+}
+.nav a.active {
+	color: rgb(46, 139, 241); background-color: rgba(243, 241, 241, 0.9);
+}
+.nav a:nth-child(2) {
+	width: 34%;
+}
+.nav i {
+	line-height: 1.2; font-size: 20px; display: block;
+}
+.activity-box h1 span {
+	padding: 1px 5px; color: rgb(255, 255, 255); font-size: 12px; display: inline-block;
+}
+.activity-box h1 span.win {
+	background-color: rgb(228, 70, 69);
+}
+.activity-box h1 span.no-win {
+	background-color: rgb(170, 170, 170);
+}
+.look {
+	text-align: center; color: rgb(117, 117, 117); line-height: 1.2; margin-bottom: 10px;
+}
+.look i {
+	font-size: 24px; float: left;
+}
+.look span {
+	line-height: 1.2; font-size: 18px; margin-top: 2px; float: left;
+}
+.look .view {
+	float: left;
+}
+.look .residue {
+	margin-left: 10px; float: left;
+}
+.look .residue span {
+	margin-top: 4px;
+}
+.look .text {
+	margin-top: 3px;
+}
+.look .no-prize {
+	color: rgb(239, 69, 69);
+}
+.activity-detail .award {
+	margin-top: 10px; float: left;
+}
+.activity-detail .total {
+	padding: 2px 5px; text-align: center; color: rgb(255, 255, 255); float: right; background-color: rgb(30, 144, 209);
+}
+.activity-detail .total label {
+	line-height: 1.2; font-size: 22px;
+}
+.activity-detail .total a {
+	color: rgb(255, 255, 255);
+}
+.activity-detail .total span {
+	display: block;
+}
+.user-center {
+	padding-top: 70px;
+}
+.hd {
+	height: 150px; text-align: center; color: rgb(255, 255, 255); position: relative; background-color: rgb(32, 93, 128);
+}
+.hd .figure {
+	left: 50%; top: -40px; width: 100px; height: 100px; margin-left: -55px; position: absolute;
+}
+.hd .figure img {
+	border-radius: 60px; border: 4px solid rgba(85, 132, 158, 1); border-image: none; width: 100px; height: 100px; display: block;
+}
+.hd .edit {
+	border-radius: 20px; top: -15px; width: 40px; height: 40px; text-align: center; right: -10px; color: rgb(255, 255, 255); line-height: 1.2; font-size: 24px; display: block; position: absolute; box-shadow: 0px 2px 0px rgba(166,20,20,0.9); background-color: rgb(239, 69, 69);
+}
+.hd .edit .icon-pencil::before {
+	padding-top: 7px;
+}
+.hd .user-info {
+	padding: 85px 0px 20px;
+}
+.hd .user-info .u-name {
+	font-size: 18px; font-weight: bold;
+}
+.bd {
+	margin-top: 20px;
+}
+.bd p {
+	margin-bottom: 10px;
+}
+.bd a {
+	padding: 10px; height: 20px; color: rgb(102, 102, 102); line-height: 20px; display: block; background-color: rgb(255, 255, 255);
+}
+.bd i {
+	color: rgb(34, 122, 232); float: right;
+}
+.rule {
+	padding: 10px;
+}
+.wanzhuan-detail {
+	padding: 10px;
+}
+.rule h1 {
+	text-align: center; color: rgb(52, 140, 231); padding-bottom: 5px; font-size: 16px; border-bottom-color: rgb(199, 199, 199); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.wanzhuan-detail h1 {
+	text-align: center; color: rgb(52, 140, 231); padding-bottom: 5px; font-size: 16px; border-bottom-color: rgb(199, 199, 199); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.rule p {
+	margin: 10px 0px; color: rgb(118, 118, 118);
+}
+.wanzhuan-detail p {
+	margin: 10px 0px; color: rgb(118, 118, 118);
+}
+.rule p .label {
+	width: 23%; float: left;
+}
+.rule p .span {
+	width: 76%; margin-left: 1%; float: left;
+}
+.rule p.enter-activity {
+	margin-top: 50px;
+}
+.rule p.enter-activity a.btn {
+	box-shadow: none;
+}
+.wanzhuan-detail img {
+	max-width: 100%;
+}
+.wanzhuan-detail h1 {
+	line-height: 1.2; padding-top: 5px;
+}
+.wanzhuan-detail span {
+	color: rgb(136, 136, 136); font-size: 14px;
+}
+.client {
+	padding-bottom: 20px;
+}
+.client-text {
+	text-align: center; color: rgb(255, 255, 255); font-size: 14px;
+}
+.my-tips {
+	padding: 8px 2px; font-weight: bold;
+}
+.my-tips span {
+	padding: 0px 5px; color: rgb(239, 69, 69); font-weight: normal; display: inline-block; background-color: rgb(255, 255, 255);
+}
+.jjr-link {
+	margin-top: 10px;
+}
+.jjr-link .register-jjr {
+	color: rgb(239, 69, 69);
+}
+.client-list {
+	padding: 10px; color: rgb(158, 158, 158); margin-top: 20px;
+}
+.client-list h1 {
+	color: rgb(44, 44, 44); padding-bottom: 5px; border-bottom-color: rgb(199, 199, 199); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.client-box ul {
+	padding: 8px 0px; border-bottom-color: rgb(199, 199, 199); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.client-box ul:last-child {
+	border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none;
+}
+.client-box ul li {
+	float: left;
+}
+.client-box ul li:nth-child(1) {
+	width: 33%; margin-top: 6px;
+}
+.client-box ul li:nth-child(2) {
+	width: 33%; margin-top: 6px;
+}
+.client-box ul li:nth-child(3) {
+	width: 11%;
+}
+.client-box ul li:nth-child(4) {
+	width: 12%; margin-top: 3px;
+}
+.client-box ul li a {
+	color: rgb(255, 255, 255);
+}
+.client-box ul li.phone a {
+	border-radius: 15px; width: 30px; height: 30px; text-align: center; font-size: 20px; display: inline-block; background-color: rgb(30, 144, 209);
+}
+.client-box ul li.recommend {
+	padding: 2px 5px; text-align: center; color: rgb(255, 255, 255); float: right;
+}
+.client-box ul li.able {
+	background-color: rgb(235, 68, 69);
+}
+.client-box ul li.able a {
+	width: 100%; height: 100%; display: block;
+}
+.client-box ul li.invalid {
+	background-color: rgb(158, 158, 158);
+}
+.foot {
+	padding: 10px 0px 90px; width: 100%; text-align: center; margin-top: 10px; min-width: 300px;
+}
+.foot a {
+	margin: 0px 3px; color: rgb(255, 255, 255);
+}
+.footer {
+	padding-bottom: 10px;
+}
+.animate-spin {
+	animation:spin 1s linear infinite; display: inline-block; -webkit-animation: spin 1s infinite linear;
+}
+.animated {
+	animation-duration: 1s; animation-fill-mode: both; -webkit-animation-duration: 1s; -webkit-animation-fill-mode: both;
+}
+.infinite.animated {
+	animation-iteration-count: infinite; -webkit-animation-iteration-count: infinite;
+}
+.hinge.animated {
+	animation-duration: 2s; -webkit-animation-duration: 2s;
+}
+.fadeInDown {
+	animation-name: fadeInDown; -webkit-animation-name: fadeInDown;
+}
+.rotateIn {
+	animation-name: rotateIn; -webkit-animation-name: rotateIn;
+}
+.fadeIn {
+	animation-name: fadeIn; -webkit-animation-name: fadeIn;
+}
+.fadeOut {
+	animation-name: fadeOut; -webkit-animation-name: fadeOut;
+}
+[class^='icon-']::before {
+	width: 1em; text-align: center; text-transform: none; line-height: 1em; font-family: "fontello"; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: inherit; margin-right: 0.2em; margin-left: 0.2em; display: inline-block; speak: none;
+}
+[class*=' icon-']::before {
+	width: 1em; text-align: center; text-transform: none; line-height: 1em; font-family: "fontello"; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: inherit; margin-right: 0.2em; margin-left: 0.2em; display: inline-block; speak: none;
+}
+.icon-user::before {
+	content: "\e800";
+}
+.icon-mobile::before {
+	content: "\e801";
+}
+.icon-right-open-big::before {
+	content: "\e802";
+}
+.icon-award::before {
+	content: "\e803";
+}
+.icon-gift::before {
+	content: "\e804";
+}
+.icon-user-1::before {
+	content: "\e805";
+}
+.icon-inbox::before {
+	content: "\e806";
+}
+.icon-eye-1::before {
+	content: "\e807";
+}
+.icon-pencil::before {
+	content: "\e808";
+}
+.icon-phone::before {
+	content: "\e809";
+}

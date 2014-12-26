@@ -1,0 +1,350 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{laoyang::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{laoyang::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{laoyang::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="./tpl/User/default/common/js/cart/jscolor.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/weimeng-js/css/bootstrap_min.css" media="all" />
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/weimeng-js/css/resource.css" media="all" />
+<script type="text/javascript" src="./tpl/User/default/common/weimeng-js/jQuery.js"></script>
+<script type="text/javascript" src="./tpl/User/default/common/weimeng-js/bootstrap_min.js"></script>
+<script type="text/javascript" src="./tpl/User/default/common/weimeng-js/jquery_form_min.js"></script>
+<script type="text/javascript" src="./tpl/User/default/common/weimeng-js/jquery_validate_min.js"></script>
+<script type="text/javascript" src="./tpl/User/default/common/weimeng-js//jquery_validate_methods.js"></script>
+<script type="text/javascript" src="./tpl/User/default/common/weimeng-js/resource.js"></script>
+<script type="text/javascript" src="./tpl/User/default/common/weimeng-js/inside.js"></script>
+<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+  <div  class="quick-actions_homepage">
+
+  </div>
+<h4>编辑文章分类</h4>
+<a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></div> 
+
+<div class="msgWrap">
+
+  <form class="form" method="post"   action="{laoyang::U('Classify/upsave')}" enctype="multipart/form-data" >
+
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+
+  <THEAD>
+  <if condition="$fid neq 0">
+  <TR>
+  <TH valign="top"><label for="keyword">上级分类名称：</label></TH>
+  <TD>{laoyang:$thisClassify.name}<input type="hidden" name="fid" value="{laoyang:$fid}" /></TD>
+  <TD>&nbsp;</TD>
+</TR>
+</if>
+<TR>
+
+  <TH valign="top"><label for="keyword">分类名称：</label></TH>
+
+  <TD><input type="input" class="px" id="keyword" value="{laoyang:$info.name}" name="name" style="width:300px" >
+&nbsp;&nbsp;字体颜色：<input type="text" name="nameyanse" id="themeStyle2" value="<php>if($info['nameyanse']){echo $info['nameyanse'];}else{ echo '#000000';}</php>" class="px color" style="width: 55px; background-image: none; background-color:{laoyang:$homeInfo.nameyanse}; color: rgb(255, 255, 255);" onblur="document.getElementById('nameyanse').style.backgroundColor=document.getElementById('themeStyle2').value;">&nbsp;&nbsp;可以不选 </TD>
+  <TD>&nbsp;</TD>
+
+</TR>
+
+ </THEAD>
+
+  <TBODY><input type="hidden" name="id" value="{laoyang:$info.id}"/>
+
+<TR>
+
+  <TH valign="top"><label for="keyword">分类描述：</label></TH>
+
+  <TD><input type="input" class="px" id="keyword" value="{laoyang:$info.info}" name="info" style="width:500px" ><br />
+
+                  30个字简短分类描述，可为空   </TD>
+
+  <TD>&nbsp;</TD>
+
+</TR>
+
+<TR>
+
+  <TH valign="top"><label for="pic">分类图片上传：</label></TH>
+
+
+
+   <TD><input type="input" class="px" id="img" value="{laoyang:$info.img}" name="img" id="img" style="width:500px" >  <script src="/tpl/static/upyun.js?2013"></script><a href="###" onclick="chooseFile('img','icon')" class="ChooseImage">选择</a> <a href="###" onclick="upyunPicUpload('img',700,420,'{laoyang:$token}')" class="ChooseImage">上传</a> <a href="###" onclick="viewImg('img')" class="ChooseImage">预览</a></TD>
+
+</TR>
+
+<TR>
+
+  <TH valign="top"><label for="keyword">网站图标选择 ：</label></TH>
+
+                                     <TD>   <div class="i-cont tile-themed">
+
+                                                                                        <i class="{laoyang:$info.icon}" id="icon_i"></i>
+
+                                            <input type="hidden" id="icon" name="icon" value="{laoyang:$info.icon}" />
+
+                                            <a class="sel-icon" href="javascript:void(0);">换一个</a>
+
+                                            <div class="icons-cont">
+
+												<div class="tab-content">
+
+													<ul class="nav nav-tabs">
+
+														<li class="active"><a href="#ico_hot" data-toggle="tab">热门</a></li>
+
+														<li class=""><a href="#ico_all" data-toggle="tab">全部</a></li>
+
+													</ul>
+
+													<div class="tab-pane fade active in" id="ico_hot">
+
+													</div>
+
+													<div class="tab-pane fade" id="ico_all">
+
+													</div>
+
+												</div>
+
+											</div>
+
+                                    </div><span class="help-inline">该图标用于二级页面右上角的缩略菜单和部分模板的首页主菜单</span></TD>
+
+
+
+
+
+  <TD></TD>
+
+</TR>
+
+<TR>
+
+  <TH valign="top"><label for="keyword">按钮背景颜色选择 ：</label></TH>
+
+  <TD><input type="text" name="yanse" id="themeStyle" value="{laoyang:$info.yanse}" class="px color" style="width: 55px; background-image: none; background-color:{laoyang:$homeInfo.plugmenucolor}; color: rgb(255, 255, 255);" onblur="document.getElementById('plugmenucolor').style.backgroundColor=document.getElementById('themeStyle').value;">&nbsp;&nbsp;可以不选</TD>
+
+    <TD>&nbsp;</TD>
+
+</TR>
+
+
+<TR>
+
+
+
+  <TH valign="top"><label for="url">外链网站或活动 ：</label></TH>
+
+  <TD><input type="input" class="px" id="url" value="{laoyang:$info.url}" name="url" style="width:300px" > <a href="###" onclick="addLink('url',0)" class="ChooseImage">从功能库添加</a><br />
+
+  </TD>
+
+  <TD>&nbsp;</TD>
+
+</TR>
+
+<TR>
+
+  <TH valign="top"><label for="keyword">排序：</label></TH>
+
+  <TD><input type="input" class="px" id="keyword" value="{laoyang:$info.sorts}" name="sorts" style="width:500px" ><br />
+
+                   </TD>
+
+  <TD>&nbsp;</TD>
+
+</TR>
+
+<TR>
+
+  <TH valign="top"><label for="keyword">是否显示：</label></TH>
+
+<TD>是&nbsp;<input class="px" type="radio" name="status" value="1"  checked="checked">&nbsp;&nbsp;&nbsp;否&nbsp;<input class="px" type="radio" name="status" value="0">             
+	</TD>
+  <TD>&nbsp;</TD>
+
+
+</TR>
+<TR>
+  <TH valign="top"><label for="keyword">分类页模板：</label></TH>
+  <TD>
+	<input type="text" id="selecttpl" class="px" value="已选择模板{laoyang:$info.tpid}" disabled size="40"  />
+	<a class="ChooseImage" onclick="chooseTpl('tpid','selecttpl',1)">选择模板</a>
+	<a class="ChooseImage" onclick="viewTpl()">预览</a>
+	<script>
+		function viewTpl(){
+			var tid = $('#tpid').val();
+			chooseTpl(tid,'',2);
+		}
+	</script>
+	<input type="hidden" class="px" id="tpid" value="{laoyang:$info.tpid}" name="tpid" style="width:250px">
+	
+  </TD>
+  <TD>
+	&nbsp;
+  </TD>
+</TR>
+
+
+<tr>
+  <TH valign="top"><label for="keyword">内容页模板：</label></TH>
+  <TD>
+
+	<input type="text" id="selectconttpl" class="px" value="已选择模板{laoyang:$info.conttpid}" disabled size="40"  />
+	<a class="ChooseImage" onclick="chooseTpl('conttpid','selectconttpl',3)">选择模板</a>
+	<a class="ChooseImage" onclick="viewTpl2()">预览</a>
+	<input type="hidden" class="px" value="{laoyang:$info.conttpid}" id="conttpid" name="conttpid" style="width:250px">
+	<script>
+		function viewTpl2(){
+			var tid = $('#conttpid').val();
+			chooseTpl(tid,'',4);
+		}
+	</script>
+  </TD>
+  <TD>
+	&nbsp;
+  </TD>
+</tr>
+<tr>
+	<td colspan="3" align="center">
+	
+
+	</td>
+</tr>
+<TR>
+
+  <TH></TH>
+
+  <TD><button type="submit"  name="button"  class="btnGreen left" >保存</button>
+
+  	<div class="clr"></div>
+
+  	</TD>
+
+  </TR>
+
+  </TBODY>
+
+</TABLE>
+
+  </form>
+
+
+
+
+
+
+
+  </div> 
+
+
+
+        </div>
+
+        
+
+        <div class="clr"></div>
+
+      </div>
+
+    </div>
+
+  </div> 
+
+<script>
+
+    $(document).ready(function(){
+
+        var resource = Resource.create();
+
+        var ins = Resource.instance['res_block'];
+
+        ins.result = ins.result || {};
+
+        ins.result.wuid = 34087;
+
+
+
+        
+
+        window.ICON();
+
+    });
+
+
+
+    KindEditor.ready(function(K){
+
+        var editor = K.editor({
+
+            themeType: 'simple',
+
+            allowFileManager: true
+
+        });
+
+        $('a.insertimage').live('click', function(e){
+
+            editor.loadPlugin('smimage', function(){
+
+                editor.plugin.imageDialog({
+
+                    imageUrl: $(e.target).prev().val(),
+
+                    clickFn: function(url, title, width, height, border, align){
+
+                        $(e.target).prev().val(url);
+
+                        if ('img' == $(e.target).prev().prev().attr('type')) {
+
+                            $(e.target).prev().hide();
+
+                            $(e.target).prev().prev().attr('src', url);
+
+                            $(e.target).prev().prev().show();
+
+                        }
+
+                        editor.hideDialog();
+
+                    }
+
+                });
+
+            });
+
+        });
+
+    });
+
+</script>	<script>
+
+		window.document.onkeydown = function(e) {
+
+			if ('' == document.activeElement.id) {
+
+				var e=e || event;
+
+　 				var currKey=e.keyCode || e.which || e.charCode;
+
+				if (8 == currKey) {
+
+					return false;
+
+				}
+
+			}
+
+		};
+
+	</script>
+
+
+
+<!--底部-->
+
+  	</div>
+
+<include file="Public:footer"/>

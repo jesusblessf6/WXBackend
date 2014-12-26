@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>{baowei:$tpl.wxname}</title>
+    <link rel="stylesheet" type="text/css" href="{baowei::RES}/css/176/css/snower.css?2013-12-27-3" media="all" />
+    <link rel="stylesheet" type="text/css" href="{baowei::RES}/css/176/css/common.css?2013-12-27-3" media="all" />
+    <link rel="stylesheet" type="text/css" href="{baowei::RES}/css/176/css/reset.css?2013-12-27-3" media="all" />
+    <link rel="stylesheet" type="text/css" href="{baowei::RES}/css/176/css/font-awesome.css?2013-12-27-3" media="all" />
+    <link rel="stylesheet" type="text/css" href="{baowei::RES}/css/176/css/home-50.css?2013-12-27-3" media="all" />
+    <script type="text/javascript" src="{baowei::RES}/css/176/js/maivl.js?2013-12-27-3"></script>
+    <script type="text/javascript" src="{baowei::RES}/css/176/js/jQuery.js?2013-12-27-3"></script>
+    <script type="text/javascript" src="{baowei::RES}/css/176/js/jquery_easing.js?2013-12-27-3"></script>
+    <script type="text/javascript" src="{baowei::RES}/css/176/js/yl3d.js?2013-12-27-3"></script>
+    <script type="text/javascript" src="{baowei::RES}/css/176/js/50.js?2013-12-27-3"></script>
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        name="viewport">
+    <meta name="Keywords" content="360微电商、微信营销、微信代运营、微信定制开发、微信托管、微网站、微商城、微营销">
+    <meta name="Description" content="360微电商，国内最大的微信公众智能服务平台，360微电商八大微体系：微菜单、微官网、微会员、微活动、微商城、微推送、微服务、微统计，企业微营销必备。">
+    <!-- Mobile Devices Support begin -->
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+    <meta content="no-cache" http-equiv="pragma">
+    <meta content="0" http-equiv="expires">
+    <meta content="telephone=no, address=no" name="format-detection">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- apple devices fullscreen -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Mobile Devices Support end -->
+    <style type="text/css">
+       
+        .top_barxx{
+    max-width:640px;
+    position:fixed;
+    width:100%;
+    left:0;
+    right:0;
+    top:0;
+    z-index:100;
+    margin:auto;
+}
+
+
+
+.footer_bar{
+    top:inherit;
+    bottom:0;
+}
+
+        </style>
+</head>
+<body onselectstart="return true;" ondragstart="return false;">
+    <style>
+        .body
+        {
+            max-width: 640px;
+            margin: auto;
+        }
+    </style>
+    <div class="body">
+        <header>
+        <div class="snower">
+            <script type="text/javascript"></script>
+           
+        </div>
+    </header>
+        <section class="p-index">
+			<volist name="info" id="vo" >			
+		<section data-page="2" class="m-page m-page2 show" data-id="0" data-type="info_nomore">
+			<div class="m-img m-img01">
+				<img src="{baowei:$vo.img}" alt="{baowei:$vo.name}"/>
+			</div>
+			<div class="m-txt m-txt01 hide_poniter">
+									<a href="{baowei:$vo.url}">
+									<div class="wtxt">
+						<h2>{baowei:$vo.name}</h2>
+						<p>{baowei:$vo.info}</p>
+					</div>
+				</a>
+				<span class="expand"></span>
+			</div>
+		</section>
+		
+		</volist>
+		<!--pageLoading-->
+  		<section class="pageLoading">
+			<img src="{baowei::RES}/css/176/images/v55_load.gif" alt="loading">
+		</section>
+
+	</section>
+    </div>
+    <div class="top_barxx footer_bar" style="">
+        <div style="text-align: center; width: 80%; height: 80%; display: block;">
+            <div style="text-align: center; width: 150%; height: 80%;">
+                
+            </div>
+            <div style="text-align: center; width: 150%; height: 80%;">
+                
+            </div>
+        </div>
+    </div>
+    <div mark="stat_code" style="width: 0px; height: 0px; display: none;">
+    </div>
+    <link rel="stylesheet" href="{baowei::RES}/css/176/css/myplugmenu.css">
+    <div class="myplug-div">
+        <div class="myplug-phone">
+            <div class="myplug-menu themeStyle">
+                <span class="close"></span>
+            </div>
+            
+
+            <div class="myplug-btn myplug-btn5 close">
+            </div>
+        </div>
+    </div>
+    <script src="{baowei::RES}/css/176/js/myplugmenu.js" type="text/javascript"></script>
+    <script src="{baowei::RES}/css/176/js/zepto.min.js" type="text/javascript"></script>
+    <script src="{baowei::RES}/css/176/js/plugmenu.js" type="text/javascript"></script>
+</body>
+<script type="text/javascript" src="{baowei::RES}/css/176/js/jquery_easing.js"></script>
+<script type="text/javascript" src="{baowei::RES}/css/176/js/yl3d.js"></script>
+<script type="text/javascript" src="{baowei::RES}/css/176/js/50.js"></script>
+</html>

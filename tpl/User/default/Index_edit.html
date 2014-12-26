@@ -1,0 +1,144 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{laoyang::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{laoyang::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{laoyang::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script>
+	KindEditor.ready(function(K){
+		var editor = K.editor({
+			allowFileManager:true
+		});
+		K('#upload').click(function() {
+			editor.loadPlugin('image', function() {
+				editor.plugin.imageDialog({
+					fileUrl : K('#pic').val(),
+					clickFn : function(url, title) {
+						if(url.indexOf("http") > -1){
+							K('#pic').val(url);
+						}else{
+							K('#pic').val("{laoyang::C('site_url')}"+url);
+						}
+						editor.hideDialog();
+					}
+				});
+			});
+		});
+	});
+</script>
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/cymain.css" />  
+
+          <form method="post" action="{laoyang::U('User/Index/upsave')}" enctype="multipart/form-data">
+          <input type="hidden" name="id" value="{laoyang:$info.id}">
+          <div class="msgWrap">
+            <table class="userinfoArea" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+                  <th><span class="red">*</span>公众号名称：</th>
+                  <td><input type="text" required="" class="px" name="wxname" value="{laoyang:$info.wxname}" tabindex="1" size="25">
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th><span class="red">*</span>公众号原始id：</th>
+                  <td><input type="text" required="" name="wxid" value="{laoyang:$info.wxid}" onmouseup="this.value=this.value.replace('_430','')" class="px" tabindex="1" size="25" readonly="readonly" style="width: 160px; background-image: none; background-color:#38A7AB;>　<span class="red"> 此项已经锁定，无法更改，如需更改请联系管理员。</span></td>
+                </tr>
+                <tr>
+                  <th><span class="red">*</span>微信号：</th>
+                  <td><input type="text" required="" name="weixin" value="{laoyang:$info.weixin}" class="px" tabindex="1" size="25">　比如：lentu123 </td>
+                </tr>
+                  <tr>
+                  <th>头像地址（url）:</th>
+				  <td><input type="text" id="pic" name="headerpic" value="{laoyang:$info.headerpic}" class="px" size="60" /> <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic',700,420,'{laoyang:$token}')" class="ChooseImage">上传</a> <a href="###" onclick="viewImg('pic')" class="ChooseImage">预览</a></td> 
+                </tr>
+                 
+                 <input type="hidden" name="token" value="{laoyang:$info.token}" class="px" tabindex="1" size="40">
+                <tr>
+                  <th><span class="red"></span>AppID：</th>
+                  <td><input type="text" name="appid" value="{laoyang:$info.appid}" class="px" tabindex="1" size="25">　用于自定义菜单等高级功能，可以不填 </td>
+                </tr>
+                <tr>
+                  <th><span class="red"></span>AppSecret：</th>
+                  <td><input type="text" name="appsecret" value="{laoyang:$info.appsecret}" class="px" tabindex="1" size="25">　用于自定义菜单等高级功能，可以不填 </td>
+                </tr>
+                
+                <tr>
+                  <th><span class="red"></span>微信号类型：</th>
+                  <td><select id="winxintype" name="winxintype">                  
+                  <option value="1" <eq name="info.winxintype" value="1">selected</eq>>订阅号</option>
+                  <option value="2" <eq name="info.winxintype" value="2">selected</eq>>服务号</option>
+                  <option value="3" <eq name="info.winxintype" value="3">selected</eq>>高级服务号</option>
+                  </select>　高级服务号是指每年向微信官方交300元认证费的公众号 </td>
+                </tr>
+                
+                <tr>
+                  <th><span class="red">*</span>地区</th>
+                  <td>
+                  省：<input type="text" class="px" id="province" value="{laoyang:$info.province}" name="province" tabindex="1" size="20">  市：<input id="city" value="{laoyang:$info.city}" type="text" name="city" class="px" tabindex="1" size="20">
+               （此处关联公交等本地化查询）
+                  </td>
+                </tr>
+                <tr>
+                  <th>公众号邮箱：</th>
+                  <td><input type="text" required="" class="px" tabindex="1" value="{laoyang:$info.qq}" name="qq" size="25"></td>
+                </tr>
+                 <tr>
+                  <th>粉丝数：</th>
+                  <td><input type="text" required="" name="wxfans" value="{laoyang:$info.wxfans}" class="px" tabindex="1" size="25"></td>
+                </tr>
+             
+                <tr>
+                  <th>行业类型：</th>
+                  <td><select id="type" name="type">
+                  <option value="1,情感" <eq name="info.typeid" value="1">selected</eq> >情感</option>
+                  <option value="2,数码" <eq name="info.typeid" value="2">selected</eq> >数码</option>
+                  <option value="3,娱乐" <eq name="info.typeid" value="3">selected</eq> >娱乐</option>
+                  <option value="4,IT" <eq name="info.typeid" value="4">selected</eq> >IT</option>
+                  <option value="5,数码" <eq name="info.typeid" value="5">selected</eq> >数码</option>
+                  <option value="6,购物" <eq name="info.typeid" value="6">selected</eq> >购物</option>
+                  <option value="7,生活" <eq name="info.typeid" value="7">selected</eq> >生活</option>
+                  <option value="8,服务" <eq name="info.typeid" value="8">selected</eq> >服务</option>
+                  </select></td>
+                </tr>
+
+				 <tr>
+				                   <th><span class="red">■■■■■■■■■■■■■■■■■</span></th>
+                  <td><input value="tpl/static/images/qqemail-help.png"  onchange="document.getElementById('end').src=this.value;"  style="width:0px;" id="pic2">请使用腾讯的QQ邮箱，需要开启IMAP/SMTP服务，<a href="###" onclick="viewImg('pic2')">开启帮助点我</a><script src="/tpl/static/upyun.js"></script><span class="red">■■■■■■■■■■■■■■■■■</span></td>
+                </tr>   
+                 <tr>
+                  <th><span class="red">*</span>邮件地址：</th>
+                  <td><input type="text" required="" name="email" value="{laoyang:$info.email}" class="px" tabindex="1" size="25"> <span class="red">请一定填写QQ邮箱地址</span> 比如：123456@qq.com</td>
+                </tr>    
+				                 <tr>
+                  <th><span class="red">*</span>SMTP账号：</th>
+                  <td><input type="text" required="" name="emailuser" value="{laoyang:$info.emailuser}" class="px" tabindex="1" size="25"> <span class="red">请填写您的QQ号码</span></td>
+                </tr>  
+				                 <tr>
+                  <th><span class="red">*</span>SMTP密码：</th>
+                  <td><input type="password" required="" name="emailpassword" value="{laoyang:$info.emailpassword}" class="px" tabindex="1" size="25"> <span class="red">请填写您的QQ密码</span>请放心填写，此密码只有您自己看见</td>
+                </tr>  
+				                 <tr>
+                  <th><span class="red">*</span>邮件平台状态：</th>
+                  <td><input type="text" required="" name="emailstatus" value="{laoyang:$info.emailstatus}" class="px" tabindex="1" size="25"> <span class="red">填1表示开启，填0表示关闭</span></td>
+                </tr>        
+                <tr>
+                  <th></th>
+                  <td><button type="submit" class="btnGreen" id="saveSetting">保存</button></td>
+                </tr>
+              </tbody>
+            </table>
+            
+          </div>
+          </form>
+        </div>
+         </div>
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>	

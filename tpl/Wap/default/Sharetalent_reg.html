@@ -1,0 +1,92 @@
+﻿<!DOCTYPE HTML>
+<!-- saved from url=(0074)http://wx.weixiamen.cn/mobile.php -->
+<!DOCTYPE html PUBLIC "" "">
+<HTML>
+<HEAD>
+<META content="IE=11.0000" 
+http-equiv="X-UA-Compatible">
+<TITLE>达人注册</TITLE>
+<META charset="utf-8">
+<LINK href="/tpl/Wap/default/common/sharetalent/mobi.css" rel="stylesheet">
+<META name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+<META http-equiv="Cache-Control" content="max-age=0">
+<META name="apple-touch-fullscreen" content="yes">
+<META name="apple-mobile-web-app-capable" content="yes">
+<META name="apple-mobile-web-app-status-bar-style" content="black">
+<META name="Description" content="分享达人">
+<META name="Keywords" content="分享达人">
+<META name="GENERATOR" content="MSHTML 11.00.9600.17344">
+<script src="{laoyang::$staticFilePath}/js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="{laoyang::RES}/css/guajiang/js/jquery.js">\x3C/script>')</script>
+<STYLE>
+#copyright {width: 100%;height: 50px;line-height: 50px;text-align:center; color:#333;font-size: 15px;}
+</STYLE>
+</HEAD>
+<BODY style='background: url("/tpl/Wap/default/common/sharetalent/reg/bg.jpg") rgb(0, 98, 164);'>
+<SECTION class="main animated fadeInDown">
+    <DIV class="register-box">
+      <H1 class="register-logo"></H1>
+      <DIV class="regular register-input">
+        <P class="fn-clear">
+          <LABEL for="name"><I class="icon-user"></I></LABEL>
+          <INPUT name="name" onfocus="check(this)"  class="input" id="name" type="text" placeholder="请输入姓名" value="">
+        </P>
+        <P class="fn-clear">
+          <LABEL for="phone"><I class="icon-mobile"></I></LABEL>
+          <INPUT name="tel" onfocus="check(this)" class="input" id="tel" type="text" placeholder="请输入电话" value="">
+        </P>
+      </DIV>
+      <P class="register-btn">
+      <a  id="J_submitReg"  class="btn" >注册成为达人</a>
+        
+      </P>
+      <P class="tips"><A href="{laoyang::U('Sharetalent/what',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}" target="_blank">什么是分享达人?</A></P>
+    </DIV>
+  <FOOTER class="foot footer">
+    <DIV id="copyright" style="color: rgb(255, 255, 255);">技术支持：{laoyang:$date.copyright}</DIV>
+  </FOOTER>
+</SECTION>
+<SCRIPT src="/tpl/Wap/default/common/sharetalent/reg/mini-full-min.js"></SCRIPT> 
+<script type="text/javascript">
+$("#J_submitReg").bind("click",function() {
+    var name = $("#name").val();
+	var tel 	  = $("#tel").val();
+     if (name == '') {
+        alert("请认真输入真实姓名");
+		document.getElementById('name').style.background="red";
+        return
+    }	
+	if(tel == ''){
+		alert('手机号码必须填写');
+		document.getElementById('tel').style.background="red";
+		return;
+	}
+	var reg=/^0{0,1}(13[0-9]|145|15[0-9]|18[0-9])[0-9]{8}$/i;
+	if(!reg.test(tel)){   
+		alert("错误,请输入真实的手机号码！");
+		document.getElementById('tel').style.background="red";
+		return;
+	 }
+	var submitData = {
+        name : name,
+        tel 	  : tel,
+        action: "index"
+    };
+    $.post('index.php?g=Wap&m=Sharetalent&a=reg&token={laoyang:$Think.get.token}&wecha_id={laoyang:$Think.get.wecha_id}', submitData,
+    function(data) {
+        if(data==1){
+			alert('注册成功.');
+			location.href = "{laoyang::U('Sharetalent/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}";
+		}else{  
+			alert('稍后再试.');
+		}
+    },
+    "json")	
+});
+
+function check(obj){   
+  	document.getElementById(obj.id).style.background="white";  
+}
+</script>
+</BODY>
+</HTML>

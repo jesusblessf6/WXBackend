@@ -1,0 +1,58 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" href="{laoyang::RES}/css/kefu/admin.css">
+
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+
+<h4 class="left">我的题库</h4>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+	<div class="pagination">
+  <ul>
+
+    <li class="disabled"></li>
+  </ul>
+  
+</div>
+	<div class="tb-toolbar">
+		<!-- <a href="ggkadd.html" class="btn btn-small btn-primary">新增</a> -->
+		<button class="btn btn-small" onclick="javascript:window.history.go(-1)" id="del">返回</button>
+	</div> 
+	<table class="table table-bordered">
+			<thead>
+				<tr>
+					<!-- <th style="width:10px;"><input type="checkbox" onclick="selallck(this);"></th> -->
+					<th>我的问题</th>
+					<th>我的回答</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+			<volist name="res" id="i" >			 
+			      <tr>
+						<td>{laoyang:$i.question}</td>
+						<td>{laoyang:$i.answer}</td>
+				  </tr>
+			  </volist>
+			</tbody>
+		</table>
+	
+	
+
+
+<div class="pagination">
+  <ul>
+
+    <li class="disabled"><span>{laoyang:$page}</span></li>
+  </ul>
+  
+</div>
+
+
+<div id="gotonext">
+</div>
+	</div>
+	<div class="clr"></div>
+</div>
+
+<include file="Public:footer"/>

@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+        <head>
+       <if condition="$zd['status'] eq 1">
+            {laoyang:$zd['code']}
+        </if>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/template/snower.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/template/common.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="../../wm-xin-a/font-awesome.css?v=2013121900" media="all" />
+			<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/template/reset.css" media="all" />
+	<title>{laoyang:$tpl.wxname}</title>
+		<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/template/home-49.css" media="all" />
+		<script type="text/javascript" src="{laoyang::RES}/src/template/maivl.js"></script>
+		<script type="text/javascript" src="{laoyang::RES}/src/jQuery.js"></script>
+		<script type="text/javascript" src="{laoyang::RES}/src/template/swipe.js"></script>
+		<script type="text/javascript" src="{laoyang::RES}/src/template/zepto.js"></script>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <meta name="Keywords" content="老杨分享、www.fenxiangweb.com、微信托管、微网站、微商城、微营销" />
+        <meta name="Description" content="老杨分享、www.fenxiangweb.com，国内最大的微信公众智能服务平台" />
+            <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+            <meta content="no-cache" http-equiv="pragma">
+            <meta content="0" http-equiv="expires">
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <link rel="shortcut icon" href="{laoyang::RES}/img/favicon.ico" />
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+
+<style>
+	.body{
+		max-width:640px;
+		margin:auto;
+		min-height:100%;
+		background-color:#f4f4f4;
+		position:relative;
+					background:url('<if condition="$homeInfo.homeurl neq false">{laoyang:$homeInfo.homeurl}<else/>{laoyang::RES}/images/themes/bg1.jpg</if>') no-repeat 0 0;
+				background-size:100% 100%;
+	}
+</style>
+<div class="body">
+<section>
+    <header>
+        <div class="snower">
+            <script type="text/javascript"></script>
+            <script type="text/javascript" src="{laoyang::RES}/src/template/snower.js"></script>
+        </div>
+    </header> 
+	 
+		<div class="logo">
+			<img src="<if condition="$homeInfo.picurl neq false">{laoyang:$homeInfo.picurl}<else/>{laoyang::RES}/images/themes/huifu.jpg</if>" style="height:50px;" />
+		</div>
+		<ul class="list_font">
+		<volist name="info" id="vo">
+						<li>
+									<a href="<if condition="$vo['url'] eq ''">{laoyang::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}<else/>{laoyang:$vo.url|htmlspecialchars_decode}</if>">
+									<div><span class="{laoyang:$vo.icon}"></span></div>
+					<div>
+						<p style="color:{laoyang:$vo.nameyanse}">{laoyang:$vo.name}</p>
+					</div>
+				</a>
+			</li>
+			</volist>
+					</ul>
+	</section>
+	
+</div>
+</div>
+<include file="Public:footer"/> 

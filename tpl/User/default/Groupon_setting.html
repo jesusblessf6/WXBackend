@@ -1,0 +1,91 @@
+ <include file="Public:head" /> 
+ <script>
+	function ccolumns(value){
+		if(value=='none'){
+			$('.feiyin').css('display','none');
+			$('.laoyang').css('display','none');
+		}
+		if(value=='feiyin'){
+			$('.feiyin').css('display','');
+			$('.laoyang').css('display','none');
+		}
+		if(value=='laoyang'){
+			$('.feiyin').css('display','none');
+			$('.laoyang').css('display','');
+		}
+	}
+</script>
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/cymain.css" />
+ <script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+   <div class="cLineB"> 
+  
+    <h4>设置订单通知</h4> 
+   </div> 
+	<!--tab start-->
+	<div class="tab">
+	<ul>
+	<include file="tabs"/> 
+	</ul>
+	</div>
+	<!--tab end-->
+	<div class="msgWrap bgfc" style="margin-top:10px;">	
+   <form class="form" method="post" action=""> 
+    <input type="hidden" name="id" value="{laoyang:$setting.id}" /> 
+    <input type="hidden" name="token" value="{laoyang:$token}" /> 
+     
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody>
+       <tr> 
+        <th><span class="red"></span>短信通知：</th> 
+        <td><input type="text" id="phone" name="phone" value="{laoyang:$setting.phone}" placeholder="如：13808080808   "   class="px require" style="width:400px;" />&nbsp;&nbsp;开启&nbsp;<input type="radio" name="phone_status" <if condition="$setting.phone_status eq 1">checked</if> id="statu-1" value="1">&nbsp;&nbsp;
+		关闭&nbsp;<input type="radio" name="phone_status" <if condition="$setting.phone_status eq 0">checked</if> id="statu-0" value="0"></td> 
+       </tr> 
+       <tr> 
+        <th><span class="red"></span>邮件通知：</th> 
+        <td><input type="text" id="email" name="email" value="{laoyang:$setting.email}" placeholder="如：1234@qq.com   "   class="px require" style="width:400px;" />&nbsp;&nbsp;开启&nbsp;<input type="radio" name="email_status" <if condition="$setting.email_status eq 1">checked</if> id="statu-1" value="1">&nbsp;&nbsp;
+		关闭&nbsp;<input type="radio" name="email_status" <if condition="$setting.email_status eq 0">checked</if> id="statu-0" value="0"></td> 
+       </tr> 
+		<tr>
+		<th width="100">打印机品牌：</th>
+		<td>
+		<select name="printtype" onchange="ccolumns(this.value)">
+		<option value="none" <if condition="$setting.printtype eq ''">selected</if>>请选择</option>
+		<option value="laoyang" <if condition="$setting.printtype eq 'laoyang'"> selected</if>>老杨</option>
+		<option value="feiyin" <if condition="$setting.printtype eq 'feiyin'">selected</if>>飞印</option>
+		</select>
+		</td>
+		</tr>
+		<tr class="feiyin" <if condition="$setting.printtype neq 'feiyin'">style="display:none"</if>><th><span class="red">*</span>商户代码：</th><td><input type="text" class="px" name="memberCode" value="{laoyang:$setting.memberCode}" tabindex="1" size="35"> <span class="red">&nbsp;&nbsp;&nbsp;登录飞印后在"API集成"-&gt;"获取API集成信息"获取</span></td></tr>
+		<tr class="feiyin" <if condition="$setting.printtype neq 'feiyin'">style="display:none"</if>><th><span class="red">*</span>API 密钥：</th><td><input type="text" class="px" name="feiyin_key" value="{laoyang:$setting.feiyin_key}" tabindex="1" size="25"> <span class="red">&nbsp;&nbsp;&nbsp;获取方法同上</span></td></tr>
+		<tr class="feiyin" <if condition="$setting.printtype neq 'feiyin'">style="display:none"</if>><th><span class="red">*</span>设备编码：</th><td><input type="text" class="px" name="deviceNo" value="{laoyang:$setting.deviceNo}" tabindex="1" size="25"> <span class="red">&nbsp;&nbsp;&nbsp;通过打印机后面的激活按键获取，为16位数字，例如"4600365507768327"</span></td></tr>
+		<tr class="laoyang" <if condition="$setting.printtype neq 'laoyang'">style="display:none"</if>><th><span class="red">*</span>设备编码：</th><td><input type="text" class="px" name="bwdeviceNo" value="{laoyang:$setting.bwdeviceNo}" tabindex="1" size="25"> <span class="red">&nbsp;&nbsp;&nbsp;老杨无线打印设备编码</span></td></tr>
+		<tr>
+		<th><span class="red">*</span>打印联数：</th>
+			<td>
+				1联&nbsp;<input type="radio" name="printpage" <if condition="$setting.printpage eq 1">checked</if> id="statu-1" value="1">&nbsp;&nbsp;
+				2联&nbsp;<input type="radio" name="printpage" <if condition="$setting.printpage eq 2">checked</if> id="statu-0" value="2">&nbsp;&nbsp;
+				3联&nbsp;<input type="radio" name="printpage" <if condition="$setting.printpage eq 3">checked</if> id="statu-0" value="3">
+			</td>	
+		</tr>
+		<tr>
+		<th><span class="red">*</span>打印开关：</th>
+			<td>
+				开启&nbsp;<input type="radio" name="print_status" <if condition="$setting.print_status eq 1">checked</if> id="statu-1" value="1">&nbsp;&nbsp;
+				关闭&nbsp;<input type="radio" name="print_status" <if condition="$setting.print_status eq 0">checked</if> id="statu-0" value="0">
+			</td>	
+		</tr>
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+	   <input type="hidden" name="groupon" value='1' />
+       <button type="submit" name="button" class="btnGreen">保存</button> &nbsp; <a href="{laoyang::U('Store/index',array('token' => $token))}" class="btnGray vm">取消</a></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+    
+   </form> 
+  </div> 
+    </div> 
+  <include file="Public:footer" />

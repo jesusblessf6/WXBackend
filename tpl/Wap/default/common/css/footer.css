@@ -1,0 +1,23 @@
+.weimob-copyright{
+	text-align: center;
+	height: 48px;
+	font-size:11px;color:#ccc;
+	line-height: 48px;
+}
+.weimob-copyright a{color:#ccc;}
+
+.weimob-support{
+	text-align: center;
+	text-decoration: none;
+	display: block;
+	font-size: 12px;
+	height: 24px;
+	line-height: 24px;
+	background: #C0C0C0;
+	background:-moz-linear-gradient(top,#303030,#383838);
+	background:-ms-linear-gradient(top,#303030,#383838);
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#303030), to(#383838));
+	white-space:nowrap;
+	color: #639639!important;
+}
+.weimob-support a{color:#ccc;}

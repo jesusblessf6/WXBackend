@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html style="visibility:visible;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <title>点球大战</title>    
+    <link rel="stylesheet" type="text/css" href="./tpl/static/Zuqiu/Css/font.css">
+    <link rel="stylesheet" type="text/css" href="./tpl/static/Zuqiu/Css/weiba.new.css">
+    <link rel="stylesheet" type="text/css" href="./tpl/static/Zuqiu/Css/index.css">
+    <link rel="stylesheet" type="text/css" href="./tpl/static/Zuqiu/Css/custom_tpl_css">
+    <script type="text/javascript" src="./tpl/static/Zuqiu/Css/jquery-2.0.3.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./tpl/static/Zuqiu/Css/weiba.new.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./tpl/static/Zuqiu/Css/game.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./tpl/static/Zuqiu/Css/WeixinApi.js"></script>
+	<style>
+		body{color: #444444;
+font: 14px/1.5 Microsoft YaHei, Helvitica, Verdana, Arial, san-serif;
+}.red {
+color: red;
+}.px {
+margin: 0.5em 0;
+position: relative;
+box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3) inset;
+background-color: #FFFFFF;
+border-radius: 0.6em 0.6em 0.6em 0.6em;
+border: 1px solid rgba(0, 0, 0, 0.3);
+color: #333333;
+text-shadow: 0 1px 0 #FFFFFF;
+display: block;
+width: 98%;
+padding: 6px 10px;
+font-size: 18px;
+margin: 10px 0 0 0;
+font-family: Arial, Helvetica, sans-serif;
+}.pxbtn {
+background: #ff6501;
+background-image: -webkit-gradient(linear, left top, left bottom, from( #ffa201 ), to( #ff6501 ));
+background-image: -webkit-linear-gradient( #ffa201 , #ff6501 );
+background-image: -moz-linear-gradient( #ffa201 , #ff6501 );
+background-image: -ms-linear-gradient( #ffa201 , #ff6501 );
+background-image: -o-linear-gradient( #ffa201 , #ff6501 );
+background-image: linear-gradient( #ffa201 , #ff6501 );
+border: 1px solid #ff6501;
+border-bottom: 1px solid #d35605;
+color: #ffffff;
+font-weight: bold;
+text-shadow: 0 1px 0 #FFFFFF;
+border-radius: 0.6em 0.6em 0.6em 0.6em;
+display: block;
+width: 100%;
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+text-overflow: ellipsis;
+white-space: nowrap;
+cursor: pointer;
+text-align: center;
+font-weight: bold;
+text-shadow: 0 0 2px #BE4205;
+font-size: 18px;
+padding: 10px;
+margin: 10px 0 0 0;
+}
+	</style>
+    <script type="text/javascript">
+        $(function () {
+            // 需要分享的内容，请放到ready里
+            WeixinApi.ready(function (Api) {
+
+                // 微信分享的数据
+                var wxData = {
+                    "appId": "",
+                    "imgUrl": '',
+                    "link": '',
+                    "desc": '互动游戏邀您一起畅玩点球大战。',
+                    "title": "互动游戏邀您一起畅玩点球大战。"
+                };
+
+                // 分享的回调
+                var wxCallbacks = {
+                    // 分享操作开始之前
+                    ready: function () {
+
+                    },
+                    // 分享被用户自动取消
+                    cancel: function (resp) {
+
+                    },
+                    // 分享失败了
+                    fail: function (resp) {
+
+                    },
+                    // 分享成功
+                   confirm: function (resp) {
+                        $.ajax({
+                            type: "post",
+                            url: "index.php?g=Apps&m=Zuqiu&a=she",
+                            data: {
+                                wecha_id: '<php>echo $_GET["wecha_id"];</php>',
+                                eventid: '<php>echo $_GET["eventid"];</php>'
+                            },
+                            dataType: "json",
+                            beforeSend: function (XMLHttpRequest) {
+                                //发送前动作
+                            },
+                            success: function (data, textStatus) {
+                                $.yalert(data.msgbox);
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                $.yalert("状态：" + textStatus + "；出错提示：" + errorThrown);
+                            },
+                            timeout: 20000
+                        });
+                    },
+                    // 整个分享过程结束
+                    all: function (resp) {
+
+                    }
+                };
+
+                // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+                Api.shareToFriend(wxData, wxCallbacks);
+
+                // 点击分享到朋友圈，会执行下面这个代码
+                Api.shareToTimeline(wxData, wxCallbacks);
+
+                // 点击分享到腾讯微博，会执行下面这个代码
+                Api.shareToWeibo(wxData, wxCallbacks);
+            });
+        });
+    </script>
+</head>
+<body class="game-page">
+<div class="main" id="main" style="visibility: visible;">
+<if condition="$Zadan['usenums'] eq 3">
+	<img src="./tpl/static/Zuqiu/Css/zuqiu_end.jpg" style="width:100%;">
+	<div class="report-box myrecordlist-box"  style="display:block" >
+        <div class="box-title-left">活动结束说明：</div>
+        <div class="box-title-right zongchengji">
+        </div>
+        <div class="box-content ">
+			<div class="Detail">
+				<p>{laoyang:$Zadan.endinfo}</p>
+            </div>
+        </div>
+    </div>
+<elseif condition="$Zadan['usenums'] eq 2"/>
+	<div class="report-box myrecordlist-box"  style="display:block" >
+        <div class="box-title-left">恭喜：</div>
+        <div class="box-title-right zongchengji">
+        </div>
+        <div class="box-content ">
+			<div class="Detail">
+				<p>尊敬的 <font color='red'> {laoyang:$Zadan.uname} </font> 您已经中过 <strong><font color='red'>{laoyang:$Zadan.winprize}</font></strong> 奖了,<br />兑奖号： <font color='red'>{laoyang:$Zadan.sncode}</font></p>
+            </div>
+        </div>
+    </div>
+<else />
+<if condition="$usenums eq 1">
+	<div id="zjl" class="report-box" style="display:block;" > 
+        <div class="box-title-left">恭喜你中奖了</div>
+        <div class="box-title-right zongchengji">
+        </div>
+        <div class="box-content ">
+			<div class="Detail">
+				<p>您中了：<span class="red">{laoyang:$winprizes}</span></p>
+				<p class="red"> {laoyang:$sttxts}</p>
+				<p>
+					<input name=""  class="px" id="wechaname" value="" type="text" placeholder="请输入您的姓名">
+					<input name=""  class="px" id="tel" value="" type="text" placeholder="请输入您的手机号">
+					<input name=""  id="wechaid" value="<php>echo $_GET['wecha_id'];</php>" type="hidden">
+					<input name=""  id="lid" value="<php>echo $_GET['id'];</php>" type="hidden">
+				</p><p>
+				<p>
+					<input class="pxbtn" name="提 交"  id="save-btn" type="button" value="用户提交">
+				</p>
+            </div>
+        </div>
+    </div>
+<else/>
+    <div class="main-box">
+        <div class="game-title">
+            <div class="page-title">
+                <span class="red-font">VS</span><span id="lblGuojia">荷兰</span> 
+            </div>
+        </div>
+        <div class="game-box">
+            <div class="music start"></div>
+            <audio id="audio1" src="http://zuixin.fj400.net/One.mp3" autoplay="autoplay" loop="loop" preload="auto"></audio>
+            <img src="./tpl/static/Zuqiu/Css/doorman.png" class="doorman" id="people">
+            <img src="./tpl/static/Zuqiu/Css/football.png" class="football" id="end">
+            <img src="./tpl/static/Zuqiu/Css/shan.png" class="shan">
+            <div class="guojia">
+                <div class="guoqi"><img src="./tpl/static/Zuqiu/Css/helan.jpg" class="guoqi-img"></div>
+                <div class="guojia-name">荷兰</div>
+            </div>
+            <img src="./tpl/static/Zuqiu/Css/door.png" class="door">
+            <div class="guoqi"></div>
+            <div class="zhizhen-box" style="-webkit-transform:rotate(0deg);">
+                <div class="zhizhen"></div>
+            </div>
+            <div class="tip-qipao">
+                <div class="tip-qipao-wz">左右调整角度,点球射门</div>
+            </div>
+            <div class="liliang">
+                <div class="bot"></div>
+                <div class="tips">力量</div>
+                <div class="tip">MAX</div>
+            </div>
+            <div class="xuanzhuan">
+                <div class="bot"></div>
+                <div class="tips">旋转</div>
+                <div class="tip">MAX</div>
+            </div>
+        </div>
+    </div>
+</if>
+
+	<div class="report-box myrecordlist-box">
+        <div class="box-title-left">奖项设置</div>
+        <div class="box-title-right zongchengji">
+        </div>
+        <div class="box-content ">
+			<div class="Detail">
+		 <p>每人最多允许抽奖次数:{laoyang:$Zadan.canrqnums}<if condition="$lottery.usenums gt 0"> - 已抽取 <span class="red" id="usenums">{laoyang:$Zadan.usecout}</span> 次</if></p>
+             {laoyang::$prizeStr}
+        </div>
+        </div>
+    </div>
+    <div class="report-box myrecordlist-box">
+        <div class="box-title-left">游戏说明</div>
+        <div class="box-title-right zongchengji">
+        </div>
+        <div class="box-content">
+			<p>{laoyang:$Zadan.info}</p>
+			<p>活动时间:{laoyang:$Zadan.statdate|date="Y-m-d",###}至{laoyang:$Zadan.enddate|date="Y-m-d",###}</p>		
+			<p><strong>{laoyang:$Zadan.txt}</strong></p> 
+        </div>
+    </div>
+</if>
+	
+	
+</div>
+<input type="hidden" id="hfIfGoal" value="{laoyang:$winprize}" style="visibility: visible;">
+<input type="hidden" id="wecha_id" value="<php>echo $_GET['wecha_id'];</php>" style="visibility: visible;">
+<input type="hidden" id="hfEventId" value="<php>echo $_GET['id'];</php>" style="visibility: visible;">
+<script type="text/javascript">
+var winprize  = "{laoyang:$winprizes}";
+$("#save-btn").bind("click",
+	function() {
+		var btn 	= $(this);
+		var phone 	= $("#tel").val();
+		var wxname	= $('#wechaname').val();
+		var wechaid = $("#wechaid").val();
+		var lid 	= $("#lid").val();
+		
+		if(wxname==''){
+			alert("请认真输入姓名");
+			return;
+		}
+		if (phone=='') {
+	        alert("请认真输入手机号");
+	        return
+    	}
+
+		var submitData = {
+			tid: 440,
+			/*code: $("#sncode").text(),*/
+			phone 	: phone,
+			wxname	: wxname,
+			wechaid : wechaid,
+			lid 	: lid,
+			prize 	: winprize,
+			action 	: "add"
+		};
+		$.post('index.php?g=Apps&m=Zuqiu&a=wap_add', submitData,
+			function(data) {
+				if (data.success == true) {
+					alert(data.msg);
+					$("#zjl").hide("slow");
+					return
+				} else { 
+					//alert('失败'+data);
+					return
+				}
+			},"json")
+});
+
+</script>
+</body></html>

@@ -1,0 +1,390 @@
+﻿<include file="Public:head"/>
+
+<php>
+
+	if(isset($_POST['PHPSESSID'])){
+
+		session_id($_POST['PHPSESSID']);
+
+	}
+
+
+
+</php>
+
+
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<script src="/tpl/static/upyun.js"></script>
+
+<div class="content">
+
+<!--	swfupload	-->
+
+<script type="text/javascript">
+
+
+
+var path = '/tpl/static/swfupload';
+
+var url='__URL__';
+
+var upyunSite = '{laoyang::C("up_domainname")}';
+
+var upload_type = '{laoyang::C("upload_type")}';
+
+</script>
+
+
+
+<script type="text/javascript" src="/tpl/static/swfupload/js/swfupload.js"></script>
+
+<script type="text/javascript" src="/tpl/static/swfupload/js/scenepin.js"></script>
+
+<link href="/tpl/static/swfupload/css/default.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+
+		var swfu;
+
+		window.onload = function () {
+
+			swfu = new SWFUpload({
+
+				upload_url: "<if condition='C("upload_type") == "upyun"'>http://v0.api.upyun.com/{laoyang:$bucket}/<else />{laoyang::U('Upyun/upload',array('imgfrom'=>'photo_list'))}</if>",
+
+				post_params: {"PHPSESSID": "<?php echo session_id();?>"<if condition="C('upload_type') == 'upyun'">,"policy":"{laoyang:$policy}","signature":"{laoyang:$sign}"</if>},
+
+				file_size_limit : "2 MB",
+
+				file_types : "*.jpg;*.png;*.gif;*.bmp",
+
+				file_types_description : "JPG Images",
+
+				file_upload_limit : "100",
+
+				file_queue_error_handler : fileQueueError,
+
+				file_dialog_complete_handler : fileDialogComplete,
+
+				upload_progress_handler : uploadProgress,
+
+				upload_error_handler : uploadError,
+
+				upload_success_handler : uploadSuccess,
+
+				upload_complete_handler : uploadComplete,
+
+				button_image_url : "/tpl/static/swfupload/images/upload.png",
+
+				button_placeholder_id : "spanButtonPlaceholder",
+
+				button_width: 89,
+
+				button_height: 38,
+
+				button_text : '',
+
+				button_text_style : '.spanButtonPlaceholder { font-family: Helvetica, Arial, sans-serif; font-size: 14pt;} ',
+
+				button_text_top_padding: 0,
+
+				button_text_left_padding: 0,
+
+				button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+
+				button_cursor: SWFUpload.CURSOR.HAND,			
+
+				flash_url : "/tpl/static/swfupload/swf/swfupload.swf",
+
+				custom_settings : {
+
+					upload_target : "divFileProgressContainer"
+
+				},				
+
+				debug: false
+
+
+
+			});
+
+			 
+
+		};
+
+	</script>
+
+
+
+	
+
+<div class="cLineB">
+
+  <h4>上传图片</h4><a href="{laoyang::U('Scene/index',array('token'=>session('token')))}" class="btn btn-primary btn_submit  J_ajax_submit_btn right" style="margin-top:-27px">返回</a>
+
+  
+
+ </div>
+
+
+
+ <div class="msgWrap form">
+
+           
+
+
+
+<div class="bdrcontent">
+<div class="alert" style="background: #3393C0;">
+    <p><span class="bold">温馨提示：</span>点添加图片后，可以一次性选择多张图片（按住control键选择多张图片）进行行上传，上传好后请注意保存。</p>
+    </div>
+
+<div id="div_ptype">
+
+<form action="#" method="post" name="addListForm">
+<input type="hidden" name="pid" value="{laoyang:$Think.get.id}" />
+<div style="width:86px;height: auto; font-size: 12px; padding: 5px 20px;float:left;margin-right:20px;">
+
+				<span id="spanButtonPlaceholder"></span>
+
+
+
+			</div>
+	
+
+				<button class="btn btn-primary btn_submit  J_ajax_submit_btn">保存</button>
+
+
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+
+
+
+
+
+
+
+
+
+
+	<tbody id="pic_list">
+
+
+
+	<tr>
+
+		<td class="norightborder" colspan="6">
+
+			
+				
+			
+
+		</td>
+
+	</tr>
+
+	<tr>
+
+		<td class="norightborder" colspan="6">
+
+			
+
+
+
+			　
+
+		</td>
+
+	</tr>
+
+	</tbody>
+
+
+
+</table>
+
+</form>
+
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+
+
+
+
+
+
+ 
+
+ <thead>
+
+ 
+
+<tr>
+
+<th style=" width:120px;">单页图片</th>
+
+                   
+
+<th style=" width:70px;">显示顺序</th>
+<th style=" width:120px;">文字图片</th>
+
+<th>展示类型</th>
+
+                     
+<th style=" width:80px;">显示</th>
+
+                        <th style=" width:300px;" class="norightborder">操作</th>
+
+</tr>
+
+</thead> 
+
+<tbody>
+
+<volist name="info" id="photo">
+<php>if ($i > 20) {$k = $i % 20 + 1;} else {$k = $i;}</php>
+ <form method="post" action="{laoyang::U('Scene/list_edit',array('token'=>session('token')))}">              
+
+<tr>
+
+	<td><a href="{laoyang::U('Scene/edittp',array('id'=>$photo['id'],'pid'=>$photo['pid'],'token'=>session('token')))}"><img src="{laoyang:$photo.picurl}"></a></td>
+
+	<td><input type="text" name="sort" value="{laoyang:$photo.sort}"  class="px" style="width:50px;" /></td>
+    <td>  <input type="text" id="textimg" name="textimg" value="{laoyang:$photo.textimg}"><script src="/tpl/static/upyun.js"></script> 
+              <a href="javascript:void(0)" onclick="upyunPicUpload('textimg',700,420,'{laoyang:$token}')" class="btn btn-primary btn_submit  J_ajax_submit_btn">上传</a> <a href="###" onclick="viewImg('textimg')" class="btn btn-primary btn_submit  J_ajax_submit_btn">预览</a></div></td>
+
+	<td><div class="pull-left item" id="item_26" date-id="26">
+   
+			 <label for="itype[26]_1" class="radio inline">
+			            	展示方式</label>
+			       
+			            <label for="itype[26]_1" class="radio inline">
+			            	<input type="radio" id="itype{laoyang:$i}_1" name="style1" value="1" <if condition="$photo.style1 eq 1">checked="checked"</if>   class="radio_item" onclick="put{laoyang:$i}();">普通</label>
+			            &nbsp;&nbsp;&nbsp;
+						<label for="itype[26]_2" class="radio inline">
+							<input type="radio" id="itype{laoyang:$i}_2" name="style1" <if condition="$photo.style1 eq 2">checked="checked"</if> value="2"  class="radio_item"  onclick="showdiv{laoyang:$i}();">视频展示</label>
+			            &nbsp;&nbsp;&nbsp;
+			            <label for="itype[26]_3" class="radio inline">
+			            	<input type="radio" id="itype{laoyang:$i}_3" name="style1" <if condition="$photo.style1 eq 3">checked="checked"</if> value="3"  class="radio_item" onclick="hidden{laoyang:$i}();">地图展示</label>
+			      
+
+			   
+			    <div class="box2" id="{laoyang:$i}box2"  style="display: none;margin-left: 20px;">
+				  <label for="">视频：</label>
+                   <p style="color:red">采用video播放器，最好为MP4格式</p>
+				 <input type="text" name="video" id="video" value="{laoyang:$photo.video}" class="span5">
+                 
+						
+				  <label for="">封面：</label>
+				  <input type="text" id="p{laoyang:$i}" name="cover" value="{laoyang:$photo.cover}"><script src="/tpl/static/upyun.js"></script> 
+              <a href="javascript:void(0)" onclick="upyunPicUpload('p{laoyang:$i}',700,420,'{laoyang:$token}')" class="btn btn-primary btn_submit  J_ajax_submit_btn">上传</a> <a href="###" onclick="viewImg('p{laoyang:$i}')" class="btn btn-primary btn_submit  J_ajax_submit_btn">预览</a></div>
+						
+												
+			    <div class="box3" id="{laoyang:$i}box3"style="display: none;margin-left: 20px;">
+			      <label for="">坐标：</label>
+						<input type="text" name="lng" value="{laoyang:$photo.lng}" class="span3"> - <input type="text" name="lat" value="{laoyang:$photo.lat}" class="span3">
+					<label for="">地址：</label>
+						<input type="text" name="address" value="{laoyang:$photo.address}" class="span6">
+					
+					<label for="">电话：</label>
+						<input type="text" name="tel" value="{laoyang:$photo.tel}" class="span3">
+					
+						<label for="">宣传图：</label>
+						<input type="text" name="ad" id="pic{laoyang:$i}" value="{laoyang:$photo.ad}">   <a href="javascript:void(0)" onclick="upyunPicUpload('pic{laoyang:$i}',700,420,'{laoyang:$token}')" class="btn btn-primary btn_submit  J_ajax_submit_btn">上传</a> <a href="###" onclick="viewImg('pic{laoyang:$i}')" class="btn btn-primary btn_submit  J_ajax_submit_btn">预览</a></span>
+												
+						<label for="">微信号：</label>
+						<input type="text" name="wechat" value="{laoyang:$photo.wechat}" class="span3"></div>
+					
+			   </td>
+
+	 <script language="javascript" type="text/javascript">
+ function put{laoyang:$i}() { 
+ document.getElementById("{laoyang:$i}box2").style.display ="none";
+ document.getElementById("{laoyang:$i}box3").style.display ="none";
+ document.getElementById("itype{laoyang:$i}_1").checked =true;
+  document.getElementById("itype{laoyang:$i}_1").value=1;
+ document.getElementById("itype{laoyang:$i}_2").checked=false;
+
+ document.getElementById("itype{laoyang:$i}_3").checked=false;
+
+ }
+ function showdiv{laoyang:$i}() { 
+ document.getElementById("{laoyang:$i}box2").style.display ="block";
+ document.getElementById("{laoyang:$i}box3").style.display ="none";
+ document.getElementById("itype{laoyang:$i}_1").checked =false;
+
+ document.getElementById("itype{laoyang:$i}_2").checked=true;
+
+ document.getElementById("itype{laoyang:$i}_3").checked=false;
+
+ }
+  function hidden{laoyang:$i}() { 
+ document.getElementById("{laoyang:$i}box2").style.display ="none";
+ document.getElementById("{laoyang:$i}box3").style.display ="block";
+ document.getElementById("itype{laoyang:$i}_1").checked =false;
+
+ document.getElementById("itype{laoyang:$i}_2").checked=false;
+
+ document.getElementById("itype{laoyang:$i}_3").checked=true;
+
+ }
+
+
+ </script>
+
+	<td>
+
+		<input class="checkbox" type="checkbox" name="status" value="1"  <if condition="$photo['status'] eq 1">checked</if> >
+
+		<input type="hidden"   name="id" value="{laoyang:$photo.id}"  /></td>
+
+	<td class="norightborder">
+    <a href="{laoyang::U('Scene/edittp',array('id'=>$photo['id'],'pid'=>$photo['pid'],'token'=>session('token')))}"  class="btn btn-primary btn_submit  J_ajax_submit_btn" >高级设置</a>
+
+		<button type="submit" name="edit" value="true" class="btn btn-primary btn_submit  J_ajax_submit_btn" >
+
+			<strong>修改</strong>
+
+		</button>
+
+	<a href="{laoyang::U('Scene/list_del',array('id'=>$photo['id'],'token'=>session('token')))}"  class="btn btn-primary btn_submit  J_ajax_submit_btn" >删除</a>
+
+	</td>
+
+</tr>
+
+</form>
+
+
+</volist>
+
+</tbody>
+
+  </table>
+
+</div>
+
+</div>
+
+<div class="footactions" style="padding-left:10px">
+
+  <div class="pages"></div>
+
+</div>
+
+
+
+
+
+ </div>
+
+  
+
+        </div>
+
+<include file="Public:footer"/>  
+
+ 

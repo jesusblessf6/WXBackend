@@ -1,0 +1,352 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{laoyang:$hforward.title}</title>
+	<meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+	<link href="/tpl/Wap/default/common/hforword/css/activity-style.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, p, a, blockquote, th,i,u {margin:0;padding:0;border:0;}
+h1, h2, h3, h4, h5, h6 {font-size:100%;}
+ol, ul {list-style:none;}
+u, i {font-size:12px; font-weight:normal; font-style:normal;}
+table {border-collapse:collapse; border-spacing:0px;}
+fieldset,img {border:0;}
+html {width:100%; height:100%;}
+body{width:100%; height:100%; color:#000;background:#fff;font:12px Verdana,Arial,sans-serif,"Times New Roman",'微软雅黑';}
+
+/*清除浮动*/
+.clearfix:after {content:".";display:block;height:0;clear:both; visibility:hidden;}
+.clearfix {display:inline-block;}
+a{ text-decoration:none;}
+a:hover{ text-decoration:underline; color:#000000}
+A:link{text-decoration:none} 
+
+/* Hides from IE-mac \*/
+* html .clearfix {height:1%;}
+.clearfix {display:block;}
+/* End hide from IE-mac */
+.window {
+width:267px;
+position:absolute;
+display:none;
+margin:0px auto 0 -136px;
+padding:2px;
+top:80px;
+height:200px;
+left:50%;
+border-radius:0.6em;
+-webkit-border-radius:0.6em;
+-moz-border-radius:0.6em;
+background-color: #f1f1f1;
+-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+-o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+font:14px/1.5 Microsoft YaHei, Helvitica, Verdana, Arial, san-serif;
+z-index:10;
+bottom: auto;
+}
+.window .wtitle {
+background-color: #585858;
+line-height: 26px;
+padding: 5px 5px 5px 10px;
+color:#ffffff;
+font-size:16px;
+border-radius:0.5em 0.5em 0 0;
+-webkit-border-radius:0.5em 0.5em 0 0;
+-moz-border-radius:0.5em 0.5em 0 0;
+}
+.window .content {
+/*min-height:100px;*/
+overflow:auto;
+padding:10px;
+background: linear-gradient(#FBFBFB, #EEEEEE) repeat scroll 0 0 #FFF9DF;
+color: #222222;
+text-shadow: 0 1px 0 #FFFFFF;
+border-radius: 0 0 0.6em 0.6em;
+-webkit-border-radius: 0 0 0.6em 0.6em;
+-moz-border-radius: 0 0 0.6em 0.6em;
+}
+.window #txt {
+min-height:30px;
+font-size:14px;
+line-height:20px;
+}
+.window .content p {
+margin:10px 0 0 0;
+}
+.window .txtbtn {
+color: #666666;
+font-weight: bold;
+text-shadow: 0 1px 0 #FFFFFF;
+display: block;
+width: 100%;
+text-overflow: ellipsis;
+white-space: nowrap;
+cursor: pointer;
+text-align: windowcenter;
+font-weight: bold;
+font-size: 16px;
+padding:8px;
+margin:10px 0 0 0;
+background-color:#F4F4F4;
+border:1px solid #C6C6C6;
+background-image: linear-gradient(bottom, #E1E1E1 0%, #ffffff 100%);
+background-image: -o-linear-gradient(bottom, #E1E1E1 0%, #ffffff 100%);
+background-image: -moz-linear-gradient(bottom, #E1E1E1 0%, #ffffff 100%);
+background-image: -webkit-linear-gradient(bottom, #E1E1E1 0%, #ffffff 100%);
+background-image: -ms-linear-gradient(bottom, #E1E1E1 0%, #ffffff 100%);
+background-image: -webkit-gradient(  linear,  left bottom,  left top,  color-stop(0, #E1E1E1),  color-stop(1, #ffffff)  );
+-webkit-box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 0 #EEEEEE;
+-moz-box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 0 #EEEEEE;
+box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 0 #EEEEEE;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-o-border-radius: 5px;
+border-radius: 5px;
+}
+.window .txtbtn:visited {
+background-image: linear-gradient(bottom, #ffffff 0%, #E1E1E1 100%);
+background-image: -o-linear-gradient(bottom, #ffffff 0%, #E1E1E1 100%);
+background-image: -moz-linear-gradient(bottom, #ffffff 0%, #E1E1E1 100%);
+background-image: -webkit-linear-gradient(bottom, #ffffff 0%, #E1E1E1 100%);
+background-image: -ms-linear-gradient(bottom, #ffffff 0%, #E1E1E1 100%);
+background-image: -webkit-gradient(  linear,  left bottom,  left top,  color-stop(0, #ffffff),  color-stop(1, #E1E1E1)  );
+}
+.window .txtbtn:active {
+background-image: linear-gradient(bottom, #ffffff 0%, #E1E1E1 100%);
+background-image: -o-linear-gradient(bottom, #ffffff 0%, #E1E1E1 100%);
+background-image: -moz-linear-gradient(bottom, #ffffff 0%, #E1E1E1 100%);
+background-image: -webkit-linear-gradient(bottom, #ffffff 0%, #E1E1E1 100%);
+background-image: -ms-linear-gradient(bottom, #ffffff 0%, #E1E1E1 100%);
+background-image: -webkit-gradient(  linear,  left bottom,  left top,  color-stop(0, #ffffff),  color-stop(1, #E1E1E1)  );
+}
+.window .wtitle .close {
+float:right;
+background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACTSURBVEhL7dNtCoAgDAZgb60nsGN1tPLVCVNHmg76kQ8E1mwv+GG27cestQ4PvTZ69SFocBGpWa8+zHt/Up+IN+MhgLlUmnIE1CpBQB2COZibfpnXhHFaIZkYph0SOeeK/QJ8o7KOek84fkCWSBtfL+Ny2MPpCkPFMH6PWEhWhKncIyEk69VfiUuVhqJefds+YcwNbEwxGqGIFWYAAAAASUVORK5CYII=");
+width:26px;
+height:26px;
+display:block;
+}
+#mcover{ position: fixed;	top:0;	left:0;	width:100%;	height:100%;background:rgba(0, 0, 0, 0.7);	display:none;z-index:20000;}
+#mcover img {position: fixed;right: 18px;top:5px;width: 260px;height: 180px;z-index:20001;}
+</style>
+	<link href="/tpl/Wap/default/common/hforword/css/style.css" rel="stylesheet" type="text/css">
+	<link type="text/css" rel="stylesheet" href="/tpl/Wap/default/common/hforword/css/font-awesome.min.css" />
+	<script type="text/javascript" src="/tpl/Wap/default/common/hforword/js/jquery-1.7.2.min.js"></script>
+	
+	<if condition="$zs eq 1">
+    <script>window.location.href="{laoyang:$hforward.lj}";</script>
+    </if>
+	<script type="text/javascript">
+	$(function(){
+		countDown("{laoyang:$hforward.statdate|date='Y-m-d',###}","#colockbox1");
+	});
+	function countDown(time,id){
+		var day_elem = $(id).find('.day');
+		var hour_elem = $(id).find('.hour');
+		var minute_elem = $(id).find('.minute');
+		var second_elem = $(id).find('.second');
+		var end_time = new Date(time).getTime(),//月份是实际月份-1
+		sys_second = (end_time-new Date().getTime())/1000;
+		var timer = setInterval(function(){
+			if (sys_second > 1) {
+				sys_second -= 1;
+				var day = Math.floor((sys_second / 3600) / 24);
+				var hour = Math.floor((sys_second / 3600) % 24);
+				var minute = Math.floor((sys_second / 60) % 60);
+				var second = Math.floor(sys_second % 60);
+				day_elem && $(day_elem).text('剩余时间：'+day+'天');//计算天
+				$(hour_elem).text(hour<10?"0"+hour+'小时':hour+'小时');//计算小时
+				$(minute_elem).text(minute<10?"0"+minute+'分':minute+'分');//计算分钟
+				$(second_elem).text(second<10?"0"+second+'秒':second+'秒');//计算秒杀
+			} else { 
+				$('#colockbox1').text('该活动已经结束');
+			}
+		}, 1000);
+	}
+	</script>
+</head>
+
+<body class="activity-coupon-winning">
+<div id="mcover" onClick="document.getElementById('mcover').style.display='';"><img src="/tpl/Wap/default/common/hforword/images/121.png"></div>
+<div id="normalG">
+    <div id="wrap">
+        <div class="zi"><img src="/tpl/Wap/default/common/hforword/images/zi.png"></div>
+		       <form action="{laoyang::U('Hforward/save')}" method="post" onSubmit="return checkform()" name="form1" id="form1">
+			   <div class="window" id="windowcenter">
+                    <div id="title" class="wtitle">请先完善您的信息<span class="close" id="alertclose"></span></div>
+                    <div class="content">
+                        <div id="txt">请提交您的姓名和手机号码</div>
+                        <p>
+                        <input name="name"  class="px" id="name"  type="text" placeholder="请输入您的姓名">
+                        </p>
+                        <p>
+                        <input name="phone"  class="px" id="phone"   type="text" placeholder="请输入您的电话">
+                        </p>
+						<input type="hidden" name="wecha_id" value="{laoyang:$wecha_id}">
+                        <input type="hidden" name="token" value="{laoyang:$token}">
+                        <input type="hidden" name="id" value="{laoyang:$id}">
+                        <input type="submit" name="submit" class="txtbtn" value="确定" id="windowclosebutton">
+                	</div>
+            </div>
+			 </form>
+        <div class="frame">
+            <div class="frameCon"><a href="{laoyang:$hforward.lj}"><img src="{laoyang:$hforward.picurl}" alt="{laoyang:$hforward.title}"></a></div>
+        </div>			
+        <div class="frameBtn clearfix">
+            <span class="b2"><a href="{laoyang:$hforward.lj}">查看原文</a><i class="icon icon-angle-right"></i></span>
+            <span class="b1" id="forward_btn"><i class="icon icon-mail-forward"></i>立即转发</span>
+        </div>
+        <div class="turnTime" id="colockbox1"><span class="day">00</span> <span class="hour">00</span> <span class="minute">00</span> <span class="second">00</span> </div>
+        <div class="turnBox rule">
+            <h2>活动规则</h2>
+            <div class="boxCon">{laoyang:$hforward['gz']|html_entity_decode}</div>
+        </div>
+        <div class="turnBox rank">
+            <h2>转发排名<i class="icon icon-repeat" id="icon"></i></h2>
+            <div class="boxCon">
+                <div class="rankMe" style="text-align:center"><if condition="$state eq 0">您还未参与活动<else/>我当前排第 <span class="rankNUM">{laoyang:$vpm}</span>名,共<span class="rankNUMS">{laoyang:$count}</span>人参与</if></div>
+                <div class="rankList">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>排名</th>
+                            <th>姓名</th>
+                            <th>手机号</th>
+                            <th>点击数</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+						
+						<volist name="f_item" id="f_item" key="k">
+						<tr><td>{laoyang:$k}</td><td><?php echo mb_substr($f_item['name'],0,1,'utf-8');?>**</td><td>{laoyang:$f_item.phone|substr=0,3}****{laoyang:$f_item.phone|substr=7,4}</td><td>{laoyang:$f_item.tongji}</td></tr>
+					    </volist>
+						</tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#icon").click(function(){
+		 location.replace(location.href);
+	});
+	$(".b1").click(function(){
+		var states = "{laoyang:$state}";
+		if(states=="0"){
+			$(".window").slideDown(500);
+		}else{
+			document.getElementById('mcover').style.display='block';
+		}
+	});
+	$(".close").click(function(){	
+		$(".window").slideUp(500);
+	});
+	
+	
+})
+</script>
+
+<script>
+	function checkform(){
+		
+		//alert("请填写姓名");
+		//	return false;
+		if(form1.name.value==""){
+			
+			document.getElementById("txt").innerHTML="必须填写真实姓名!"
+			
+			
+			document.form1.name.focus();
+			return false;
+			
+			}
+		if(form1.phone.value==""){
+			document.getElementById("txt").innerHTML="手机号不对或为空!"
+			
+			document.form1.phone.focus();
+			return false;	
+		}
+		reg=/^13[0-9]{1}[0-9]{8}$|17[0678]{1}[0-9]{8}$|15[012356789]{1}[0-9]{8}$|18[012356789]{1}[0-9]{8}$/i;
+		if(!reg.test($("#phone").val())){ 
+		document.getElementById("txt").innerHTML="请输入11位有效号码!!" 
+			
+			return false;
+			 }
+		
+		
+		//form1.qq.value="参加10.2看房团活动"+t_num;
+		
+		
+		return true;
+		
+		
+		
+		}
+</script>
+
+
+<script type="text/javascript">
+
+        var imgUrl = "{laoyang:$hforward.picurl}";
+        var lineLink = "{laoyang::C('site_url')}{laoyang::U('Hforward/index',array('token'=>$token,'id'=>$id,'wecha_id'=>$wecha_id))}&wxref=mp.weixin.qq.com";
+        var descContent = '{laoyang:$hforward.title}';
+        var shareTitle = '{laoyang:$hforward.title}';
+        var appid = '';
+         
+        function shareFriend() {
+            WeixinJSBridge.invoke('sendAppMessage',{
+                "appid": appid,
+                "img_url": imgUrl,
+                "img_width": "200",
+                "img_height": "200",
+                "link": lineLink,
+                "desc": descContent,
+                "title": shareTitle
+            }, function(res) {
+                //_report('send_msg', res.err_msg);
+            })
+        }
+        function shareTimeline() {
+            WeixinJSBridge.invoke('shareTimeline',{
+                "img_url": imgUrl,
+                "img_width": "200",
+                "img_height": "200",
+                "link": lineLink,
+                "desc": descContent,
+                "title": shareTitle
+            }, function(res) {
+                   //_report('timeline', res.err_msg);
+            });
+        }
+        function shareWeibo() {
+            WeixinJSBridge.invoke('shareWeibo',{
+                "content": descContent,
+                "url": lineLink,
+            }, function(res) {
+                //_report('weibo', res.err_msg);
+            });
+        }
+        // 当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。
+        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+            // 发送给好友
+            WeixinJSBridge.on('menu:share:appmessage', function(argv){
+                shareFriend();
+            });
+            // 分享到朋友圈
+            WeixinJSBridge.on('menu:share:timeline', function(argv){
+                shareTimeline();
+            });
+            // 分享到微博
+            WeixinJSBridge.on('menu:share:weibo', function(argv){
+                shareWeibo();
+            });
+        }, false);
+</script>
+
+</body>
+</html>

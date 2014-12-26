@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-/W3C/DTD XHTML 1.0 Transitional/EN" "http:/www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http:/www.w3.org/1999/xhtml">
+
+<head> 
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+
+<title>{laoyang:$res.title}-{laoyang:$tpl.wxname}</title> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+<meta name="format-detection" content="telephone=no" />
+
+<link href="{laoyang::RES}/css/yl/news.css" rel="stylesheet" type="text/css" />
+
+
+
+<script src="{laoyang::RES}/js/yl/audio.min.js" type="text/javascript"></script>   
+
+    <script>
+
+      audiojs.events.ready(function() {
+
+        audiojs.createAll();
+
+      });
+
+    </script>
+
+</head> 
+
+    <script>
+
+window.onload = function ()
+
+{
+
+var oWin = document.getElementById("win");
+
+var oLay = document.getElementById("overlay");	
+
+var oBtn = document.getElementById("popmenu");
+
+var oClose = document.getElementById("close");
+
+oBtn.onclick = function ()
+
+{
+
+oLay.style.display = "block";
+
+oWin.style.display = "block"	
+
+};
+
+oLay.onclick = function ()
+
+{
+
+oLay.style.display = "none";
+
+oWin.style.display = "none"	
+
+}
+
+};
+
+</script>
+
+<body id="news">
+
+<div id="ui-header">
+
+<div class="fixed">
+
+<a class="ui-title" id="popmenu">选择分类</a>
+
+<a class="ui-btn-left_pre" href="javascript:history.go(-1)"></a>
+
+<a class="ui-btn-right_home" href="{laoyang::U('Index/index',array('wecha_id'=>$_GET['wecha_id'],'token'=>$tpl['token']))}"></a>
+
+</div>
+
+</div>
+
+<div id="overlay"></div>
+
+<div id="win">
+
+<ul class="dropdown"> 
+
+<volist name="info" id="vo">
+
+<li><a href="{laoyang::U('Index/lists',array('token'=>$vo['token'],'wecha_id'=>$_GET['wecha_id'],'classid'=>$vo['id']))}"><span>{laoyang:$vo.name}</span></a></li>
+
+</volist>
+
+ 	
+
+<div class="clr"></div>
+
+</ul>
+
+</div>
+
+<div class="Listpage">
+
+<div class="top46"></div>
+
+<div class="page-bizinfo">
+
+
+
+<div class="header" style="position: relative;">
+
+<h1 id="activity-name">{laoyang:$res.title}</h1>
+
+<span id="post-date">{laoyang:$res.createtime|date="Y-m-d",###}</span>
+
+</div>
+
+<a id="biz-link" class="btn" href="{laoyang::U('Index/index',array('wecha_id'=>$_GET['wecha_id'],'token'=>$res['token']))}"  data-transition="slide" >
+
+<div class="arrow">
+
+<div class="icons arrow-r"></div>
+
+</div>
+
+<div class="logo">
+
+<div class="circle"></div>
+
+<img id="img" src="{laoyang:$tpl.headerpic}">
+
+</div>
+
+<div id="nickname">{laoyang:$tpl.wxname}</div>
+
+<div id="weixinid">微信号:{laoyang:$tpl.weixin}</div>
+
+</a>
+
+<eq name="res.showpic" value="1">
+
+<div class="showpic"><img src="{laoyang:$res.pic}" /></div> 
+
+</eq>
+
+<div class="text" id="content">
+
+{laoyang:$res.info|htmlspecialchars_decode}
+
+</div>
+
+
+
+ <script>
+
+
+
+function dourl(url){
+
+location.href= url;
+
+}
+
+</script>
+
+
+
+</div>	
+
+
+
+    <div class="list">
+
+<div id="olload">
+
+<span>往期回顾</span>
+
+</div>
+
+
+
+<div id="oldlist">
+
+<ul>
+
+  <volist name="lists" id="lo">
+
+	<li class="newsmore">
+
+	<!--在整合列表页和分类也的时候，这里修改过模板-->
+
+		<a href="{laoyang::U('Index/content',array('token'=>$lo['token'],'id'=>$lo['id'],'wecha_id'=>$_GET['wecha_id'],'classid'=>intval($_GET['classid'])))}">
+
+		<div class="olditem">
+
+		<div class="title">{laoyang:$lo.title}</div> 
+
+		</div>
+
+		</a>
+
+	</li>
+
+	</volist>
+
+    </ul>
+
+   <a class="more" href="{laoyang::U('Index/lists',array('token'=>$res['token'],'wecha_id'=>$_GET['wecha_id'],'classid'=>$res['classid']))}">更多精彩内容</a>	</div>
+
+</div>
+
+<a class="footer" href="#news" target="_self"><span class="top">返回顶部</span></a>
+
+
+
+</div>
+
+  <div class="copyright">
+
+<if condition="$iscopyright eq 1">
+
+{laoyang:$homeInfo.copyright}
+
+<else/>
+
+{laoyang:$siteCopyright}
+
+</if>
+
+</div> 
+
+<include file="Index:styleInclude"/><include file="$cateMenuFileName"/>
+
+<include file="Index:content_share" />
+
+  </body>
+
+</html>

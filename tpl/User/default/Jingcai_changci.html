@@ -1,0 +1,192 @@
+<include file="Public:head"/>
+
+<link rel="stylesheet" href="{laoyang::RES}/css/diymen/tipswindown.css" type="text/css" media="all" />
+<script type="text/javascript" src="{laoyang::RES}/css/diymen/tipswindown.js"></script> 
+
+<script src="{laoyang::RES}/js/date/WdatePicker.js"></script>
+<link rel="stylesheet" type="text/css" href="{laoyang::STATICS}/default_user_com.css" media="all">
+
+<script type="text/javascript">
+ $(document).ready(function() {
+	
+	$("#iframe1").click(function(){
+		var id = $(this).attr("code");
+		var url = "{laoyang::U('Jingcai/result')}&id="+id;
+
+		tipsWindown("结束比赛操作","iframe:"+url,"400","200","true","","true","leotheme");
+	});
+ });
+ </script>
+
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:10px;" >
+<if condition="$ischild neq 1">
+<include file="Public:hangye"/>
+
+<h4 class="left">竞猜回复设置</h4>
+<div class="clr"></div>
+</div>
+
+
+
+
+         <link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+
+
+
+        <div class="tab">
+
+
+
+<ul>
+
+<li class="<if condition="ACTION_NAME EQ 'index'">current</if> tabli" id="tab0"><a href="{laoyang::U('Jingcai/index',array('token'=>$token))}">回复设置</a></li>
+
+<li class="<if condition="ACTION_NAME EQ 'type' or ACTION_NAME EQ 'team' or ACTION_NAME EQ 'changci'">current</if> tabli" id="tab2"><a href="{laoyang::U('Jingcai/type',array('token'=>$token))}">赛事类别</a></li>
+       
+<li class="<if condition="ACTION_NAME EQ 'changci_add' or ACTION_NAME EQ 'team' or ACTION_NAME EQ 'changci_add'">current</if> tabli" id="tab3"><a href="{laoyang::U('Jingcai/changci_add',array('token'=>$token,'type_id'=>$_GET['id'],'pid'=>$pid))}">添加[{laoyang:$type_name}]赛事信息</a></li>
+ 
+
+</ul>
+
+
+
+</div>  
+
+
+
+          
+
+
+
+          
+
+
+
+          
+
+
+
+          <div class="cLine">
+
+
+
+ 
+
+
+
+            <div class="clr"></div>
+
+
+
+          </div>
+
+
+
+          <div class="msgWrap">
+
+
+
+          <form method="post" action="" id="info">
+
+
+
+          <input name="delall" type="hidden" value="del">
+
+
+
+           <input name="wxid" type="hidden" value="gh_423dwjkewad">
+
+
+
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                                        <tr>
+                                            <th class="span4">主场</th>
+                                            <th class="span2">客场</th>
+                                            <th class="span2">开始时间</th>
+                                            <th class="span2">比赛结果</th>
+                                            <th class="span2">操作</th>
+                                        </tr>
+                                    </thead>
+               <tbody>
+                                  <if condition="$son_data eq ''">
+                                      <tr>
+                                        <td colspan="5" style="text-align:center; height:30px;"><strong>没有{laoyang:$type_name}的赛事信息，赶紧添加吧</strong></td>
+                                      </tr>
+                                  <else/>
+                                    <volist name="son_data" id="list">
+                                        <tr>
+                                        <td style="">{laoyang:$teams[$list['zhudui']]}</td>
+                                        <td style="">{laoyang:$teams[$list['kedui']]}</td>
+                                        <td style="">{laoyang:$list['stime']|date='Y-m-d H:i:s',###}</td>
+                                        <td style="">
+                                          <if condition="$list['stime'] gt $nowtime">
+                                                                                                                   未开始
+                                          <elseif  condition="$list['status'] eq 1"/>
+                                                {laoyang:$list['zhuduinum']}:{laoyang:$list['keduinum']}                                                                   
+                                          <else />
+                                                                                                                     进行中
+                                          </if>
+                                        </td>
+                                        <td style="">
+                                            <a href="{laoyang::U('Jingcai/changci_add',array('id'=>$list['id'],'token'=>$list['token'],'pid'=>$pid,'type_id'=>$list['type_id']))}" class="btn">编辑</a>
+                                            <a href="{laoyang::U('Jingcai/changci_del',array('id'=>$list['id'],'token'=>$list['token'],'pid'=>$pid,'type_id'=>$list['type_id']))}" onclick="return(confirm('删除该组织，该组织下的成员也会被删除，确定要删除吗？'))" class="btn">删除</a>
+                                        
+                                        <a href="{laoyang::U('Jingcai/statistics',array('id'=>$list['id'],'token'=>$list['token'],'pid'=>$pid,'type_id'=>$list['type_id']))}" class="btn">统计</a>
+                                           <if condition="$list['stime'] gt $nowtime">
+                                                                                                                 
+                                             <elseif  condition="$list['status'] eq 1"/>
+                                                                                                                  
+                                             <else />
+                                <a href="#" id="iframe1" code="{laoyang:$list['id']}"  class="btn">结束</a>
+                                                                                                                     
+                                          </if>
+                                         </td>
+                                        </tr>
+                                    </volist>
+                                  </if>
+             </tbody>
+
+
+
+            </table>
+
+
+
+           </form> 
+
+
+
+          </div>
+
+
+
+          <div class="cLine">
+
+
+
+            <div class="pageNavigator right">
+
+
+
+                 <div class="pages">{laoyang:$page}</div>
+
+
+
+            </div>
+
+
+
+            <div class="clr"></div>
+
+
+
+          </div>
+
+
+
+        </div>  
+
+
+
+<include file="Public:footer"/>

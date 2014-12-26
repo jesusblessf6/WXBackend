@@ -1,0 +1,227 @@
+<include file="Public:head"/> 
+<script>
+function ccolumns(value){
+	if(value=='none'){
+		$('.feiyin').css('display','none');
+		$('.laoyang').css('display','none');
+		$('.daimeng').css('display','none');
+	}
+	if(value=='feiyin'){
+		$('.feiyin').css('display','');
+		$('.laoyang').css('display','none');
+		$('.daimeng').css('display','none');
+	}
+	if(value=='laoyang'){
+		$('.feiyin').css('display','none');
+		$('.laoyang').css('display','');
+		$('.daimeng').css('display','none');
+	}
+	if(value=='daimeng'){
+		$('.feiyin').css('display','none');
+		$('.laoyang').css('display','none');
+		$('.daimeng').css('display','');
+	}
+}
+</script>
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/cymain.css" />
+<script src="{laoyang::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{laoyang::STATICS}/artDialog/plugins/iframeTools.js"></script>
+ <link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{laoyang::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{laoyang::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{laoyang::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script type="text/javascript" src="{laoyang::RES}/js/formCheck/formcheck.js"> </script>
+<script>
+var editor;
+KindEditor.ready(function(K) {
+	editor = K.create('#intro', {
+	resizeType : 1,
+	allowPreviewEmoticons : false,
+	allowImageUpload : false,
+	items : [
+	'source','undo','clearhtml','hr','fontsize','forecolor','hilitecolor',
+	'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+	'insertunorderedlist', '|', 'emoticons', 'image','link', 'unlink','baidumap','lineheight','table','anchor','preview','print','template','code','cut']
+	});
+});
+</script>
+<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+<include file="Public:hangye"/>
+<h4 class="left">店铺信息</h4>
+<div class="searchbar right">
+<form method="post" action="">
+
+<script>
+function selectall(name) {
+	var checkItems=$('.cbitem');
+	if ($("#check_box").attr('checked')==false) {
+		$.each(checkItems, function(i,val){
+			val.checked=false;
+		});
+		
+	} else {
+		$.each(checkItems, function(i,val){
+			val.checked=true;
+		});
+	}
+}
+function setlatlng(longitude,latitude){
+	art.dialog.data('longitude', longitude);
+	art.dialog.data('latitude', latitude);
+	// 此时 iframeA.html 页面可以使用 art.dialog.data('test') 获取到数据，如：
+	// document.getElementById('aInput').value = art.dialog.data('test');
+	art.dialog.open('{laoyang::U('Map/setLatLng',array('token'=>$token,'id'=>$id))}',{lock:false,title:'设置经纬度',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+</script>
+<if condition="($parentid neq  '0') and ($parentid neq '')"><a href="{laoyang::U('Dining/cats',array('token'=>$token,'parentid'=>$parentCat['parentid']))}" class="btnGreen" style="margin-top:-27px">返回</a></if>
+</form>
+</div>
+<div class="clr"></div>
+<!--tab start-->
+<span class="FAQ"></span>
+<div class="tab">
+<ul>
+<if condition="$set.catid neq ''"><li class="current tabli" id="tab0"><a href="{laoyang::U('Dining/ComBranches',array('token'=>$token))}">店铺信息</a></li></if> 
+<li class="tabli" id="tab2"><a href="{laoyang::U('Dining/ComBranches',array('token'=>$token))}">店铺信息</a></li>
+<li class="tabli" id="tab0"><a href="{laoyang::U('Dining/index',array('token'=>$token,'dining'=>1))}">菜品管理</a></li>
+<li class="tabli" id="tab2"><a href="{laoyang::U('Dining/cats',array('token'=>$token,'dining'=>1))}">菜品分类管理</a></li>
+<li class="tabli" id="tab2"><a href="{laoyang::U('Dining/orders',array('token'=>$token,'dining'=>1))}">订单管理</a></li>
+<li class="tabli" id="tab2"><a href="{laoyang::U('Dining/tables',array('token'=>$token,'dining'=>1))}">桌台管理</a></li>
+<li class="tabli" id="tab5"><a href="{laoyang::U('Reply_info/set',array('token'=>$token,'infotype'=>'Dining'))}">订餐回复配置</a></li>
+</ul>
+</div>
+<!--tab end-->
+<div class="msgWrap">
+ <form class="form" method="post" id="form" action=""> 
+<if condition="$set.catid neq ''">
+<input type="hidden" name="id" value="{laoyang:$set.id}" />
+</if>
+<input type="hidden" name="discount" id="discount" value="{laoyang:$set.discount}" />
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+       <tr> 
+        <th><span class="red">*</span>店铺选择：</th> 
+        <td>  <select name="catid" class="px require" style="width:400px;" >
+         <volist name="Company" id="t">
+        <option  value="{laoyang:$t.id}" <if condition="$set['catid'] eq $t['id']">selected</if>>{laoyang:$t.name}</option>
+        </volist>
+        </select> </td> 
+       </tr>
+       <tr> 
+        <th><span class="red"></span>店铺公告：</th> 
+        <td><input type="text" id="bulletin" name="bulletin" value="{laoyang:$set.bulletin}" placeholder="如：店铺最新优惠：买10元送1元 " class="px require" style="width:400px;" /></td> 
+       </tr> 
+       <tr> 
+        <th><span class="red"></span>店铺状态：</th> 
+        <td>
+        <select name="status" class="px require" style="width:400px;" >
+        <option value="0" <if condition="$set.status eq 0">selected</if>>营业中</option>
+        <option value="1" <if condition="$set.status eq 1"> selected</if>>未营业</option></select> 
+        </td> 
+       </tr> 
+        <tr> 
+        <th><span class="red"></span>店铺类型：</th> 
+        <td><input type="text" id="category" name="category" value="{laoyang:$set.category}" placeholder="如：小吃、快餐 " class="px require" style="width:400px;" /></td> 
+       </tr> 
+       <tr> 
+        <th><span class="red"></span>营业时间：</th> 
+        <td><input type="text" id="time" name="time" value="{laoyang:$set.time}" placeholder="如：8：00~22：00 " class="px require" style="width:400px;" /></td> 
+       </tr> 
+       <tr> 
+        <th><span class="red"></span>起送价格：</th> 
+        <td><input type="text" id="money" name="money" value="{laoyang:$set.money}" placeholder="请填写数字，如50，仅保留小数点后2位 " class="px require" style="width:400px;" /></td> 
+       </tr> 
+       <tr> 
+        <th><span class="red"></span>服务半径：</th> 
+        <td><input type="text" id="radius" name="radius" value="{laoyang:$set.radius}" placeholder="如：3公里   "  class="px require" style="width:400px;" /></td> 
+       </tr> 
+       <tr> 
+        <th><span class="red"></span>配送区域：</th> 
+        <td><input type="text" id="scope" name="scope" value="{laoyang:$set.scope}" placeholder="如：置地大道等   "   class="px require" style="width:400px;" /></td> 
+       </tr> 
+       <tr> 
+        <th><span class="red"></span>短信通知：</th> 
+        <td><input type="text" id="phone" name="phone" value="{laoyang:$set.phone}" placeholder="如：13808080808   "   class="px require" style="width:400px;" />&nbsp;&nbsp;开启&nbsp;<input type="radio" name="phone_status" <if condition="$set.phone_status eq 1">checked</if> id="statu-1" value="1">&nbsp;&nbsp;
+		关闭&nbsp;<input type="radio" name="phone_status" <if condition="$set.phone_status eq 0">checked</if> id="statu-0" value="0"></td> 
+       </tr> 
+       <tr> 
+        <th><span class="red"></span>邮件通知：</th> 
+        <td><input type="text" id="email" name="email" value="{laoyang:$set.email}" placeholder="如：1234@qq.com   "   class="px require" style="width:400px;" />&nbsp;&nbsp;开启&nbsp;<input type="radio" name="email_status" <if condition="$set.email_status eq 1">checked</if> id="statu-1" value="1">&nbsp;&nbsp;
+		关闭&nbsp;<input type="radio" name="email_status" <if condition="$set.email_status eq 0">checked</if> id="statu-0" value="0"></td> 
+       </tr> 
+       <tr> 
+        <th>在线支付：</th>
+        <td>
+	        <select name="payonline">
+	        <option value="0"  <if condition="0 eq $set['payonline']">selected</if> >不要</option>
+	        <option value="1"  <if condition="1 eq $set['payonline']">selected</if> >需要</option>
+	        </select>
+        </td> 
+       </tr>
+		<tr>
+		<th width="100">打印机品牌：</th>
+		<td>
+		<select name="printtype" onchange="ccolumns(this.value)">
+		<option value="none" <if condition="$set.printtype eq ''">selected</if>>请选择</option>
+		<option value="daimeng" <if condition="$set.printtype eq 'daimeng'"> selected</if>>戴梦</option>
+		<option value="feiyin" <if condition="$set.printtype eq 'feiyin'">selected</if>>飞印</option>
+		</select>
+		</td>
+		</tr>
+		<tr class="feiyin" <if condition="$set.printtype neq 'feiyin'">style="display:none"</if>><th><span class="red">*</span>商户代码：</th><td><input type="text" class="px" name="memberCode" value="{laoyang:$set.memberCode}" tabindex="1" size="35"> <span class="red">&nbsp;&nbsp;&nbsp;登录飞印后在"API集成"-&gt;"获取API集成信息"获取</span></td></tr>
+		<tr class="feiyin" <if condition="$set.printtype neq 'feiyin'">style="display:none"</if>><th><span class="red">*</span>API 密钥：</th><td><input type="text" class="px" name="feiyin_key" value="{laoyang:$set.feiyin_key}" tabindex="1" size="25"> <span class="red">&nbsp;&nbsp;&nbsp;获取方法同上</span></td></tr>
+		<tr class="feiyin" <if condition="$set.printtype neq 'feiyin'">style="display:none"</if>><th><span class="red">*</span>设备编码：</th><td><input type="text" class="px" name="deviceNo" value="{laoyang:$set.deviceNo}" tabindex="1" size="25"> <span class="red">&nbsp;&nbsp;&nbsp;通过打印机后面的激活按键获取，为16位数字，例如"4600365507768327"</span></td></tr>
+		<tr class="laoyang" <if condition="$set.printtype neq 'laoyang'">style="display:none"</if>><th><span class="red">*</span>设备编码：</th><td><input type="text" class="px" name="bwdeviceNo" value="{laoyang:$set.bwdeviceNo}" tabindex="1" size="25"> <span class="red">&nbsp;&nbsp;&nbsp;老杨无线打印设备编码</span></td></tr>
+		<tr class="daimeng" <if condition="$set.printtype neq 'daimeng'">style="display:none"</if>><th><span class="red">*</span>打印机密钥：</th><td><input type="text" class="px" name="dmdeviceNo" value="{laoyang:$set.dmdeviceNo}" tabindex="1" size="25"> <span class="red">&nbsp;&nbsp;&nbsp;戴梦无线打印密钥</span></td></tr>
+		<tr>
+		<th>打印联数：</th>
+			<td>
+				1联&nbsp;<input type="radio" name="printpage" <if condition="$set.printpage eq 1">checked</if> id="statu-1" value="1">&nbsp;&nbsp;
+				2联&nbsp;<input type="radio" name="printpage" <if condition="$set.printpage eq 2">checked</if> id="statu-0" value="2">&nbsp;&nbsp;
+				3联&nbsp;<input type="radio" name="printpage" <if condition="$set.printpage eq 3">checked</if> id="statu-0" value="3">
+			</td>	
+		</tr>
+		<tr>
+		<th>是否打印：</th>
+			<td>
+				开启&nbsp;<input type="radio" name="print_status" <if condition="$set.print_status eq 1">checked</if> id="statu-1" value="1">&nbsp;&nbsp;
+				关闭&nbsp;<input type="radio" name="print_status" <if condition="$set.print_status eq 0">checked</if> id="statu-0" value="0">
+			</td>	
+		</tr>
+		<tr>
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+       <if condition="$isBranch eq 1">
+      <input type="hidden" name="isbranch" value="1" />
+      </if>
+      <input type="hidden" name="token" value="{laoyang::$token}" />
+       <button type="submit" name="button" class="btnGreen">保存</button></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+    
+   </form> 
+
+
+</div>
+<div class="cLine">
+
+<div class="clr"></div>
+</div>
+</div>
+<script language="javascript">
+$(function(){
+
+	$("#form").valid([
+	{ name:"name",simple:"名称",require:true},
+	{ name:"mp",type:"mobile",message:"手机号输入不正确"}
+	
+	],true,true);
+
+})
+</script>
+<include file="Public:footer"/>

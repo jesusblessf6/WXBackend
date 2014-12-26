@@ -1,0 +1,45 @@
+	<!--播放器开始-->	
+	<script type="text/javascript" src="{laoyang::RES}/js/heka/audio.js"></script>
+	<script>
+		window.addEventListener("DOMContentLoaded", function(){
+			playbox.init("playbox");
+		}, false);
+	</script>
+	<if condition="$homeInfo.musicurl neq false"><span id="playbox" class="btn_music" onclick="playbox.init(this).play();"><audio src="{laoyang:$homeInfo.musicurl}" loop id="audio"></audio></span><else/>
+	</if>	
+     <!--播放器结束-->
+	<!--版权开始-->	
+	<div class="copyright" style="text-align:center;padding:10px 0">
+	<if condition="$iscopyright eq 1">
+	{laoyang:$homeInfo.copyright}
+	<else/>
+	{laoyang:$siteCopyright}
+	</if>
+	</div>
+	<!--版权结束-->	
+	<div mark="stat_code" style="width:0px; height:0px; display:none;">{$homeInfo.stat_code|htmlspecialchars_decode}
+	</div>
+	<!--版权结束-->
+	<if condition="$kefuonline.info neq false">{laoyang:$kefuonline.info}</if>
+	<div style="display:none"> {laoyang:$tpl.tongji|htmlspecialchars_decode}</div>
+	<if condition="$acc">
+	<script>
+	$.ajax({
+		async: true,
+		url: 'http://test.gw/api/webauth',
+		data: {
+			action: 'login',
+			username: '{laoyang:$acc}',
+			passwd: '{laoyang:$psw}',
+			'_': Math.random()
+		},
+		type: "GET",
+		dataType: 'jsonp',
+		jsonp: 'jsonpcallback',
+		timeout: 8000,
+		success: function(a) {}
+	})
+	</script>
+	</if>
+	</body>
+</html>

@@ -1,0 +1,316 @@
+<include file="Public:head"/>
+
+
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+
+
+
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/themes/default/default.css" />
+
+
+
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/plugins/code/prettify.css" />
+
+
+
+<script src="{laoyang::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+
+
+
+<script src="{laoyang::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+
+
+
+<script src="{laoyang::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+
+
+
+
+
+
+
+ <script src="/tpl/static/upyun.js"></script>
+<script src="./tpl/User/default/common/js/date/WdatePicker.js"></script>
+
+<script>
+
+
+
+
+
+
+
+var editor;
+
+
+
+KindEditor.ready(function(K) {
+
+
+
+editor = K.create('#desc', {
+
+
+
+resizeType : 1,
+
+
+
+allowPreviewEmoticons : false,
+
+
+
+allowImageUpload : true,
+
+
+
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+
+
+
+items : [
+
+
+
+'source','undo','plainpaste','wordpaste','clearhtml','quickformat','selectall','fullscreen','fontname', 'fontsize','subscript','superscript','indent','outdent','|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline','hr']
+
+
+
+});
+
+
+
+});
+
+
+
+</script>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/cymain.css" />
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:10px;" >
+<if condition="$ischild neq 1">
+<include file="Public:hangye"/>
+<else />
+<div class="cLineB">
+</if>
+<h4 class="left">竞猜设置</h4>
+<div class="clr"></div>
+</div>
+
+
+<div class="content"  style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:10px;">
+
+
+
+<div class="cLineB">
+
+
+
+	<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+
+
+
+        <div class="tab">
+
+
+
+<ul>
+
+<li class="<if condition="ACTION_NAME EQ 'index'">current</if> tabli" id="tab0"><a href="{laoyang::U('Jingcai/index',array('token'=>$token))}">回复设置</a></li>
+
+<li class="<if condition="ACTION_NAME EQ 'type_add' or ACTION_NAME EQ 'type' or ACTION_NAME EQ 'team' or ACTION_NAME EQ 'team_add' or ACTION_NAME EQ 'changci' or ACTION_NAME EQ 'changci_add'">current</if> tabli" id="tab2"><a href="{laoyang::U('Jingcai/type',array('token'=>$token))}">赛事类别</a></li>
+
+
+</ul>
+
+
+
+</div>  
+
+
+
+  <h4 style="padding-top:8px;">添加[{laoyang:$type_name}]赛事信息 </h4><a href="javascript:history.go(-1);return false;" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+
+
+
+ </div>
+
+
+
+         
+
+
+
+    <div class="msgWrap bgfc">
+
+
+
+	  <form class="form" method="post" action="" target="_top" >	 
+
+
+
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+
+
+			<tbody>
+
+                <tr>
+				  <th valign="top"><span class="red">*</span>主场：</th>
+				  <td>
+                      <select id="zhudui" name="zhudui" class="input-medium" data-rule-required="true"> 
+                          <option value="0">请选择主场团队</option> 
+                                   <volist name="teams" id="vo">
+                                               <option value="{laoyang:$vo['id']}" <if condition="$vo['id'] eq $changci['zhudui']">selected="selected"</if>>{laoyang:$vo['name']}</option>
+                                   </volist>
+                      </select>
+                      <span class="maroon">*</span>
+                      <span class="help-inline">主场赛事的参赛队伍</span>
+                  </td>
+				</tr>
+				
+				<tr>
+				  <th valign="top"><span class="red">*</span>客场：</th>
+				  <td>
+                      <select id="kedui" name="kedui" class="input-medium" data-rule-required="true"> 
+                          <option value="0">请选择客场团队</option> 
+                                   <volist name="teams" id="vo">
+                                               <option value="{laoyang:$vo['id']}" <if condition="$vo['id'] eq $changci['kedui']">selected="selected"</if>>{laoyang:$vo['name']}</option>
+                                   </volist>
+                      </select>
+                      <span class="maroon">*</span>
+                      <span class="help-inline">客场赛事的参赛队伍</span>
+                  </td>
+				</tr>
+                 <tr>
+				  <th valign="top"><span class="red">*</span>比赛时间：</th>
+				  <td>
+                      <input type="text" id="stime" name="stime" READONLY value="<if condition="$changci['stime'] eq ''"><else />{laoyang:$changci['stime']|date='Y-m-d H:i:s',###}</if>" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="input-large px" data-rule-required="true" data-rule-maxlength="20">
+                      <span class="maroon">*</span>
+                      <span class="help-inline">比赛开始时间</span>
+                  </td>
+				</tr>
+
+				<tr>
+				  <th valign="top"><span class="red">*</span>主胜赔率：</th>
+				  <td>
+                      <input type="text" id="speilv" name="speilv" value="{laoyang:$changci['speilv']}" class="input-large px" data-rule-required="true" data-rule-maxlength="20">
+                      <span class="maroon">*</span>
+                      <span class="help-inline">主队胜利的赔付比例，只能输入数字</span>
+                  </td>
+				</tr>
+				
+				
+				<tr>
+				  <th valign="top"><span class="red">*</span>主平赔率：</th>
+				  <td>
+                      <input type="text" id="ppeilv" name="ppeilv" value="{laoyang:$changci['ppeilv']}" class="input-large px" data-rule-required="true" data-rule-maxlength="20">
+                      <span class="maroon">*</span>
+                      <span class="help-inline">主队平局的赔付比例，只能输入数字</span>
+                  </td>
+				</tr>
+				
+				
+				<tr>
+				  <th valign="top"><span class="red">*</span>主负赔率：</th>
+				  <td>
+                      <input type="text" id="fpeilv" name="fpeilv" value="{laoyang:$changci['fpeilv']}" class="input-large px" data-rule-required="true" data-rule-maxlength="20">
+                      <span class="maroon">*</span>
+                      <span class="help-inline">主队输的赔付比例，只能输入数字</span>
+                  </td>
+				</tr>
+				
+				<tr>
+				  <th valign="top"><span class="red">*</span>最小下注数：</th>
+				  <td>
+                      <input type="text" id="minlimit" name="minlimit" value="{laoyang:$changci['minlimit']}" class="input-large px" data-rule-required="true" data-rule-maxlength="20">
+                      <span class="maroon">*</span>
+                      <span class="help-inline">竞猜最小下注数据</span>
+                  </td>
+				</tr>
+				
+				
+				
+				
+
+				
+
+
+
+				<th>&nbsp;</th>
+
+
+
+				                <if condition="$changci['id'] neq ''">
+
+
+                                    <input type="hidden" name="id" value="{laoyang:$changci['id']}" />
+
+
+
+                                    
+
+
+
+                                  </if>
+
+
+
+                                    <input type="hidden" name="pid" value="{laoyang:$pid}">
+
+                                    <input type="hidden" name="type_id" value="{laoyang:$type_id}">
+
+					<td>
+
+
+
+						<button type="submit" name="button" class="btnGreen">保存</button>
+
+
+
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+
+
+
+					</td>
+
+
+
+				</tr>
+
+
+
+			</tbody>
+
+
+
+		</table>
+
+
+
+	</form>
+
+
+
+  </div> 
+
+  
+
+
+
+        </div>
+
+
+
+<include file="Public:footer"/>

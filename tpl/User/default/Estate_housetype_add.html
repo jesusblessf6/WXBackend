@@ -1,0 +1,411 @@
+<include file="Public:head"/>
+<script src="{laoyang::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{laoyang::STATICS}/artDialog/plugins/iframeTools.js"></script>
+<script src="{laoyang::STATICS}/vote/common.js"></script>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:10px;" >
+
+  <h4>添加户型</h4>
+  <include file="Estate:menu"/>
+              
+              <div class="clr"></div>
+          </div>
+          <div class="cLine">
+
+</div>      
+    <div class="msgWrap bgfc" style="margin-top:10px;">
+	  <form class="form" method="post" action="" target="_top" enctype="multipart/form-data">	 
+	  
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+					<th width="120">户型名称：</th>
+					<td> <input type="text" id="name" name="name" value="{laoyang:$housetype['name']}" class="input-large px" data-rule-required="true" data-rule-maxlength="20">
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">尽量简单，不要超过20字</span></td>
+				</tr>
+
+
+                <tr>
+					<th>选择360模板：</th>
+					<td>
+					   <select id="tmpl_id" name="tmpl_id" class="input-medium" data-rule-required="true">
+                             <option value="tmpl_001" <if condition="$housetype['tmpl_id'] eq 'tmpl_001' ">selected="selected"</if>>风格一</option>
+                             <option value="tmpl_002" <if condition="$housetype['tmpl_id'] eq 'tmpl_002' ">selected="selected"</if>>风格二</option>
+                       </select>
+                    </td>
+				</tr>
+
+
+
+
+			   <tr>
+					<th>选择子楼盘：</th>
+					<td><select id="son_id" name="son_id" class="input-medium" data-rule-required="true">
+                                         
+                                            <option value="0">请选择子楼盘</option>
+                                         
+                                            <volist name="son_data" id="vo">
+                                            <option value="{laoyang:$vo['sid']}" <if condition="$vo['sid'] eq $housetype['son_id']">selected="selected"</if>>{laoyang:$vo['title']}</option>
+                                            </volist>
+                                        </select></td>
+				</tr>
+              
+               
+                <tr>
+                  <th valign="top">360全景设置：</th>
+                  <td valign="top">
+                    <div class="bdrcontent">
+                        <div id="div_ptype">
+                          <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+                             <tbody>
+                                <tr>
+                                   <td width="50">编号</td>
+                                  <td width="50">排序</td>
+                                  <td width="260">楼层</td>
+                                  <td width="50">房型</td>
+                                  <td width="50">全景相册</td>
+                               
+                                  <td class="norightborder"></td>
+                                </tr>
+                              </tbody>
+                             <if condition="$items neq ''">
+                                <tbody>
+                                   <volist name="items" id="ivo">
+                                 <tr>
+                                     <td width="50"><input type="text" name="add[id][]" readonly="readonly"   value="{laoyang:$ivo.id}" style="width:50px;"></td>
+                                    <td width="50"><input type="text" name="add[orderid][]"   value="{laoyang:$ivo.orderid}" style="width:50px;"></td>
+                                    <td width="260"><input type="text" name="add[floor][]" value="{laoyang:$ivo.floor}" class="px" style="width:240px;"></td>
+                                    <td width="50"><input type="text" name="add[house][]" value="{laoyang:$ivo.house}" style="width:50px;" class="px"></td>
+                                    <td width="50">                                   
+                                     
+                                      <select id="panorama_id" name="add[panorama_id][]" class="input-medium" data-rule-required="true"> 
+                                          <option value="0">请选择360全景相册</option> 
+                                            <volist name="panorama" id="vo">
+                                               <option value="{laoyang:$vo['pid']}" <if condition="$vo['pid'] eq $ivo['panorama_id']">selected="selected"</if>>{laoyang:$vo['name']}</option>
+                                            </volist>
+                                        </select>
+                                   </td>     
+                                     <td width="50" class="norightborder"><input type="hidden" name="add[flag][]" value='data' /><a href="javascript:;" onclick="delrow(this, 'div_add_del');">删除</a></td>
+                                 </tr>
+                                   </volist>
+                                </tbody>
+                             </if>
+                              <tbody id="div_add_del" name="div_add_del">    
+                                    <tr style="display:none">
+                                      <td width="50"><input type="text" name="add[id][]" readonly="readonly" disabled="disabled"  value="" style="width:50px;"></td>
+                                    
+                                       <td width="50"><input type="text" name="add[orderid][]"   value="" style="width:50px;" ></td>
+                                       <td width="200">
+                                             <input type="text" name="add[floor][]" value="" class="px" style="width:150px;">
+                                       </td>
+                                        <td>
+                                            <input type="text" name="add[house][]" value="" style="width:50px;" class="px">
+                                        </td>
+                                        <td>                                           
+                                          <select  name="add[panorama_id][]" class="input-medium" data-rule-required="true"> 
+                                              <option value="0">请选择360全景相册</option> 
+                                            <volist name="panorama" id="vo">
+                                              <option value="{laoyang:$vo['pid']}">{laoyang:$vo['name']}</option>
+                                            </volist>
+                                          </select>
+                             
+                                        </td>
+                                
+                                      <td width="50" class="norightborder"><input type="hidden" name="add[flag][]" /><a href="javascript:;" onclick="delrow(this, 'div_add_del');">删除</a></td>
+                                    </tr>
+                                  </tbody>
+                                  <tbody>
+                                     <tr>
+                                       <td colspan="4" class="norightborder"> 
+                                 
+                                     <button type="button" id="vtype" onclick="addrow('div_add_del');" class="btnGrayS vm" value="true"><strong>添加选项</strong></button>数字越大越靠前
+                                      <button type="button" id="vtype" onclick="yulan360();" class="btnGrayS vm" value="true"><strong>全景效果预览</strong></button>
+                                     </td>
+                                  
+                                      </tr>
+                                  </tbody>
+                              </table>
+<script>
+
+   
+   function addrow(tbody) {
+	   //alert($$(tbody).rows.length);
+      var add = false;
+      var newnode;
+      if($$(tbody).rows.length == 1 && $$(tbody).rows[0].style.display == 'none') {
+         $$(tbody).rows[0].style.display = '';
+         newnode = $$(tbody).rows[0];
+         newnode.cells[newnode.cells.length-1].firstChild.value='data';
+      } else {
+         newnode = $$(tbody).rows[0].cloneNode(true);
+         newnode.cells[newnode.cells.length-1].firstChild.value='data';
+         add = true;
+      }
+    
+      if(add) {
+    	 //newnode.lastChild.firstChild.value='data';
+         $$(tbody).appendChild(newnode);
+        
+        
+      }
+     
+      
+     
+   }
+   
+   function delrow(obj, tbody) {
+	   //标记 该行删除，然后后台数据库遇到该标志直接删除
+     if($$(tbody).rows.length == 1) {
+        var trobj = obj.parentNode.parentNode;
+        trobj.style.display='none';
+        obj.parentNode.firstChild.value='del';
+     }else{
+        $$(tbody).removeChild(obj.parentNode.parentNode);
+     }
+   }
+</script>  
+</div>
+</div>
+</td>
+</tr>
+
+
+
+<tr>
+                  <th valign="top">房间跳转设置：</th>
+                  <td valign="top">
+                    <div class="bdrcontent">
+                        <div id="div_ptype">
+                          <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+                             <tbody>
+                                <tr>
+                                  <td width="50">当前房间</td>
+                                  <td width="50">目的房间</td>
+                                  <td width="100">坐标</td>
+                                  <td width="260">坐标点图片</td>
+                                  <td class="norightborder"></td>
+                                </tr>
+                              </tbody>
+                             <if condition="$redirects neq ''">
+                                <tbody>
+                                   <volist name="redirects" id="redirect">
+                                 <tr>
+                                   <td width="50">                                   
+                                     
+                                      <select id="src_360_id" name="room[src_360_id][]" class="input-medium" data-rule-required="true"> 
+                                          <option value="0">请当前房间</option> 
+                                            <volist name="items" id="room">
+                                               <option value="{laoyang:$room['id']}" <if condition="$redirect['src_360_id'] eq $room['id']">selected="selected"</if>>{laoyang:$room['house']}</option>
+                                            </volist>
+                                        </select>
+                                    </td>  
+                                    
+                                    <td width="50">                                   
+                                     
+                                      <select id="target_360_id" name="room[target_360_id][]" class="input-medium" data-rule-required="true"> 
+                                          <option value="0">目标房间</option> 
+                                            <volist name="items" id="room">
+                                               <option value="{laoyang:$room['id']}" <if condition="$redirect['target_360_id'] eq $room['id']">selected="selected"</if>>{laoyang:$room['house']}</option>
+                                            </volist>
+                                        </select>
+                                    </td>
+                                       
+                                    <td width="100"><input type="text" name="room[location][]"   value="{laoyang:$redirect.location}" style="width:100px;"></td>
+                                    <td width="260"><input type="text" name="room[show_pic][]"   value="{laoyang:$redirect.show_pic}" style="width:260px;"></td>
+                                   
+                                    <td width="50" class="norightborder"><input type="hidden" name="room[flag][]" value='data' /><input type="hidden" name="room[id][]"    value="{laoyang:$redirect.id}" style="width:50px;"><a href="javascript:;" onclick="delrow(this, 'div_recirect_del');">删除</a></td>
+                                 </tr>
+                                   </volist>
+                                </tbody>
+                             </if>
+                              <tbody id="div_recirect_del" name="div_recirect_del">    
+                                    <tr style="display:none">
+                                <td width="50">                                   
+                                     
+                                      <select id="src_360_id" name="room[src_360_id][]" class="input-medium" data-rule-required="true"> 
+                                          <option value="0">请当前房间</option> 
+                                            <volist name="items" id="room">
+                                               <option value="{laoyang:$room['id']}">{laoyang:$room['house']}</option>
+                                            </volist>
+                                        </select>
+                                    </td>  
+                                    
+                                    <td width="50">                                   
+                                     
+                                      <select id="target_360_id" name="room[target_360_id][]" class="input-medium" data-rule-required="true"> 
+                                          <option value="0">目标房间</option> 
+                                            <volist name="items" id="room">
+                                               <option value="{laoyang:$room['id']}" >{laoyang:$room['house']}</option>
+                                            </volist>
+                                        </select>
+                                    </td>
+                                       
+                                    <td width="100"><input type="text" name="room[location][]" value="" style="width:100px;"></td>
+                                    <td width="260"><input type="text" name="room[show_pic][]"   value="{laoyang::C('site_url')}/tpl/User/default/common/images/img/ic_touch-point.png" style="width:260px;"></td>
+                                   
+                                     <td width="50" class="norightborder"><input type="hidden" name="room[flag][]" /><input type="hidden" name="room[id][]"    value="" style="width:50px;"><a href="javascript:;" onclick="delredirectrow(this, 'div_recirect_del');">删除</a></td>
+                                
+                                
+                                    </tr>
+                                  </tbody>
+                                  <tbody>
+                                     <tr>
+                                       <td colspan="4" class="norightborder"> 
+                                 
+                                     <button type="button" id="vtype" onclick="addredirectrow('div_recirect_del');" class="btnGrayS vm" value="true"><strong>添加选项</strong></button>坐标格式x,y,z因为逗号分隔
+                            
+                                     </td>
+                                  
+                                      </tr>
+                                  </tbody>
+                              </table>
+<script>
+
+   /*
+   *360预览
+   */
+   function yulan360(){
+	   //打开户型图的连接
+	   //获取要预览的360模型模板
+	   var tmpl_id = document.getElementById('tmpl_id').value;
+	   if(tmpl_id == ''){
+		   alert('还未选择360全景模板');
+		   return;
+	   }
+	   var url = "{laoyang::U('Panorama/houselist',array('token'=>$token,'id'=>$housetype['id']))}&tmpl_id="+tmpl_id;
+	   window.open();
+	   
+   }
+   function addredirectrow(tbody) {
+	   //alert($$(tbody).rows.length);
+      var add = false;
+      var newnode;
+      if($$(tbody).rows.length == 1 && $$(tbody).rows[0].style.display == 'none') {
+         $$(tbody).rows[0].style.display = '';
+         newnode = $$(tbody).rows[0];
+         newnode.cells[newnode.cells.length-1].firstChild.value='data';
+      } else {
+         newnode = $$(tbody).rows[0].cloneNode(true);
+         newnode.cells[newnode.cells.length-1].firstChild.value='data';
+         add = true;
+      }
+    
+      if(add) {
+    	 //newnode.lastChild.firstChild.value='data';
+         $$(tbody).appendChild(newnode);
+        
+        
+      }
+     
+      
+     
+   }
+   
+   function delredirectrow(obj, tbody) {
+	   //标记 该行删除，然后后台数据库遇到该标志直接删除
+     if($$(tbody).rows.length == 1) {
+        var trobj = obj.parentNode.parentNode;
+        trobj.style.display='none';
+        obj.parentNode.firstChild.value='del';
+     }else{
+        $$(tbody).removeChild(obj.parentNode.parentNode);
+     }
+   }
+</script>  
+</div>
+</div>
+</td>
+</tr>
+
+
+
+					<th width="120">楼层：</th>
+					<td> <input type="text" id="floor_num" name="floor_num" value="{laoyang:$housetype['floor_num']}" class="input-large px" data-rule-required="true">
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">如：1-10</span></td>
+				</tr>
+				<tr>
+					<th width="120">建筑面积：</th>
+					<td> <input type="text" id="area" name="area" value="{laoyang:$housetype['area']}" class="input-large px" data-rule-required="true">
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">如：约120平方米</span></td>
+				</tr>
+				<tr>
+					<th>房屋户型：</th>
+					<td> 
+							 <select id="fang" name="fang" class="input-mini" data-rule-required="true"> 
+                                            <option value="1" <if condition="$housetype['fang'] eq 1">selected="selected"</if>>1</option>                       
+                                            <option value="2" <if condition="$housetype['fang'] eq 2">selected="selected"</if>>2</option>
+                                            <option value="3" <if condition="$housetype['fang'] eq 3">selected="selected"</if>>3</option>
+                                            <option value="4" <if condition="$housetype['fang'] eq 4">selected="selected"</if>>4</option>
+                                            <option value="5" <if condition="$housetype['fang'] eq 5">selected="selected"</if>>5</option>
+                                            <option value="6" <if condition="$housetype['fang'] eq 6">selected="selected"</if>>6</option>
+                                            <option value="7" <if condition="$housetype['fang'] eq 7">selected="selected"</if>>7</option>
+                                        </select>
+                                        房
+                                        <select id="ting" name="ting" class="input-mini" data-rule-required="true">     
+                                            <option value="1" <if condition="$housetype['ting'] eq 1">selected="selected"</if>>1</option>                           
+                                            <option value="2" <if condition="$housetype['ting'] eq 2">selected="selected"</if>>2</option>
+                                            <option value="3" <if condition="$housetype['ting'] eq 3">selected="selected"</if>>3</option>
+                                            <option value="4" <if condition="$housetype['ting'] eq 4">selected="selected"</if>>4</option>
+                                            <option value="5" <if condition="$housetype['ting'] eq 5">selected="selected"</if>>5</option>
+                                            <option value="6" <if condition="$housetype['ting'] eq 6">selected="selected"</if>>6</option>
+                                        </select>
+                                        厅	
+					</td>
+				</tr>
+				<tr>
+					<th width="120">显示顺序：</th>
+					<td>  <input type="text" id="sort" name="sort" value="{laoyang:$housetype['sort']|default=1}" class="input-mini px" data-rule-required="true" data-rule-number="true">
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">数值越大越靠前</span></td>
+				</tr>
+				<tr>
+					<th width="120">户型介绍：</th>
+					<td>  <textarea id="description" name="description" class='input-xxlarge'  placeholder="户型介绍简单明了就好" style="width:100%;height:125px">{laoyang:$housetype['description']}</textarea></td>
+				</tr>
+				<tr>
+					<th width="120">户型图片:</th>        //建议尺寸：宽720像素，高400像素
+					<td> 
+					
+					 <select id="poid" name="poid" class="input-medium" data-rule-required="true"> 
+
+
+
+                            <option value="0">请选择相册</option> 
+
+
+
+                                <volist name="photo" id="vo">
+
+
+
+                                    <option value="{laoyang:$vo['id']}" <if condition="$vo['id'] eq $housetype['poid']">selected="selected"</if>>{laoyang:$vo['title']}</option>
+
+
+
+                                </volist>
+
+
+
+                          </select>
+
+
+
+                     <a href="{laoyang::U('Photo/add',array('token'=>$token,'poid'=>$poid['poid']))}" class="btn"><i class="icon-plus"></i>添加相册</a>
+					
+					</td>
+				</tr>				  <if condition="$housetype['id']  eq ''">						<input type="hidden" name="opertype" value="add" />				 <else/>  						<input type="hidden" name="id" value="{laoyang:$housetype['id']}" />						<input type="hidden" name="opertype" value="edit" />				  </if>   					
+
+				<th>&nbsp;</th>
+					<td>					<input type="hidden" name="thetype" value="estate" />
+					<input type="hidden" name="token" value="{laoyang:$token}" />
+						<button type="submit" name="button" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> <include file="Public:footer"/>
+        

@@ -1,0 +1,241 @@
+<include file="Public:head"/>
+
+
+
+<link rel="stylesheet" type="text/css" href="{laoyang::STATICS}/default_user_com.css" media="all">
+
+
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:10px;" >
+<if condition="$ischild neq 1">
+<include file="Public:hangye"/>
+
+<div class="cLineB">
+</if>
+<h4 class="left">竞猜回复设置</h4>
+<div class="clr"></div>
+</div>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:10px;" >
+
+
+
+         <link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+
+
+
+        <div class="tab">
+
+
+
+<ul>
+
+<li class="<if condition="ACTION_NAME EQ 'index'">current</if> tabli" id="tab0"><a href="{laoyang::U('Jingcai/index',array('token'=>$token))}">回复设置</a></li>
+
+<li class="<if condition="ACTION_NAME EQ 'type'">current</if> tabli" id="tab2"><a href="{laoyang::U('Jingcai/type',array('token'=>$token))}">赛事组织</a></li>
+
+<li class="<if condition="ACTION_NAME EQ 'type_add'">current</if> tabli" id="tab3"><a href="{laoyang::U('Jingcai/type_add',array('token'=>$token,'pid'=>$pid))}">添加赛事组织</a></li>
+<div class="cLine">
+
+
+          
+
+
+
+            <div class="clr"></div>
+
+
+
+          </div>
+
+</ul>
+
+
+
+</div>  
+
+
+
+          
+
+
+
+     
+
+
+
+    <div class="alert">
+
+
+
+    <p><span class="bold">使用方法：</span>每个组织均有相关赛事，这个地方需要手工录入赛事举办组织</p>
+
+
+
+    </div>
+
+
+
+</div>
+          <div class="msgWrap">
+
+
+
+          <form method="post" action="" id="info">
+
+
+
+          <input name="delall" type="hidden" value="del">
+
+
+
+           <input name="wxid" type="hidden" value="gh_423dwjkewad">
+
+
+
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+
+
+              <thead>
+
+
+
+                                        <tr>
+
+
+
+                                            <th class="span4">赛事名称</th>
+
+
+
+                    
+
+
+
+                                            <th class="span2">显示顺序</th>
+
+
+
+                                            <th class="span2">操作</th>
+
+
+
+                                        </tr>
+
+
+
+                                    </thead>
+
+
+
+               <tbody>
+
+
+
+                                    <if condition="$son_data eq ''">
+
+
+
+                                        <tr>
+
+
+
+                                        <td colspan="4" style="text-align:center; height:30px;"><strong>没有任何赛事组织信息.</strong></td>
+
+
+
+                                        </tr>
+
+
+
+                                    <else/>
+
+
+
+                                    <volist name="son_data" id="list">
+
+
+
+                                        <tr>
+
+
+
+                                        <td style="">{laoyang:$list['title']}</td>
+
+
+
+        
+
+
+
+                                        <td style="">{laoyang:$list['sort']}</td>
+
+
+
+                                        <td style="">
+
+	                                        <a href="{laoyang::U('Jingcai/team',array('id'=>$list['id'],'token'=>$list['token'],'pid'=>$pid))}" class="btn">赛事成员</a>
+	                                        <a href="{laoyang::U('Jingcai/changci',array('id'=>$list['id'],'token'=>$list['token'],'pid'=>$pid))}" class="btn">赛事记录</a>
+	                                        <a href="{laoyang::U('Jingcai/type_add',array('id'=>$list['id'],'token'=>$list['token'],'pid'=>$pid))}" class="btn">编辑</a>
+	                                        <a href="{laoyang::U('Jingcai/type_del',array('id'=>$list['id'],'token'=>$list['token']))}" onclick="return(confirm('删除该组织，该组织下的成员也会被删除，确定要删除吗？'))" class="btn">删除</a></a>
+
+                                        </td>
+
+
+
+                                        </tr>
+
+
+
+                                    </volist>
+
+
+
+                                    </if>
+
+
+
+                                    </tbody>
+
+
+
+            </table>
+
+
+
+           </form> 
+
+
+
+          </div>
+
+
+
+          <div class="cLine">
+
+
+
+            <div class="pageNavigator right">
+
+
+
+                 <div class="pages">{laoyang:$page}</div>
+
+
+
+            </div>
+
+
+
+            <div class="clr"></div>
+
+
+
+          </div>
+
+
+
+        </div>  
+
+
+
+<include file="Public:footer"/>

@@ -1,0 +1,68 @@
+﻿<!DOCTYPE HTML>
+<!-- saved from url=(0078)http://wx.weixiamen.cn/mobile.php -->
+<!DOCTYPE html PUBLIC "" "">
+<HTML>
+<HEAD>
+<META content="IE=11.0000" 
+http-equiv="X-UA-Compatible">
+<TITLE>我的活动</TITLE>
+<META charset="utf-8">
+<LINK href="/tpl/Wap/default/common/sharetalent/mobi.css" rel="stylesheet">
+<META name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+<META http-equiv="Cache-Control" content="max-age=0">
+<META name="apple-touch-fullscreen" content="yes">
+<META name="apple-mobile-web-app-capable" content="yes">
+<META name="apple-mobile-web-app-status-bar-style" content="black">
+<META name="Description" content="分享达人">
+<META name="Keywords" content="分享达人">
+<META name="GENERATOR" content="MSHTML 11.00.9600.17344">
+</HEAD>
+<BODY style='background-image: url("/tpl/Wap/default/common/sharetalent/bg.jpg");'>
+<SECTION 
+class="main animated fadeInDown">
+  <DIV class="main-box">
+    <DIV class="activity-list">
+      <volist name="list" id="list" key="i">
+
+
+      <DIV class="regular activity-box">
+        <H1>{laoyang:$list.title}</H1>
+        <FIGURE class="figure"><A class="enter" href="{laoyang::U('Sharetalent/info',array('token'=>$list['token'],'wecha_id'=>$_GET['wecha_id'],'id'=>$list['pid']))}"><IMG 
+alt="" src="{laoyang:$list.picurl}"></A> </FIGURE>
+        <DIV class="look fn-clear">
+          <DIV class="view">
+            <P class="fn-clear"><I class="icon-eye-1"></I><SPAN>{laoyang:$list.click}</SPAN></P>
+            <P class="text">浏览量</P>
+          </DIV>
+          <DIV class="residue">
+            <P class="fn-clear"><I class="icon-gift"></I><SPAN>{laoyang:$list.number}</SPAN></P>
+            <P class="text">奖品剩余数量</P>
+          </DIV>
+        </DIV>
+        <P class="activity-btn fn-clear"><A class="enter" href="{laoyang::U('Sharetalent/info',array('token'=>$list['token'],'wecha_id'=>$_GET['wecha_id'],'id'=>$list['id']))}">进入活动</A><A 
+class="rule-btn" href="{laoyang::U('Sharetalent/myprize',array('token'=>$list['token'],'wecha_id'=>$_GET['wecha_id'],'id'=>$list['id']))}">查看奖品</A></P>
+        <P></P>
+        <if condition="$ttime egt $list.statdate "><I class="icon icon-end"><else/><I class="icon icon-hot"></if></I></DIV></volist>
+    </DIV>
+    
+  </DIV>
+  <FOOTER class="foot">
+    <STYLE>
+#copyright {width: 100%;height: 50px;line-height: 50px;text-align:center; color:#333;font-size: 15px;}
+</STYLE>
+    <DIV id="copyright" 
+style="color: rgb(255, 255, 255);">技术支持：{laoyang:$date.copyright}</DIV>
+  </FOOTER>
+</SECTION>
+<NAV class="nav fn-clear"><a  href="{laoyang::U('Sharetalent/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}" ><i  class="icon-award"></i>达人活动</a> 
+	<a  href="{laoyang::U('Sharetalent/my',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"  class="active"><i  class="icon-inbox"></i>我的活动</a> 
+	<a  href="{laoyang::U('Sharetalent/reg',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id']))}"><i  class="icon-user-1"></i>个人中心</a> </NAV>
+<SCRIPT src="/tpl/Wap/default/common/sharetalent/mini-full-min.js"></SCRIPT> 
+<SCRIPT type="text/javascript">
+//显示分享按钮
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+WeixinJSBridge.call(showOptionMenu);
+});
+</SCRIPT>
+</BODY>
+</HTML>

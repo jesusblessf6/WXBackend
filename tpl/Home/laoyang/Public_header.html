@@ -1,0 +1,29 @@
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/index.css" media="all" />
+<script src="{laoyang::RES}/js/html5.js"></script>
+<script type="text/javascript" src="{laoyang::RES}/js/jQuery.js"></script>
+<script type="text/javascript" src="{laoyang::RES}/js/carouFredSel.js"></script>
+<body>
+    <div class="nav clearfix">
+        <div class="nav-content">   
+		
+		<img src="{laoyang::C('site_logo')}"   >
+            <div class="right line-li">
+                <ul>
+                    <li><a href="/" class="hover">首页</a></li>
+                    <li><a href="{laoyang::U('Home/Index/fc')}">功能介绍</a></li>
+                    <li><a href="{laoyang::U('Home/Index/about')}">关于我们</a></li>
+                    <li><a href="{laoyang::U('Home/Index/price')}">资费说明</a></li>
+                    <li><a href="{laoyang::U('Home/Index/guide')}">案例展示</a></li>
+
+               	<if condition="$_SESSION[uid]==false">
+				<li><a href="{laoyang::U('Index/login')}">登录后台</a></li>
+				<li><a href="{laoyang::U('Index/reg')}" class="hover">申请试用</a></li>
+					<else/>
+                <li><a href="{laoyang::U('User/Index/index')}">管理中心</a></li>
+				<li><a href="/#" onClick="Javascript:window.open('{laoyang::U('System/Admin/logout')}','_blank')" >退出</a></li>
+				</if>	
+
+                </ul>
+            </div>
+      </div>
+    </div>

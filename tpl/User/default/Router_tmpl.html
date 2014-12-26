@@ -1,0 +1,120 @@
+﻿<include file="Public:head"/>
+<!--鼠标移动上去效果start-->
+<style>
+    li .mbtip {
+    display: none;
+} 
+.cateradio li:hover .mbtip {
+    background-color: #000000;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 7px;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.15);
+    color: #FFFFFF;
+    display: block;
+    padding: 6px;
+    float:right;
+   /* position:relative;
+    right:-140px;
+    top:-325px;	*/
+    width: 130px;
+    text-align: left;
+    z-index: 999;
+}
+
+</style>
+
+<!--中间内容-->
+<style type="text/css">
+.cateradio5 { margin-top:20px }
+.cateradio5 li { float: left; margin: 0 0 20px 20px; width: 170px; height: 383px; text-align: center; background: url(index/images/radio_iphone.png) no-repeat center top; position: relative; }
+.phome{ position: fixed; top:50%; right:1px; margin-top:-28px; z-index:999}
+.blue {border: 0;}
+</style>
+
+<div class="phome"><a id="homeurl2" target="_blank" href="{laoyang::C('site_url')}/index.php?g=Wap&m=Index&a=index&token={laoyang:$token}&wecha_id={wechat_id}"><img src="http://img.ishangtong.com/stylepage/phome.png"></a></div>
+
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{laoyang::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{laoyang::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{laoyang::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:10px;" >
+<div class="cLineB">
+   <include file="Wifi:menu"/>
+</div>
+    <h4>模板管理 </h4>
+  </div>
+  <div class="msgWrap form">
+  
+<link href="{laoyang::STATICS}/tmpls/css/style.css" rel="stylesheet" type="text/css" />
+<link href="{laoyang::STATICS}/tmpls/css/product.css" rel="stylesheet" type="text/css" />
+<script src="{laoyang::STATICS}/tmpls/js/jquery.tools.min.js" type="text/javascript"></script> 
+<script src="{laoyang::STATICS}/tmpls/js/jquery.mixitup.min.js" type="text/javascript"></script>
+        
+      <div >
+        <fieldset>
+         <ul class="cateradio g grid" id="grid">			
+				<volist id="tpl" name="tpl">
+					<if condition="$info.rz_id eq 2">
+					<li class="mix <php>if($info['tmpl'] == $tpl['id']) echo 'ck active';</php>">
+						<div class="mbtip">{laoyang:$tpl.info|default='暂无模板描述'}</div>
+						<label>
+							<img src="./tpl/Home/wifi/{laoyang:$tpl.tpl}/{laoyang:$_GET['type']}_pic.png">
+							<input class="radio" type="radio" <php>if($info['tmpl'] == $tpl['id'])echo 'checked'; </php> name="optype" value="{laoyang:$tpl.id}">
+							{laoyang:$tpl.title}
+							</label>
+					</li>
+				</volist>
+				<div style="clear:both"></div>
+			</ul>
+        </fieldset>
+      </div>
+    </div>
+  
+       <script>
+
+            $(".radio").click(function(){
+                $(".cateradio li").each(function(){
+                    $(this).removeClass("active");
+                });
+                $(this).parents("li").addClass("active");
+				alert("已选择 "+$(this).val()+ " 模板！")
+                var myurl='index.php?g=User&m=Router&a=selecttmpl&style='+$(this).val()+'&r='+Math.random()+"&wid={laoyang:$info.id}&type={laoyang:$_GET['type']}" 
+				window.location.href=myurl;
+            });
+         
+        </script>
+  </div>
+</div>
+</div>
+</div>
+</div>
+<!--底部-->
+</div>
+
+<!--选择首页模板-->
+<script>
+$(function(){
+
+//列表hover效果
+$(".grid li").hover(
+function(){
+$(this).addClass("hover");
+},
+function(){
+$(this).removeClass("hover");
+}
+);
+$(".prdInfo").click(function(){
+return false;
+});
+
+$('#grid').mixitup({layoutMode: 'grid'});
+});
+</script>
+
+</div></div>
+<!--Footer-part-->
+<include file="Public:footer"/>
+</body>
+</html>

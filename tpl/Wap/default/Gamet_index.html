@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>2048加强版</title>
+
+  <link href="{laoyang::RES}/gamet/style/main.css" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="{laoyang::RES}/gamet/favicon.ico">
+  <link rel="apple-touch-icon" href="{laoyang::RES}/gamet/apple-touch-icon.png">
+   <!-- Mobile Devices Support @begin -->
+
+
+
+            <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+
+
+
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+
+
+
+            <meta content="no-cache" http-equiv="pragma">
+
+
+
+            <meta content="0" http-equiv="expires">
+
+
+
+            <meta content="telephone=no, address=no" name="format-detection">
+
+
+
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+
+
+            <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+
+
+
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+
+
+        <!-- Mobile Devices Support @end -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+
+<body>
+  <div class="container">
+   <div class="scores-left"><img src="{laoyang:$info.picurls1}"></div>
+    <div class="heading"> 
+      <div class="ad">{laoyang:$info.ad}</div> 
+     
+      <div class="scores-container">
+        <div class="score-container">0</div>
+        <div class="best-container">0</div>
+      </div>
+    </div>
+    <p class="game-intro">通过方块跳到总和 <strong>2048!</strong></p>
+
+    <div class="game-container">
+      <div class="game-message">
+        <p></p>
+        <div class="lower">
+	        <a class="keep-playing-button">继续</a>
+          <a class="retry-button">再试一次</a>
+        </div>
+      </div>
+
+      <div class="grid-container">
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="tile tile-block-a"><div class="tile-inner"></div></div>
+        <div class="tile tile-block-b"><div class="tile-inner"></div></div>
+        <div class="tile tile-block-c"><div class="tile-inner"></div></div>
+        <div class="tile tile-block-d"><div class="tile-inner"></div></div>
+        <div class="tile tile-bird"><div class="tile-inner"></div></div>
+      </div>
+    </div>
+
+    <p class="game-explanation">
+      <strong class="important">如何玩:</strong> 按任意键<strong>操作方块</strong>当方块经过一个障碍<strong>你得到相应的分数!</strong>
+    </p>
+    <hr>
+    <p>
+    Created by <a href="http://www.fenxiangweb.com" target="_blank">hcz.</a> Based on <a href="http://www.fenxiangweb.com" target="_blank">2048 by Gabriele Cirulli</a> and <a href="http://www.fenxiangweb.com" target="_blank">Flappy Bird by Dong Nguyen.</a>
+    </p>
+    <hr>
+    <p>More 2048 games:</p>
+    <p><a href="https://hczhcz.github.io/Racing-2048">Racing 2048</a>, <a href="https://hczhcz.github.io/2048">Upside down</a>, <a href="https://hczhcz.github.io/2048/2047">Role reversal</a>, <a href="https://hczhcz.github.io/2048/20ez">Easy ver</a>, <a href="https://hczhcz.github.io/2048/20mu">喵 ver</a>, <a href="https://hczhcz.github.io/my-2048">Customizable 2048</a></p>
+  </div>
+
+  <script src="{laoyang::RES}/gamet/js/animframe_polyfill.js"></script>
+  <script src="{laoyang::RES}/gamet/js/keyboard_input_manager.js"></script>
+  <script src="{laoyang::RES}/gamet/js/html_actuator.js"></script>
+  <script src="{laoyang::RES}/gamet/js/grid.js"></script>
+  <script src="{laoyang::RES}/gamet/js/tile.js"></script>
+  <script src="{laoyang::RES}/gamet/js/local_score_manager.js"></script>
+  <script src="{laoyang::RES}/gamet/js/game_manager.js"></script>
+  <script src="{laoyang::RES}/gamet/js/application.js"></script>
+    <script type="text/javascript">  
+$(function(){  
+  
+var imglist =document.getElementsByTagName("img");  
+//安卓4.0+等高版本不支持window.screen.width，安卓2.3.3系统支持  
+/* 
+var _width = window.screen.width; 
+var _height = window.screen.height - 20; 
+ 
+var _width = document.body.clientWidth; 
+var _height = document.body.clientHeight - 20; 
+*/  
+var _width,   
+    _height;  
+doDraw();  
+  
+window.onresize = function(){  
+    doDraw();  
+}  
+  
+function doDraw(){  
+    _width = window.innerWidth;  
+    _height = window.innerHeight - 20;  
+    for( var i = 0, len = imglist.length; i < len; i++){  
+        DrawImage(imglist[i],_width,_height);  
+    }  
+}  
+  
+function DrawImage(ImgD,_width,_height){   
+    var image=new Image();   
+    image.src=ImgD.src;   
+    image.onload = function(){  
+        if(image.width>30 && image.height>30){   
+       
+            if(image.width/image.height>= _width/_height){   
+                if(image.width>_width){  
+                    ImgD.width=_width;   
+                    ImgD.height=(image.height*_width)/image.width;   
+                }else{   
+                    ImgD.width=image.width;   
+                    ImgD.height=image.height;   
+                }   
+            }else{   
+                if(image.height>_height){  
+                    ImgD.height=_height;   
+                    ImgD.width=(image.width*_height)/image.height;   
+                }else{   
+                    ImgD.width=image.width;   
+                    ImgD.height=image.height;   
+                }   
+            }  
+        }     
+    }  
+  
+}  
+     
+})  
+</script>
+ <script>
+  document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        window.shareData = {  
+            "imgUrl": "{laoyang:$f_siteUrl}/tpl/Wap/default/common/img/2048/2048t.png",
+            "timeLineLink": '{laoyang:$f_siteUrl}/index.php?g=Wap&m=Gamet&a=index&token={laoyang:$Think.get.token}&wecha_id={laoyang:$Think.get.wecha_id}',
+            "sendFriendLink":'{laoyang:$f_siteUrl}/index.php?g=Wap&m=Gamet&a=index&token={laoyang:$Think.get.token}&wecha_id={laoyang:$Think.get.wecha_id}',
+            "weiboLink": '{laoyang:$f_siteUrl}/index.php?g=Wap&m=Gamet&a=index&token={laoyang:$Think.get.token}&wecha_id={laoyang:$Think.get.wecha_id}',
+            "tTitle": "2048加强版",
+            "tContent": "指尖上的2048，你玩的过去吗？",
+            "fTitle": "2048加强版",
+            "fContent": "指尖上的2048，你玩的过去吗？",
+            "wContent": "指尖上的2048，你玩的过去吗吧？" 
+        };
+        // 发送给好友
+        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+            WeixinJSBridge.invoke('sendAppMessage', { 
+                "img_url": window.shareData.imgUrl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": window.shareData.sendFriendLink,
+                "desc": window.shareData.fContent,
+                "title": window.shareData.fTitle
+            }, function (res) {
+                _report('send_msg', res.err_msg);
+            })
+        });
+        // 分享到朋友圈
+        WeixinJSBridge.on('menu:share:timeline', function (argv) {
+            WeixinJSBridge.invoke('shareTimeline', {
+                "img_url": window.shareData.imgUrl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": window.shareData.timeLineLink,
+                "desc": window.shareData.tContent,
+                "title": window.shareData.tTitle
+            }, function (res) {
+                _report('timeline', res.err_msg);
+            });
+        });
+        // 分享到微博
+        WeixinJSBridge.on('menu:share:weibo', function (argv) {
+            WeixinJSBridge.invoke('shareWeibo', {
+                "content": window.shareData.wContent,
+                "url": window.shareData.weiboLink,
+            }, function (res) {
+                _report('weibo', res.err_msg);
+            });
+        });
+        }, false)</script>
+</body>
+</html>

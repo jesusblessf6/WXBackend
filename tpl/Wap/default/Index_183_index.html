@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+
+
+<html>
+
+
+
+        <head>
+       <if condition="$zd['status'] eq 1">
+            {laoyang:$zd['code']}
+        </if>
+
+
+
+        <meta charset="utf-8" />
+
+
+
+        <link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/183/css/reset.css?2014-02-25-10" media="all" />
+
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/183/css/snower.css?2014-02-25-10" media="all" />
+
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/183/css/common.css?2014-02-25-10" media="all" />
+
+<link rel="stylesheet" type="text/css" href="../../wm-xin-a/font-awesome.css?v=2013121900" media="all" />
+
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/183/css/home-53.css?2014-02-25-10" media="all" />
+
+<script type="text/javascript" src="{laoyang::RES}/css/183/js/maivl.js?2014-02-25-10"></script>
+
+<script type="text/javascript" src="{laoyang::RES}/css/183/js/jQuery.js?2014-02-25-10"></script>
+
+<script type="text/javascript" src="{laoyang::RES}/css/183/js/zepto.js?2014-02-25-10"></script>
+
+<script type="text/javascript" src="{laoyang::RES}/css/183/js/swipe.js?2014-02-25-10"></script>
+
+<script type="text/javascript" src="{laoyang::RES}/css/183/js/player_min.js?2014-02-25-10"></script>
+
+<script type="text/javascript" src="{laoyang::RES}/css/183/js/audio.js?2014-02-25-10"></script>
+
+<title>{laoyang:$tpl.wxname}</title>
+
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+
+
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+
+
+
+        <meta name="Keywords" content="老杨分享、微信营销、微信代运营、微信定制开发、微信托管、微网站、微商城、微营销" />
+
+
+
+        <meta name="Description" content="老杨分享，国内最大的微信公众智能服务平台，360微电商八大微体系：微菜单、微官网、微会员、微活动、微商城、微推送、微服务、微统计，企业微营销必备。" />
+
+
+
+        <!-- Mobile Devices Support @begin -->
+
+
+
+            <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+
+
+
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+
+
+
+            <meta content="no-cache" http-equiv="pragma">
+
+
+
+            <meta content="0" http-equiv="expires">
+
+
+
+            <meta content="telephone=no, address=no" name="format-detection">
+
+
+
+            <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+
+
+
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+
+
+        <!-- Mobile Devices Support @end -->
+
+
+
+        <link rel="shortcut icon" href="http://stc.weimob.com/img/favicon.ico" />
+
+
+
+    </head>
+
+
+
+    <body onselectstart="return true;" ondragstart="return false;">
+
+
+
+        
+
+
+
+<div class="body">
+
+
+
+<section>
+
+
+
+    <div>
+
+
+
+        	<!--
+
+
+
+	幻灯片管理
+
+
+
+	-->
+
+
+
+	<div style="-webkit-transform:translate3d(0,0,0);">
+
+
+
+		<div id="banner_box" class="box_swipe">
+
+
+
+			<ul><volist name="flash" id="so">
+
+
+
+									<li><p></p><if condition="$so.url neq ''"><a href="{laoyang:$so.url}"></if><img src="{laoyang:$so.img}" alt="{laoyang:$so.info}" style="width:100%;" /><if condition="$so.url neq ''"></a></if></li>
+
+
+
+							</volist>		
+
+
+
+							</ul>
+
+
+
+			<ol>
+
+
+
+									<li class="on"></li>
+
+
+
+									<li ></li>
+
+
+
+									<li ></li>
+
+
+
+							</ol>
+
+
+
+		</div>
+
+
+
+	</div>
+
+
+
+		<script>
+
+
+
+		$(function(){
+
+
+
+			new Swipe(document.getElementById('banner_box'), {
+
+
+
+				speed:500,
+
+
+
+				auto:3000,
+
+
+
+				callback: function(){
+
+
+
+					var lis = $(this.element).next("ol").children();
+
+
+
+					lis.removeClass("on").eq(this.index).addClass("on");
+
+
+
+				}
+
+
+
+			});
+
+
+
+		});
+
+
+
+	</script>
+
+
+
+<header>
+
+        <div class="snower">
+
+            <script type="text/javascript">var urls = new Array();urls.push('http://stc.weimob.com/img/template/lib/v57_snow1.png');urls.push('http://stc.weimob.com/img/template/lib/v57_snow2.png');urls.push('http://stc.weimob.com/img/template/lib/v57_snow3.png');urls.push('http://stc.weimob.com/img/template/lib/v57_snow4.png');</script>
+
+            <script type="text/javascript" src="js/snower2.js"></script>
+
+        </div>
+
+    </header>                 							<script>
+
+
+
+				$().ready(function(){
+
+
+
+					playbox.init("playbox");
+
+
+
+				});
+
+
+
+			</script>
+
+
+
+			<div class="header2">
+
+
+
+				<div>
+
+
+
+					<a href="javascript:;" id="playbox" data-type="2" class="btn_music" onclick="playbox.init(this).play();" ontouchstart="event.stopPropagation();"></a><audio id="audio" loop src="http://stc.weimob.com/img/template/lib/default.mp3" style="pointer-events:none;display:none;width:0!important;height:0!important;"></audio>
+
+
+
+				</div>
+
+
+
+			</div>
+
+
+
+                <ul class="list_ul"><volist name="info" id="vo" >
+
+
+
+            <li class="box">                <dl>
+
+
+
+                                            <a href="<if condition="$vo['url'] eq ''">{laoyang::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}<else/>               {laoyang:$vo.url|htmlspecialchars_decode}</if>">
+
+
+
+                                                    <dd>
+
+
+
+                            <div>
+
+
+
+                                <img src="{laoyang:$vo.img}" />
+
+
+
+                            </div>
+
+
+
+                        </dd>
+
+
+
+                        <dt>{laoyang:$vo.name}</dt>
+
+
+
+                    </a>
+
+
+
+                </dl>
+
+
+
+                           
+
+
+
+            </li>    </volist>
+
+  </ul>
+
+
+
+    </div>
+
+
+
+</section>
+
+
+
+</div>
+
+
+
+<!--
+
+
+
+导航菜单
+
+
+
+   后台设置的快捷菜单
+
+
+
+-->
+
+
+
+
+
+
+
+<!--
+
+
+
+分享前控制
+
+
+
+-->
+
+
+
+	<script type="text/javascript">
+
+		
+
+		window.shareData = {
+
+			"imgUrl": "{laoyang:$homeInfo.picurl}",
+
+			"timeLineLink": "{laoyang::C('site_url')}{laoyang::U('Index/index',array('token'=>$vo['token']))}",
+
+			"sendFriendLink": "{laoyang::C('site_url')}{laoyang::U('Index/index',array('token'=>$vo['token']))}",
+
+			"weiboLink": "{laoyang::C('site_url')}{laoyang::U('Index/index',array('token'=>$vo['token']))}",
+
+			"tTitle": "欢迎访问{laoyang:$tpl.wxname}微网站",
+
+			"tContent": "欢迎访问{laoyang:$tpl.wxname}微网站",
+
+			"fTitle": "欢迎访问{laoyang:$tpl.wxname}微网站",
+
+			"fContent": "欢迎访问{laoyang:$tpl.wxname}微网站",
+
+			"wContent": "欢迎访问{laoyang:$tpl.wxname}微网站"
+
+		};
+
+	</script>
+
+
+
+        			<footer style="overflow:visible;">
+
+
+
+				<div class="weimob-copyright" style="padding-bottom:50px;">
+
+											<if condition="$iscopyright eq 1">{laoyang:$homeInfo.copyright}<else/>{laoyang:$siteCopyright}</if>
+
+									</div>
+
+
+
+			</footer>
+
+
+
+				<div mark="stat_code" style="width:0px; height:0px; display:none;">
+
+
+
+					</div>
+
+
+
+	
+
+<include file="Public:footer"/> 
+
+
+
+
+
+
+

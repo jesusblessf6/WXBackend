@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>打印预览</title>
+<script>
+function printi(){
+	pagesetup_null();
+	document.body.innerHTML=document.getElementById('pr').innerHTML;
+	window.print();
+	}
+var hkey_root,hkey_path,hkey_key
+hkey_root="HKEY_CURRENT_USER"
+hkey_path="\\Software\\Microsoft\\Internet Explorer\\PageSetup\\"
+//设置网页打印的页眉页脚为空
+function pagesetup_null(){
+try{
+var RegWsh = new ActiveXObject("WScript.Shell")
+hkey_key="header" 
+RegWsh.RegWrite(hkey_root+hkey_path+hkey_key,"")
+hkey_key="footer"
+RegWsh.RegWrite(hkey_root+hkey_path+hkey_key,"")
+}catch(e){}
+}
+//设置网页打印的页眉页脚为默认值
+function pagesetup_default(){
+try{
+var RegWsh = new ActiveXObject("WScript.Shell")
+hkey_key="header" 
+RegWsh.RegWrite(hkey_root+hkey_path+hkey_key,"&w&b页码，&p/&P")
+hkey_key="footer"
+RegWsh.RegWrite(hkey_root+hkey_path+hkey_key,"&u&b&d")
+}catch(e){}
+}
+</script>
+<style>
+body{ font-family:Century Gothic, 微软雅黑E\8F6F\96C5\9ED1}
+td{ font-size:12px; height:20px;}
+.dashedline{clear:both; border-bottom:1px dashed #474747; height:10px; margin-top:4px; margin-bottom:4px;; margin-bottom:4px; background-position:left; background-repeat:no-repeat; color:#0033CC}
+</style>
+</head>
+<body>
+<div id="pr" style="width:156px">
+<volist name="data" id="data">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th colspan="3"><font size="+1">{laoyang:$token_name}</font></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="dashedline"></td><td class="dashedline"></td><td class="dashedline"></td>
+</tr>
+<tr>
+<td class="dashedline"></td><td class="dashedline"></td><td class="dashedline"></td>
+</tr>
+<tr>
+<td>菜单</td>
+<td>数量</td>
+<td align="right">价格</td>
+</tr>
+<volist name="data.info" id="info">
+<tr>
+<td><font size="2px">{laoyang:$info.name}</font></td>
+<td>{laoyang:$info.count}</td>
+<td align="right">{laoyang:$info.price}</td>
+</tr>
+</volist>
+<tr>
+<td class="dashedline"></td><td class="dashedline"></td><td class="dashedline"></td>
+</tr>
+</tbody>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td width="35%">说	明:</td>
+<td colspan="2" align="right">{laoyang:$data.explain}</td>
+</tr>
+<tr>
+<td>合	计:</td>
+<td colspan="2" align="right">{laoyang:$data.price}</td>
+</tr>
+<tr>
+<td>备	注:</td>
+<td colspan="2" align="right">{laoyang:$data.beizhu}</td>
+</tr>
+<tr>
+<td>订单人:</td>
+<td colspan="2" align="right">{laoyang:$data.truename}</td>
+</tr>
+<tr>
+<td>地	址:</td>
+<td colspan="2" align="right">{laoyang:$data.address}</td>
+</tr>
+<tr>
+<td>电	话:</td>
+<td colspan="2" align="right">{laoyang:$data.tel}</td>
+</tr>
+<tr>
+<td>时 	间:</td>
+<td colspan="2" align="right">{laoyang:$data.time|date="Y-m-d H:i",###}</td>
+</tr>
+</tbody>
+</table>
+</volist>
+</div>
+<input type="button" value="清空页码" onclick=pagesetup_null() />
+<a href="javascript:printi()" target="_self">打印</a>
+</body>
+</html>

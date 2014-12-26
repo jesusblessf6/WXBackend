@@ -1,0 +1,886 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width" initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+		<meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <meta name="format-detection" content="telephone=no">
+	    <meta http-equiv="cleartype" content="on">
+		<title>{laoyang:$info.name}-全景</title>
+		<style>
+			*{
+			  margin:0;
+			  padding:0;
+			  -webkit-box-sizing: border-box;
+			  -moz-box-sizing: border-box;
+			  box-sizing: border-box;
+			}
+			body {
+			  margin:0 auto;
+			  font-family: "Microsoft YaHei","Helvetica Neue", 'Helvetica', 'Arial', 'sans-serif';
+			  font-size: 12px;
+			}
+			.allcon{
+				position: fixed;
+				bottom: 0;
+				z-index: 10;
+				width: 100%;
+			}
+			.info{
+				width: 100%;
+				height: 0;
+				background: #fff;
+				overflow: hidden;
+			}
+			.infosp{border-top: 2px #c8ad6a solid;}
+			.nav{
+				position: relative;
+				height: 48px;
+			}
+			.nav .content{
+				float: left;
+				overflow: hidden;
+				width: 100%;
+				background: #f9f9f9;
+				height: 48px;
+			}
+			.nav .content li{
+				list-style-type: none;
+				float: left;
+				width: 60px;
+				height: 48px;
+				text-align: center;
+				line-height: 48px;
+				border-right: 1px #e0e0e0 solid;
+			}
+			.nav .content .lisp{
+				border-right: none;
+				background: #e9dfbd;
+				color: #fff;
+			}
+			.nav .left,.nav .right{
+				position: absolute;
+				width: 12.5%;
+				height: 48px;
+				z-index: 12;
+				top: 0;
+			}
+			.nav .left{left: 0;display: none;}
+			.nav .right{right: 0;}
+			.nav .left img,.nav .right img{
+				height:48px;
+				width: 40px;
+			}
+			.morescreen{
+				width: 126px;
+				height:33px;
+				background: #d7c482;
+				text-align: center;
+				border-radius: 3px 3px 0 0;
+				border-bottom: 2px #c6ad6a solid;
+				margin: 0 auto -4px;
+				position: relative;
+				bottom: 0;
+				left:50%;
+				margin-left: -63px;
+				z-index: 11;
+				padding-top: 3px;
+			}
+			.morescreen h4{
+				font-size: 12px;
+				color: #523a18;
+				line-height: 24px;
+				cursor: pointer;
+			}
+			.morescreen p{
+				color: #fff;
+				margin-top: -2px;
+				font-size: 16px;
+				line-height: 16px;
+			}
+			.morescreen .moresp{
+				color: #8f783a;
+			}
+			.goback,.more,.music{
+				position: absolute;
+				top:10px;
+				width: 40px;
+				height: 40px;
+				z-index: 20;
+			}
+			.goback{left: 10px;}
+			.more{
+				right: 10px;
+			}
+			.music{right: 10px;top:60px;}
+			.musiclab{
+				position: absolute;
+				z-index: -1;
+				opacity: 0;
+			}
+			.housetype{
+				position: absolute;
+				top:10px;
+				width: 106px;
+				height: 70px;
+				z-index: 20;
+				background: rgba(255,255,255,0.8);
+				border-right: 2px #c6ae68 solid;
+				box-sizing: border-box;
+			}
+			.houseimg{
+				width: 90px;
+				height: 66px;
+				margin-top: 2px;
+				float: left;
+			}
+			.houseleft{
+				float: left;
+				width: 14px;
+				text-align: center;
+				color: #caad6b;
+				font-size: 14px;
+			}
+			.pointer{
+				position: absolute;
+				top:30px;
+				left:35px;
+				width: 20px;
+				height: 20px;
+				overflow: hidden;
+				clip:rect(10px,20px,20px,0px);
+			}
+			.pointer p{
+				position: absolute;
+				background: #e9bd36;
+				width: 20px;
+				height: 20px;
+				border-radius: 10px;
+				clip:rect(0px,10px,20px,0px);
+				transform:rotate(30deg);
+				-o-transform:rotate(30deg);
+				-moz-transform:rotate(30deg);
+				-webkit-transform:rotate(30deg);
+			}
+			.loadingf{
+				height: 100%;
+				width: 100%;
+				position: absolute;
+				z-index: 29;
+				background: #000;
+				color: #fff;
+				font-size: 14px;
+				text-align: center;
+			}
+			.loadingf b{
+				height:32px;
+				background:rgba(255,255,255,.05);
+				border-top:1px solid rgba(255,255,255,.1);
+				border-bottom:1px solid rgba(255,255,255,.1);
+				position: absolute;
+				left:0;
+				top:0;
+				right:0;
+				bottom:0;
+				margin:auto;
+				line-height:30px;
+			}
+			.loading{
+				position: absolute;
+				z-index: 30;
+			}
+		</style>
+	</head>
+	<body>
+		<div class='allcon'>
+			<div class='morescreen'>
+				<h4>更多场景</h4>
+				<!-- <p>^</p> -->
+			</div>
+			<div class="info" >
+				<nav class='nav'>
+					<div class='left'><img src='{laoyang::RES}/images/panorama/btn_pano_prev.png'></div>
+					<div class='iscroll_wrp content'>
+						<ul>
+				
+				<assign name="curloop" value="1" />	
+				 <foreach name="floors" item="vo" key="key">
+                      <foreach name="vo" item="curroom">
+                           <if condition="$curloop eq 1 ">
+                              <li roomname='room_{laoyang:$curroom.id}' class='lisp'>{laoyang:$curroom.house}</li>
+                              
+                              <script type="text/javascript">
+                              var sides = [
+                   					{
+                   						url: '{laoyang:$curroom.leftpic}',
+                   						position: [ -512, 0, 0 ],
+                   						rotation: [ 0, Math.PI / 2, 0 ]
+                   					},
+                   					{
+                   						url: '{laoyang:$curroom.rightpic}',
+                   						position: [ 512, 0, 0 ],
+                   						rotation: [ 0, -Math.PI / 2, 0 ]
+                   					},
+                   					{
+                   						url: '{laoyang:$curroom.toppic}',
+                   						position: [ 0,  512, 0 ],
+                   						rotation: [ Math.PI / 2, 0, 0 ]
+                   					},
+                   					{
+                   						url: '{laoyang:$curroom.bottompic}',
+                   						position: [ 0, -512, 0 ],
+                   						rotation: [ - Math.PI / 2, 0, 0 ]
+                   					},
+                   					{
+                   						url: '{laoyang:$curroom.backpic}',
+                   						position: [ 0, 0,  512 ],
+                   						rotation: [ 0, Math.PI, 0 ]
+                   					},
+                   					{
+                   						url: '{laoyang:$curroom.frontpic}',
+                   						position: [ 0, 0, -512 ],
+                   						rotation: [ 0, 0, 0 ]
+                   					}
+                   					
+                   					
+                   					//查找当前房间的坐标跳转信息
+                   				 <foreach name="redirects[$curroom['id']]" item="cur_redirect">
+                   					,{
+                   						url: '{laoyang:$cur_redirect.show_pic}',
+                   						position: [{laoyang:$cur_redirect.location}],
+                   						rotation: [ 0, Math.PI / 2, 0],
+                   						name:'room_{laoyang:$cur_redirect.target_360_id}'
+                   					}
+                   				 </foreach>
+                   				];
+                              
+                              </script>
+                              
+                           <else />
+                              <li roomname='room_{laoyang:$curroom.id}'>{laoyang:$curroom.house}</li>
+                           </if>
+                          <assign name="curloop" value="$curloop+1" />	 
+                     </foreach>
+                 </foreach>
+                 
+						</ul>
+					</div>
+					<div class='right'><img src='{laoyang::RES}/images/panorama/btn_pano_next.png'></div>
+				</nav>
+			</div>
+		</div>
+		<img src="{laoyang::RES}/images/panorama/btn_pano_back.png" class='goback'>
+		<div class='housetype' style='display: none;'>
+			<div class='pointer'><p></p></div>
+			<img src='{laoyang::RES}/images/panorama/ht-p1.gif' class='houseimg'>
+			<p class='houseleft'>&lt;</p>
+		</div>
+		<div style=" display:none"><a href="more.html"><img src="{laoyang::RES}/images/panorama/btn_pano_more.png" class='more'></a>
+		<img src="{laoyang::RES}/images/panorama/btn_pano_music_close.png" class='music'></div>
+		<div class='loadingf'>
+			<!-- <img src='img/ic_load_22.gif' class='loading'/> -->
+			<b>Loading...</b>
+		</div>
+		<script src="{laoyang::RES}/js/panorama/three.min.js"></script>
+		<script src="{laoyang::RES}/js/panorama/CSS3DRenderer.js"></script>
+		<script src="{laoyang::RES}/js/panorama/iscroll.js"></script>
+		<script src="{laoyang::RES}/js/panorama/zfjs.js"></script>
+		<script>
+			var bodyw;
+			var sides;
+			var iscroll_wrp=document.querySelector('.iscroll_wrp');
+			var allcon=document.querySelector('.allcon');
+			var camera, scene, renderer;
+			var geometry, material, mesh;
+			var target = new THREE.Vector3();
+			var sfov;
+			var sdelta;
+			var isZoom = false;
+			var lon = 90, lat = 0;
+			var phi = 0, theta = 0;
+			var touchX, touchY;
+			var movenum=0;
+			var huandong = {smX:0,endx:0};
+			var huandongbool=false;
+			var huandongboolfx=true;
+			var huandongboolfx1=true;
+			var lonspeed=0;
+			var stime=0,endtime=0;
+			var fovbool=false;
+			var info,navul,navlis,btnleft,btnright,navlinum,imgnames,morescreen,morescreenp,mscnum,goback,more,music;
+			var corritor='touchstart';
+			var touchbtn=true;
+			var pointer=document.querySelector('.pointer');
+			var msiwtch=0;
+			var imgbools=[];
+			var loadingf=document.querySelector('.loadingf');
+			var lisbool=[];
+			var linum=0;
+			var selectroom,selectroomnum;
+			
+			/*
+			*循环房间跳转情况生成对应的数据
+			* 这个地方的房间顺序必须和生成 ul排序数据一致
+			*/
+		    var imgposition={
+			<assign name="curloop" value="0" />				
+			 <foreach name="floors" item="vo" key="key">			    
+                 <foreach name="vo" item="curroom">
+                 <if condition="$curloop gt 0 ">,</if>
+                 room_{laoyang:$curroom.id}:[
+                                         {laoyang:$curloop}
+                                         
+                      <foreach name="redirects[$curroom['id']]" item="cur_redirect">
+                                         ,{
+                                            url: '{laoyang:$cur_redirect.show_pic}',
+						                    position: [ {laoyang:$cur_redirect.location}],
+						                    rotation: [0, -Math.PI / 2, 0],
+						                    name:'room_{laoyang:$cur_redirect.target_360_id}'
+                                         }
+				      </foreach>
+                                        
+         		  ]	
+                 <assign name="curloop" value="$curloop+1" />	 
+                </foreach>
+                
+            </foreach>
+			 };
+		    
+			
+			imgbool(false);
+			init();
+			animate();
+			window.camera = camera;
+			function init() {
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000 );
+				scene = new THREE.Scene();
+				
+				
+				for ( var i = 0; i < sides.length; i ++ ) {
+					var side = sides[ i ];
+					var element = document.createElement( 'img' );
+					 // 2 pixels extra to close the gap.
+					if(i >= 6){
+						element.style.width='30px';
+						element.setAttribute('roomname',side.name);
+						/*if(i==6){
+							element.setAttribute('roomname',side.name);
+						}else if(i==7){
+							element.setAttribute('roomname','restaurant');
+						}else if(i==8){
+							element.setAttribute('roomname','bedroom2');
+						}*/
+						element.onload = (
+							function(elements){
+								elements.addEventListener(corritor,function(){
+									selectroom=imgposition[this.getAttribute('roomname')];
+									selectroomnum=selectroom[0];
+									fovbool=true;
+								},false);
+							}
+						)(element);
+					}else{
+						element.width = 1026;
+						loadings(element,i,function (){loadingf.style.display='none';});
+					}
+					element.src = side.url;
+					element.className = 'imgname'; 
+					var object = new THREE.CSS3DObject( element );
+					object.position.fromArray( side.position );
+					object.rotation.fromArray( side.rotation );
+					scene.add( object );
+				}
+				renderer = new THREE.CSS3DRenderer();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				document.body.appendChild( renderer.domElement );
+				document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+				document.addEventListener( 'mousewheel', onDocumentMouseWheel, false );
+				document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+				document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+				document.addEventListener( 'touchend', onDocumentTouchEnd, false );
+				window.addEventListener( 'resize', onWindowResize, false );
+			}
+			function onWindowResize() {
+				setTimeout(function (){
+					camera.aspect = window.screen.width / window.screen.height;
+					camera.updateProjectionMatrix();
+					renderer.setSize( window.screen.width, window.screen.height );
+				},100);
+			}
+			function onDocumentMouseDown( event ) {
+				huandongbool=false;
+				huandongboolfx=true;
+				huandongboolfx1=true;
+				var movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
+				var movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
+				event.preventDefault();
+				huandong.smX = event.clientX;
+				huandong.smY= event.clientY;
+				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+				var myDate = new Date();
+				stime=myDate.getTime();
+			}
+			
+			function onDocumentMouseMove( event ) {
+				window.test = event;
+				if(!iscroll_wrp.contains(event.target)){
+					var movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
+					var movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
+					lon -= movementX * 0.1;
+					lat += movementY * 0.1;
+				}
+				//animate()
+			}
+			function onDocumentMouseUp( event ) {
+				var movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
+				var movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
+				document.removeEventListener( 'mousemove', onDocumentMouseMove );
+				document.removeEventListener( 'mouseup', onDocumentMouseUp );
+				huandong.endx=event.clientX;
+				var myDate = new Date();
+				endtime=myDate.getTime();
+				lonspeed=(huandong.endx-huandong.smX)/600*300/(endtime-stime);
+				huandongbool=true;
+			}
+			function onDocumentMouseWheel( event ) {
+				camera.fov -= event.wheelDeltaY * 0.05;
+				camera.updateProjectionMatrix();
+			}
+			var sssa=0;
+			function onDocumentTouchStart( event ) {
+				if(allcon.contains(event.target)==true||goback.contains(event.target)==true||more.contains(event.target)==true||music.contains(event.target)==true||!touchbtn){
+				}else{
+					event.preventDefault();
+					if(event.touches.length == 2){
+						isZoom = true;
+						sfov = camera.fov;
+						var dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX;
+						var dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY;
+						sdelta = Math.sqrt(dx*dx+dy*dy);
+					}else if(event.touches.length != 2){
+						isZoom = false;
+						var touch = event.touches[ 0 ];
+						touchX = touch.screenX;
+						touchY = touch.screenY;
+						huandongbool=false;
+						huandongboolfx=true;
+						huandongboolfx1=true;
+						huandong.smX = touchX;
+						huandong.endx = touchX;
+						var myDate = new Date();
+						stime=myDate.getTime();
+					}
+				}
+			}
+			function onDocumentTouchMove( event ) {
+				if(allcon.contains(event.target)==true||goback.contains(event.target)==true||more.contains(event.target)==true||music.contains(event.target)==true||!touchbtn){
+				}else{
+					event.preventDefault();
+					if(event.touches.length == 2 ){
+						var dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX;
+						var dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY;
+						var cd = Math.sqrt(dy*dy+dx*dx);
+						var dd = cd - sdelta;
+						if(dd >0 && camera.fov>33){
+							camera.fov = sfov - dd/400*40;
+							camera.updateProjectionMatrix();
+						}else if(dd< 0 && camera.fov<93){
+							camera.fov = sfov - dd/400*40;
+							camera.updateProjectionMatrix();
+						}
+					}else if(isZoom == false){
+						var touch = event.touches[ 0 ];
+						lon -= ( touch.screenX - touchX ) * 0.1;
+						lat += ( touch.screenY - touchY ) * 0.1;
+						touchX = touch.screenX;
+						touchY = touch.screenY;
+						huandong.endx=event.touches[ 0 ].screenX;
+					}
+				}
+			}
+			function onDocumentTouchEnd( event ){
+				if(allcon.contains(event.target)==true||goback.contains(event.target)==true||more.contains(event.target)==true||music.contains(event.target)==true||!touchbtn){
+				}else{
+					var myDate = new Date();
+					endtime=myDate.getTime();
+					var timespd;
+					var slong;
+					if(endtime-stime<200){
+						timespd=200;
+					}else{
+						timespd=endtime-stime;
+					}
+					slong=huandong.endx-huandong.smX;
+					lonspeed=slong/100*200/timespd;
+					huandongbool=true;
+				}
+			}
+			function animate() {
+				requestAnimationFrame( animate );
+				if(huandongbool){
+					if(!isNaN(lonspeed)){lon -=lonspeed;}
+					if(lonspeed>0&&huandongboolfx){
+						lonspeed-=0.01;
+						if(lonspeed<0){
+							lonspeed=0;
+							huandongboolfx=false;
+						}
+					}else if(lonspeed<0&&huandongboolfx1){
+						lonspeed+=0.01;
+						if(lonspeed>0){
+							lonspeed=0;
+							huandongboolfx1=false;
+						}
+
+					}
+				}
+				if(fovbool&&camera.fov>20){
+					touchbtn=false;
+					camera.fov-=2;
+					if(camera.fov<=20){
+						trigger(corritor,navlis[selectroomnum]);
+						fovbool=false;
+						touchbtn=true;
+						camera.fov=75;
+					}
+				}
+				pointer.style.WebkitTransform='rotate('+lon%360+'deg)';
+				lat = Math.max( - 85, Math.min( 85, lat ) );
+				phi = THREE.Math.degToRad( 90 - lat );
+				theta = THREE.Math.degToRad( lon );
+				target.x = Math.sin( phi ) * Math.cos( theta );
+				target.y = Math.cos( phi );
+				target.z = Math.sin( phi ) * Math.sin( theta );
+				camera.lookAt( target );
+				renderer.render( scene, camera );
+
+			}
+		window.addEventListener('load',function(){
+			info=document.querySelector('.info');
+			navul=document.querySelector('.info .nav .content ul');
+			navlis=document.querySelectorAll('.info .nav .content ul li');
+			btnleft=document.querySelector('.info .nav .left');
+			btnright=document.querySelector('.info .nav .right');
+			navlinum=navlis.length;
+			imgnames=document.querySelectorAll('.imgname');
+			morescreen=document.querySelector('.morescreen');
+			morescreenp=document.querySelector('.morescreen h4');
+			goback=document.querySelector('.goback');
+			more=document.querySelector('.more');
+			music=document.querySelector('.music');
+			lisblf(0);
+			mscnum=0;
+			navul.style.width=navlinum*60+'px';
+			var musicswitch=AddNote("music/beijing.mp3");
+			//musicswitch.play();
+			var page_scroll = new iScroll(iscroll_wrp,{
+				snap: true,
+	            momentum: false,
+	            vScroll: false,
+	            hScrollbar:false,
+	            bounce:true,
+	            onScollMove:function (event){
+	            	event.preventDefault();
+	            	event.stopPropagation()
+	            },
+	            onScrollEnd: function () {
+	            	console.log(this.x)
+	            	if(this.x==0){
+	            		btnleft.style.display='none';
+	            		btnright.style.display='block';
+	            	} else if(this.x==this.maxScrollX){
+	            		btnleft.style.display='block';
+	            		btnright.style.display='none';
+	            	}else{
+	            		btnleft.style.display='block';
+	            		btnright.style.display='block';
+	            	}
+	            }
+			});
+			goback.addEventListener(corritor,function (){
+				history.back();
+			});
+			more.addEventListener(corritor,function (){
+				
+			});
+			musicswitch.addEventListener('ended', function () {
+				musicswitch.currentTime = 0;
+				musicswitch.play();  
+			}, false); 
+			music.addEventListener(corritor,function (){
+				if(msiwtch%2==1){
+					music.src='{laoyang::RES}/images/panorama/btn_pano_music_close.png';
+					musicswitch.pause();
+				}else{
+					music.src='{laoyang::RES}/images/panorama/btn_pano_music.png';
+					musicswitch.play();
+				}
+				msiwtch++;
+			});
+			morescreen.addEventListener(corritor,function (){
+				if(mscnum%2==0){
+					zfjs.animate(info,{height:'48px'}, 150, 'ease',function (){
+						zfjs.addClass(info,'infosp');
+						morescreenp.className='moresp';
+					});
+				}else{
+					zfjs.animate(info,{height:'0'}, 150, 'ease',function (){
+						zfjs.removeClass(info,'infosp');
+						morescreenp.className='';
+					});
+				}
+				mscnum++;
+			},false);
+			var sclspeed=page_scroll.maxScrollX/page_scroll.pagesX.length;
+			btnleft.addEventListener(corritor,function (){
+				page_scroll.scrollTo(sclspeed,0,200,true);
+			},false);
+			btnright.addEventListener(corritor,function (){
+				page_scroll.scrollTo(-sclspeed,0,200,true);
+			},false);
+			
+			<assign name="curloop" value="0" />	
+			 <foreach name="floors" item="vo" key="key">
+			    
+                <foreach name="vo" item="curroom">
+                 navlis[{laoyang:$curloop}].addEventListener(corritor,function (){
+    				if(lisbool[{laoyang:$curloop}]){
+    					for(var i=0;i<navlinum;i++){
+    						if(navlis[i]==this){
+    							this.className='lisp';
+    						}else{
+    							navlis[i].className='';
+    						}
+    					}
+    					selectroom=imgposition[this.getAttribute('roomname')];
+    					selectroomnum=selectroom[0];
+    					imgclick('{laoyang:$curroom.leftpic}','{laoyang:$curroom.rightpic}','{laoyang:$curroom.toppic}','{laoyang:$curroom.bottompic}','{laoyang:$curroom.backpic}','{laoyang:$curroom.frontpic}',function (){
+    						lisblf({laoyang:$curloop});
+    						imgslectp();
+    					});
+    				}
+    			},false);
+                 
+                
+                <assign name="curloop" value="$curloop+1" />	 
+               </foreach>
+               
+           </foreach>
+           
+			/*
+			navlis[0].addEventListener(corritor,function (){
+				if(lisbool[0]){
+					for(var i=0;i<navlinum;i++){
+						if(navlis[i]==this){
+							this.className='lisp';
+						}else{
+							navlis[i].className='';
+						}
+					}
+					selectroom=imgposition[this.getAttribute('roomname')];
+					selectroomnum=selectroom[0];
+					imgclick('{laoyang::RES}/images/panorama/a1/posx.jpg','{laoyang::RES}/images/panorama/a1/negx.jpg','{laoyang::RES}/images/panorama/a1/posy.jpg','{laoyang::RES}/images/panorama/a1/negy.jpg','{laoyang::RES}/images/panorama/a1/posz.jpg','{laoyang::RES}/images/panorama/a1/negz.jpg',function (){
+						lisblf(0);
+						imgslectp();
+					});
+				}
+			},false);
+			navlis[1].addEventListener(corritor,function (){
+				if(lisbool[1]){
+					for(var i=0;i<navlinum;i++){
+						if(navlis[i]==this){
+							this.className='lisp';
+						}else{
+							navlis[i].className='';
+						}
+					}
+					selectroom=imgposition[this.getAttribute('roomname')];
+					selectroomnum=selectroom[0];
+					imgclick('{laoyang::RES}/images/panorama/a2/posx.jpg','{laoyang::RES}/images/panorama/a2/negx.jpg','{laoyang::RES}/images/panorama/a2/posy.jpg','{laoyang::RES}/images/panorama/a2/negy.jpg','{laoyang::RES}/images/panorama/a2/posz.jpg','{laoyang::RES}/images/panorama/a2/negz.jpg',function (){
+						lisblf(1);
+						imgslectp();
+					});
+				}
+			},false);
+			navlis[2].addEventListener(corritor,function (){
+				if(lisbool[2]){
+					for(var i=0;i<navlinum;i++){
+						if(navlis[i]==this){
+							this.className='lisp';
+						}else{
+							navlis[i].className='';
+						}
+					}
+					selectroom=imgposition[this.getAttribute('roomname')];
+					selectroomnum=selectroom[0];
+					imgclick('{laoyang::RES}/images/panorama/a3/posx.jpg','{laoyang::RES}/images/panorama/a3/negx.jpg','{laoyang::RES}/images/panorama/a3/posy.jpg','{laoyang::RES}/images/panorama/a3/negy.jpg','{laoyang::RES}/images/panorama/a3/posz.jpg','{laoyang::RES}/images/panorama/a3/negz.jpg',function (){
+						lisblf(2);
+						imgslectp();
+					});
+				}
+			},false);
+			navlis[3].addEventListener(corritor,function (){
+				if(lisbool[3]){
+					for(var i=0;i<navlinum;i++){
+						if(navlis[i]==this){
+							this.className='lisp';
+						}else{
+							navlis[i].className='';
+						}
+					}
+					selectroom=imgposition[this.getAttribute('roomname')];
+					selectroomnum=selectroom[0];
+					imgclick('{laoyang::RES}/images/panorama/a4/posx.jpg','{laoyang::RES}/images/panorama/a4/negx.jpg','{laoyang::RES}/images/panorama/a4/posy.jpg','{laoyang::RES}/images/panorama/a4/negy.jpg','{laoyang::RES}/images/panorama/a4/posz.jpg','{laoyang::RES}/images/panorama/a4/negz.jpg',function (){
+						lisblf(3);
+						imgslectp();
+					});
+				}
+			},false);
+			navlis[4].addEventListener(corritor,function (){
+				if(lisbool[4]){
+					for(var i=0;i<navlinum;i++){
+						if(navlis[i]==this){
+							this.className='lisp';
+						}else{
+							navlis[i].className='';
+						}
+					}
+					
+					selectroom=imgposition[this.getAttribute('roomname')];
+					selectroomnum=selectroom[0];
+					imgclick('{laoyang::RES}/images/panorama/a5/posx.jpg','{laoyang::RES}/images/panorama/a5/negx.jpg','{laoyang::RES}/images/panorama/a5/posy.jpg','{laoyang::RES}/images/panorama/a5/negy.jpg','{laoyang::RES}/images/panorama/a5/posz.jpg','{laoyang::RES}/images/panorama/a5/negz.jpg',function (){
+						lisblf(4);
+						imgslectp();
+					});
+				}
+			},false);
+			navlis[5].addEventListener(corritor,function (){
+				if(lisbool[5]){
+					for(var i=0;i<navlinum;i++){
+						if(navlis[i]==this){
+							this.className='lisp';
+						}else{
+							navlis[i].className='';
+						}
+					}
+					
+					selectroom=imgposition[this.getAttribute('roomname')];
+					selectroomnum=selectroom[0];
+					imgclick('{laoyang::RES}/images/panorama/a6/posx.jpg','{laoyang::RES}/images/panorama/a6/negx.jpg','{laoyang::RES}/images/panorama/a6/posy.jpg','{laoyang::RES}/images/panorama/a6/negy.jpg','{laoyang::RES}/images/panorama/a6/posz.jpg','{laoyang::RES}/images/panorama/a6/negz.jpg',function (){
+						lisblf(5);
+						imgslectp();
+					});
+				}
+			},false);
+			navlis[6].addEventListener(corritor,function (){
+				if(lisbool[6]){
+					for(var i=0;i<navlinum;i++){
+						if(navlis[i]==this){
+							this.className='lisp';
+						}else{
+							navlis[i].className='';
+						}
+					}
+					selectroom=imgposition[this.getAttribute('roomname')];
+					selectroomnum=selectroom[0];
+					imgclick('{laoyang::RES}/images/panorama/a7/posx.jpg','{laoyang::RES}/images/panorama/a7/negx.jpg','{laoyang::RES}/images/panorama/a7/posy.jpg','{laoyang::RES}/images/panorama/a7/negy.jpg','{laoyang::RES}/images/panorama/a7/posz.jpg','{laoyang::RES}/images/panorama/a7/negz.jpg',function (){
+						lisblf(6);
+						imgslectp();
+					});
+				}
+			},false);
+			navlis[7].addEventListener(corritor,function (){
+				if(lisbool[7]){
+					for(var i=0;i<navlinum;i++){
+						if(navlis[i]==this){
+							this.className='lisp';
+						}else{
+							navlis[i].className='';
+						}
+					}
+					
+					selectroom=imgposition[this.getAttribute('roomname')];
+					selectroomnum=selectroom[0];
+					imgclick('{laoyang::RES}/images/panorama/a8/posx.jpg','{laoyang::RES}/images/panorama/a8/negx.jpg','{laoyang::RES}/images/panorama/a8/posy.jpg','{laoyang::RES}/images/panorama/a8/negy.jpg','{laoyang::RES}/images/panorama/a8/posz.jpg','{laoyang::RES}/images/panorama/a8/negz.jpg',function (){
+						lisblf(7);
+						imgslectp();
+					});
+				}
+			},false);
+			*/
+			function preventDefaultMove(e){
+				e.preventDefault();
+			}
+			document.addEventListener('touchmove', preventDefaultMove, false);
+		},false);
+		function trigger(thing,dom){
+			var evet=document.createEvent('HTMLEvents');
+		    evet.initEvent(thing,true,true);
+		    evet.eventType = 'message';
+		    dom.dispatchEvent(evet);
+		}
+		function AddNote(src) {
+			var audio = document.createElement("audio");
+			audio.src = src;
+			audio.controls="controls";
+			audio.loop="loop";
+			audio.className='musiclab';
+			//audio.load();
+			//audio.play();
+			return audio;
+		}
+		function loadings(elemts,num,callback){
+			elemts.onload = function (){
+				imgbools[num]=true;
+				if(imgbools[0]&&imgbools[1]&&imgbools[2]&&imgbools[3]&&imgbools[4]&&imgbools[5]){
+					callback();
+					imgbool(false);
+				}
+			};	
+		}
+		function imgbool(bools){
+			for(var i=0;i<6;i++){
+				imgbools[i]=bools;
+			}
+		}
+		function imgclick(src0,src1,src2,src3,src4,src5,callbacks){
+			for(var i=0;i<6;i++){
+					loadings(imgnames[i],i,function (){loadingf.style.display='none';zfjs.animate(imgnames[0].parentNode.parentNode,{'opacity':'1'}, 1000, 'ease');});
+				}
+			zfjs.animate(imgnames[0].parentNode.parentNode,{'opacity':'0.5'}, 300, 'ease',function (){
+					loadingf.style.display='block';
+					imgnames[0].src=src0;
+					imgnames[1].src=src1;
+					imgnames[2].src=src2;
+					imgnames[3].src=src3;
+					imgnames[4].src=src4;
+					imgnames[5].src=src5;
+			});
+			callbacks();
+		}
+		function lisblf(num){
+			for(var i=0;i<navlinum;i++){
+				if(i==num){
+					lisbool[num]=false;
+				}else{lisbool[i]=true;}
+			}
+		}
+		function imgslectp(){
+			for(var i=1;i<selectroom.length;i++){
+				scene.children[i+5].element.style.display='block';
+				scene.children[i+5].position.x=selectroom[i].position[0];
+				scene.children[i+5].position.y=selectroom[i].position[1];
+				scene.children[i+5].position.z=selectroom[i].position[2];
+				scene.children[i+5].element.setAttribute('roomname',selectroom[i].name);
+			}
+			
+			for(var j=i;j<4;j++){
+				scene.children[j+5].element.style.display='none';
+			}
+		}
+		
+		</script>
+	</body>
+</html>

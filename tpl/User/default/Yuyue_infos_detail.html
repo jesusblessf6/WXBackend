@@ -1,0 +1,144 @@
+<include file="Public:head"/>
+
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/themes/default/default.css" />
+
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/plugins/code/prettify.css" />
+
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/cymain.css" />
+
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/themes/default/default.css" />
+
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/plugins/code/prettify.css" />
+
+<script src="{laoyang::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+
+<script src="{laoyang::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+
+<script src="{laoyang::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+
+<script src="{laoyang::RES}/js/date/WdatePicker.js"></script>
+
+<script type="text/javascript" src="{laoyang::RES}/js/formCheck/formcheck.js"> </script>
+
+<script src="{laoyang::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+
+
+<div class="content"  >
+
+   <div class="cLineB"> 
+
+    <h4>详细信息</h4> 
+
+    <a href="{laoyang::U($type.'/infos',array('pid'=>$detail['all']['pid'],'token'=>$token))}" class="right  btn btn-primary btn_submit  J_ajax_submit_btn" style="margin-top:-27px">返回</a> 
+
+   </div> 
+
+
+
+   <form class="form" method="post" id="form" action="" enctype="multipart/form-data"> 
+
+   
+
+    <div class="msgWrap bgfc"> 
+
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+
+      <tbody> 
+
+	   <tr> 
+
+        <th>姓名:</th>
+
+        <td><input type="text" name="" id="" value="{laoyang:$detail.all.name}" disabled="disabled" class="px" style="width:400px;color: red;"  /></td> 
+
+       </tr>
+
+	   <tr> 
+
+        <th>电话:</th>
+
+        <td><input type="text" name="" id="" value="{laoyang:$detail.all.phone}" disabled="disabled" class="px" style="width:400px;color: red;"  /></td> 
+
+       </tr>
+       <tr> 
+
+        <th>预约日期:</th>
+
+        <td><input type="text" name="" id="" value="{laoyang:$detail.all.or_date}" disabled="disabled" class="px" style="width:400px;color: red;"  /></td> 
+
+       </tr>
+
+	   <tr> 
+
+        <th>时间:</th>
+
+        <td><input type="text" name="" id="" value="{laoyang:$detail.all.time}" disabled="disabled" class="px" style="width:400px;color: red;"  /></td> 
+
+       </tr>
+          <tr> 
+
+        <th>类型:</th>
+
+        <td><input type="text" name="" id="" value="{laoyang:$detail.all.kind}" disabled="disabled" class="px" style="width:400px;color: red;"  /></td> 
+
+       </tr>
+
+	   <tr> 
+
+        <th>状态:</th>
+
+        <td><?php if($detail['all']['type']==0) echo "等待";if($detail['all']['type']==1) echo "确定";if($detail['all']['type']==2) echo "拒绝";?></td> 
+
+       </tr>
+
+       <volist name="detail.info" id="i">
+
+	   <tr> 
+
+        <th>{laoyang:$i.0}:</th>
+
+        <td><input type="text" name="" id="" value="{laoyang:$i.1}" disabled="disabled" class="px" style="width:400px;color: red;"  /></td> 
+
+       </tr>
+
+	   </volist> 
+<tr> 
+
+        <th>下单时间:</th>
+
+        <td><input type="text" name="" id="" value="{laoyang:$detail.all.date}" disabled="disabled" class="px" style="width:400px;color: red;"  /></td> 
+
+       </tr>
+	  
+
+        <TR>
+
+			<TH valign="top"><label for="info">备注：</label></TH>
+
+            <TD><textarea name="info" id="content"  rows="5" style="width:412px;height:360px">{laoyang:$detail.all.memo}</textarea></TD>
+
+        </TR>  
+
+		
+
+	   
+
+      </tbody> 
+
+     </table> 
+
+     </div>
+
+    
+
+   </form> 
+
+  </div> 
+
+
+
+  <include file="Public:footer" />

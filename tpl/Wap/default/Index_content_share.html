@@ -1,0 +1,16 @@
+
+		<script type="text/javascript">
+
+			window.shareData = {  
+				"moduleName":"Img",
+				"moduleID": '{laoyang:$_GET["id"]|intval}',
+				"imgUrl": "{laoyang:$res.pic}", 
+				"timeLineLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid'],'id'=>intval($_GET['id'])))}",
+				"sendFriendLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid'],'id'=>intval($_GET['id'])))}",
+				"weiboLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid'],'id'=>intval($_GET['id'])))}",
+				"tTitle": "{laoyang:$res.title}-{laoyang:$tpl.wxname}",
+				"tContent": "{laoyang:$res.text|htmlspecialchars_decode|strip_tags|trim|mb_substr=###,0,30,'utf-8'|str_replace="\\r\\n",' ',###|str_replace='"','',###}"
+			};
+		</script>	
+
+{laoyang:$shareScript}

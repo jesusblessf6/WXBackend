@@ -1,0 +1,136 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{laoyang::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{laoyang::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{laoyang::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="/tpl/static/upyun.js"></script>
+<script>
+
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#info', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+						'source','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+						'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+						'insertunorderedlist', '|', 'emoticons', 'image', 'link', 'music', 'video']
+});
+
+});
+</script>
+<script>
+
+function addpic(box_id)
+{	
+	id=$("#addpic").attr("emun");
+	id++;
+	html = '<input type="hidden" name="ad_id[]"  /><li style="height:5px;line-height:5px;"><hr style="border-bottom:1px solid #ddd" /></li><li><b>广告标题：</b><span><input type="input" class="px" id="title_'+box_id+'_'+id+'"  name="ad_title[]" style="width:300px"  ></span></li>'+
+		'<li><b>广告图片：</b><span><input type="text" name="ad_pic[]"  class="px" id="thumb_'+box_id+'_'+id+'" style="width:300px;" />&ensp;&ensp;'+
+		'<a href="#Upload" onclick="upyunPicUpload(\'thumb_'+box_id+'_'+id+'\',700,420,\'{laoyang:$token}\')" class="ChooseImage">上传</a>&ensp;&ensp;<a href="#viewImg" onclick="viewImg(\'thumb_'+box_id+'_'+id+'\')">预览</a></span></li>'+
+		'<li><b>广告标连接：</b><span><input type="input" class="px" id="title_'+box_id+'_'+id+'"  name="ad_links[]" style="width:300px"   ></span></li>';
+	$("#apphtml_"+box_id).prepend(html);
+}
+</script>
+<script>
+function open_router(id){
+	myurl='index.php?g=User&m=Router&a=setsuccess&menu=wifi&id={laoyang:$info.id}&suc_id='+id;	
+	window.location.href=myurl;
+}
+</script>
+<style>
+.none{display:none;}
+</style>
+
+<if condition="$wid eq null">
+<style>
+.ro_list li {float:left;padding:10px 22px 5px;line-height:200%}
+.ro_list li img{width:150px ;height:150px;border-radius:5px;border:1px solid #ddd;margin-bottom:10px;}
+.ro_title {font-size:16px;color:#666;font-weight:bold;}
+</style>
+<div style="background:#ccc;border:4px solid #666;filter:alpha(opacity=70);-moz-opacity:0.7;-khtml-opacity: 0.7;opacity: 0.7;width:70%;height:500px;position:absolute;top:20%;left:15%"></div>
+<div style="width:64%;height:500px;position:absolute;top:20%;left:15%;position:absolute;padding:1% 3%;">
+	<h3 class="ro_title">请选择路由节点：</h3>
+	<ul class="ro_list">
+		<volist name="info" id="o">
+		<li><a href="{laoyang::U('Router/success',array('token'=>$token,'id'=>$o['id']))}"><img src="{laoyang::STATICS}/wifi/wifi.jpg" /><br />{laoyang:$o.shop_name}<br />{laoyang:$o.name}</a></li>
+		</volist>
+	</ul>
+</div>
+</if>
+<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+   <include file="Wifi:menu"/>
+    <h4>认证成功页设置</h4>
+  </div>
+  <div class="msgWrap bgfc">
+	<form  class="form" method="post" enctype="multipart/form-data" >
+	<input type="hidden" name="id" value="{laoyang:$info.id}">
+	<div class="clearall" style="clear:both">
+		<div style="float:right;width:550px;">
+			<table class="userinfoArea" border="0" cellspacing="0" cellpadding="0" width="100%">
+				<tr>
+					<td>显示方式</td>
+					<td><select name="suc_id" id="suc_id"  onchange="open_router(this.value)">
+						<option value="0">请选择</option>
+						<option value="1" <eq name="info.suc_id" value="1">selected</eq>>微官网</option>
+						<option value="2" <eq name="info.suc_id" value="2">selected</eq>>广告</option>
+						<option value="3" <eq name="info.suc_id" value="3">selected</eq>>自定义网址</option>
+					</select></td>
+				</tr>	
+				<eq name="info.suc_id" value="2"><tr>
+					<td>模板：</td>
+					<td>{laoyang:$info.suc_tmpl} <a href="{laoyang::U('Router/tmpl',array('token'=>$token,'menu'=>'wifi','wid'=>$wid,'type'=>'suc_tmpl'))}">选择模板</a></td>
+				</tr></eq>
+				<eq name="info.suc_id" value="3"><tr>
+					<td>自定义链接：</td>
+					<td><input type="input" class="px" id="suc_url" name="suc_url"   value="{laoyang:$info.suc_url}" ></td>
+				</tr></eq>
+			</table>	
+			<eq name="info.suc_id" value="2">
+			<volist name="ads" id="pic">
+			<hr style="border:0;border-bottom:1px solid #ddd;height:1px;" />
+			<table class="userinfoArea" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<input type="hidden" name="ad_id[]" value="{laoyang:$pic.id}" />
+			<tr>
+				<td>广告标题：</td>
+				<td><input type="input" class="px" id="title_1_{laoyang:$key}"  name="ad_title[]" style="width:300px"  value="{laoyang:$pic.title}" ></td>
+			</tr>
+			<tr>
+				<td>广告图片：</td>
+				<td><input type="text" name="ad_pic[]" value="{laoyang:$pic.pic}" class="px" id="thumb_1_{laoyang:$key}" style="width:300px;" />&ensp;&ensp;<a href="#Upload" onclick="upyunPicUpload('thumb_1_{laoyang:$key}',700,420,'{laoyang:$token}')" class="ChooseImage">上传</a>&ensp;&ensp;<a href="#viewImg" onclick="viewImg('thumb_1_{laoyang:$key}')" class="ChooseImage">预览</a></td>
+			</tr>
+			<tr>
+				<td>广告标连接：</td>
+				<td><input type="input" class="px" id="title_1_{laoyang:$key}"  name="ad_links[]" style="width:300px"  value="{laoyang:$pic.links}" >&ensp;&ensp;<a  href="{laoyang:$f_siteUrl}/index.php?g=User&m=Router&a=del_ads&id={laoyang:$pic.id}&type=rzdisplay">删除</a></td>
+			</tr>
+			</table>
+			</volist>
+			<div id="apphtml_1"></div>
+			</eq>
+			<hr style="border:0;border-bottom:1px solid #ddd;height:1px;" />
+			<table class="userinfoArea" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<eq name="info.suc_id" value="2"><tr>
+			<td colspan="2"><a href="javascript:addpic(1)" emun="<?php if($key){?>{laoyang:$key}<?php }else echo '0';?>" id="addpic">增加图片</a></td></tr></eq>
+			<tr>
+			<td colspan="2"><button type="submit"   class="btn btn-success left" onClick="submitFrom()">保存</button></td></tr>
+			</table>
+		
+		</div>
+		<div style="width:400px;">
+			<div class="iphone_box">
+			<div class="iphone_cont"><iframe src="./index.php?g=Home&m=Index&a=wifisuccess&id={laoyang:$info.id}&type=test" width="320" height="575"></iframe></div>
+			</div>
+		</div>
+		<br style="clear:both" />
+	</div>
+	
+	</form>
+	</div>
+</div>
+<include file="Public:footer"/>

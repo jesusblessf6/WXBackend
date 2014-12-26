@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>站点配置</title>
+<link href="{laoyang::RES}/images/main.css" type="text/css" rel="stylesheet">
+<link href="{laoyang::RES}/images/jquery-1.7.2.min.js" type="text/css" rel="stylesheet">
+<link href="{laoyang::RES}/images/jquery.form.js" type="text/css" rel="stylesheet">
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+</head>
+<body class="warp">
+<style>
+.set_top{background:url('{laoyang::RES}/images/set_top.png');height:60px;}
+.set_top li{font-weight: bold;float:left;width:98px;line-height:60px;text-align: center;background:url('{laoyang::RES}/images/set_top_li.png');}
+#set_top_li_bg{background:url('{laoyang::RES}/images/set_top_li_hover.png');}
+</style>
+<include file="Site:public" />
+<div id="artlist">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" id="addn">
+ <form id="myform" action="{laoyang::U('Site/insert')}" method="post">
+	 <tr> 
+	   <td  height="48" align="right"><strong>心跳间隔：</strong></td>
+	   <td><input type="text" name="interval" value="{laoyang::C('interval')}" class="ipt" size="45" /><span>&nbsp;&nbsp;</span>
+        </td>
+	   <td>单位为秒</td>
+      </tr>
+	 <tr> 
+      <td  height="48" align="right"><strong>心跳地址：</strong></td>
+      <td><input type="text" name="posturl" value="{laoyang::C('posturl')}" class="ipt" size="45" /><span>&nbsp;&nbsp;</span></td>
+      <td>负载均衡用,一般为自身URL</td>
+     </tr>
+      <tr> 
+      <td  height="48" align="right"><strong>跳转地址：</strong></td>
+      <td><input type="text" name="jumpurl" value="{laoyang::C('jumpurl')}" class="ipt" size="45" /><span>&nbsp;&nbsp;</span></td>
+      <td>认证成功后跳转地址</td>
+     </tr>
+	 <tr >
+	   <td width="182" height="48" align="right" valign="center" ><strong>是否启用第三方认证： </strong></td>
+	   <td width="127" valign="center" >
+	     <input type="radio" name="hotspot_enable" value="true" <php>if(C('hotspot_enable')==='true') echo checked;</php> />开启
+	     <input type="radio" name="hotspot_enable" value="false" <php>if(C('hotspot_enable')==='false') echo checked;</php> />关闭
+	     </td>
+	   <td width="283" valign="center" > </td>
+      </tr>
+  <tr >
+    <td width="182" height="48" align="right" valign="center" ><strong>第三方认证地址： </strong></td>
+    <td width="127" valign="center" ><input type="text" name="hotspot_authurl" value="{laoyang::C('hotspot_authurl')}" class="ipt" size="45" /> </td>
+    <td width="283" valign="center" > </td>
+    </tr>
+  <tr >
+    <td width="182" height="48" align="right" valign="center" ><strong>认证超时时间： </strong></td>
+    <td width="127" valign="center" ><input type="text" name="hotspot_timeout" value="{laoyang::C('hotspot_timeout')}" class="ipt" size="45" /> </td>
+    <td width="283" valign="center" >单位为秒 </td>
+    </tr>
+  <tr >
+    <td width="182" height="48" align="right" valign="center" ><strong>强制超时时间： </strong></td>
+    <td width="127" valign="center" ><input type="text" name="hotspot_kickout" value="{laoyang::C('hotspot_kickout')}" class="ipt" size="45" /> </td>
+    <td width="283" valign="center" > 
+      单位为秒 </td>
+    </tr>
+  <tr >
+    <td width="182" height="48" align="right" valign="center" ><strong>域名白名单： </strong></td>
+    <td width="127" valign="center" ><textarea name="hotspot_whiteurl" style="width:450px;height:60px;margin:5px 0 5px 0;" class="ipt">{laoyang::C('hotspot_whiteurl')}</textarea></td>
+    <td width="283" valign="center" >多个域名请用,&nbsp;隔开 </td>
+    </tr>
+  <tr >
+    <td width="182" height="48" align="right" valign="center" ><strong>IP白名单： </strong></td>
+    <td width="127" valign="center" >
+    <textarea style="width:450px;height:60px;margin:5px 0 5px 0;" class="ipt" name="hotspot_whiteip" type="text">{laoyang::C('hotspot_whiteip')}</textarea></td>
+    <td width="283" valign="center" >多个IP请用,&nbsp;隔开 </td>
+    </tr>
+
+  <tr >
+    <td width="182" height="48" align="right" valign="center" ><strong>是否启用JS注入： </strong></td>
+    <td width="127" valign="center" >
+    <input type="radio" name="inject_enable" value="true"      <php>if(C('inject_enable')==='true') echo checked;</php> >开启
+       <input type="radio" name="inject_enable" value="false" <php>if(C('inject_enable')==='false') echo checked;</php> >关闭
+       </td>
+    <td width="283" valign="center" > </td>
+    </tr>
+  <tr >
+    <td width="182" height="48" align="right" valign="center" ><strong>Js注入的地址： </strong></td>
+    <td width="127" valign="center" ><input type="text" name="inject_jsurl" value="{laoyang::C('inject_jsurl')}" class="ipt" size="45" /> </td>
+    <td width="283" valign="center" >注意不需要输入http:// </td>
+    </tr>
+  <tr >
+    <td width="182" height="48" align="right" valign="center" ><strong>是否启用劫持： </strong></td>
+    <td width="127" valign="center" >
+     <input type="radio" name="hijack_enable" value="true"      <php>if(C('hijack_enable')==='true') echo checked;</php> >开启
+       <input type="radio" name="hijack_enable" value="false" <php>if(C('hijack_enable')==='false') echo checked;</php> >关闭
+     </td>
+    <td width="283" valign="center" > </td>
+    </tr>
+  <tr >
+    <td width="182" height="48" align="right" valign="center" ><strong>劫持到的地址： </strong></td>
+    <td width="127" valign="center" ><input type="text" name="hijack_targeturl" value="{laoyang::C('hijack_targeturl')}" class="ipt" size="45" /> </td>
+    <td width="283" valign="center" >注意不需要输入http:// </td>
+    </tr>
+  <tr >
+    <td width="182" height="48" align="right" valign="center" ><strong>被劫持的地址： </strong></td>
+    <td width="127" valign="center" ><input type="text" name="hijack_hijackurl" value="{laoyang::C('hijack_hijackurl')}" class="ipt" size="45" /> </td>
+    <td width="283" valign="center" >注意不需要输入http://&nbsp;多个域名请用,&nbsp;隔开 </td>
+    </tr>
+  <tr >
+    <td width="182" height="48" align="right" valign="center" ><strong>是否启用推送： </strong></td>
+    <td width="127" valign="center" >
+      <input type="radio" name="pushing_enable" value="true"      <php>if(C('pushing_enable')==='true') echo checked;</php> >开启
+       <input type="radio" name="pushing_enable" value="false" <php>if(C('pushing_enable')==='false') echo checked;</php> >关闭 </td>
+    <td width="283" valign="center" > </td>
+    </tr>
+  <tr >
+    <td width="182" height="48" align="right" valign="center" ><strong>推送的间隔： </strong></td>
+    <td width="127" valign="center" ><input type="text" name="pushing_interval" value="{laoyang::C('pushing_interval')}" class="ipt" size="45" /> </td>
+    <td width="283" valign="center" > </td>
+    </tr>
+  <tr >
+    <td width="182" height="48" align="right" valign="center" ><strong>推送的URL： </strong></td>
+    <td width="127" valign="center" ><input type="text" name="pushing_url" value="{laoyang::C('pushing_url')}" class="ipt" size="45" /> </td>
+    <td width="283" valign="center" >注意不需要输入http:// </td>
+    </tr>
+  <tr >
+    <td width="182" height="48" align="right" valign="center" ><strong>配置的版本号： </strong></td>
+    <td width="127" valign="center" ><input type="text" name="cfgver" value="{laoyang::C('cfgver')}" class="ipt" size="45" /> </td>
+    <td width="283" valign="center" > </td>
+    </tr>
+	<input type="hidden" name="files" value="Heartbeat.php" />
+    <tr> 
+      <td height="48" colspan="3">
+		  <div id="addkey"></div>
+		  <div style="padding-left:100px;">
+			<input type="submit" value="保存设置" />
+		  </div>
+	  </td>
+    </tr>
+	</form>
+</table>
+
+
+</div>
+</body>
+</html>

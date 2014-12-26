@@ -1,0 +1,111 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{laoyang::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{laoyang::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{laoyang::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="{laoyang::RES}/js/date/WdatePicker.js"></script>
+<script type="text/javascript" src="{laoyang::RES}/js/formCheck/formcheck.js"> </script>
+<script>
+				var editor;
+				KindEditor.ready(function(K) {
+					editor = K.create('#contentt', {
+					resizeType : 1,
+					allowPreviewEmoticons : false,
+					allowImageUpload : false,
+					items : [
+					'source','undo','clearhtml','hr',
+					'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+					'insertunorderedlist', '|', 'emoticons', 'image','link', 'unlink','baidumap','lineheight','table','anchor','preview','print','template','code','cut']
+					});
+				});
+				</script>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:10px;" >
+<include file="Public:hangye"/>
+    <h4>添加海报：</h4>
+<div class="tab">
+<ul>
+<li class="tabli" id="tab0"><a href="{laoyang::U('Dianying/index',array('token'=>$token))}">电影院简介</a></li>
+<li class="tabli" id="tab0"><a href="{laoyang::U('Dianyingsub/index',array('token'=>$token))}">影厅介绍</a></li>
+<li class="tabli" id="tab0"><a href="{laoyang::U('Dianyingunits/index',array('token'=>$token))}">最近上映</a></li>
+<li class="current tabli" id="tab0"><a href="{laoyang::U('Dianyingposter/index',array('token'=>$token))}">电影海报</a></li>
+<li class="tabli" id="tab0"><a href="{laoyang::U('Dianyingphoto/index',array('token'=>$token))}">电影相册</a></li>
+<li class="tabli" id="tab0"><a href="{laoyang::U('Dianyingcom/index',array('token'=>$token))}">精彩影评</a></li>
+</ul>
+</div>
+    <a href="javascript:history.go(-1);"  class="right btn btn-info" style="margin-top:-27px" >返回</a></div>
+  <div class="msgWrap">
+    <form class="form" method="post"   action="{laoyang::U('Dianyingposter/insert')}" enctype="multipart/form-data" >
+      <TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+        <TBODY>
+          <TR>
+            <input type="hidden" class="px" id="id" value="{laoyang:$info.id}" name="id" style="width:500px" >
+            <input type="hidden" class="px" id="token" value="{laoyang:$_SESSION["token"]}" name="token" style="width:500px" >
+          <TR>
+            <TH valign="top"><label for="keyword">片名</label></TH>
+            <TD><input type="input" class="px" id="name" value="" name="name" style="width:300px" onfocus="leave();"  >
+              <br />
+              请输入关键词,10个字以内 </TD>
+            <TD></TD>
+          </TR>
+          <TR>
+            <TH valign="top"><label for="keyword">播放影厅：</label></TH>
+            <TD><select name="subestatename"  style="width:310px" onfocus="leave();">
+                <volist name="info" id="vo">
+                  <option  value="{laoyang:$vo.title}">{laoyang:$vo.title}</option>
+                </volist>
+              </select>
+              <br/>
+            </TD>
+            <TD></TD>
+          </TR>
+      <TR>
+        <TH valign="top"><label for="keyword">海报1：</label></TH>
+        <TD><input type="input" class="px" id="picurl" value="{laoyang:$info.picurl}" name="picurl" style="width:400px"><script src="/tpl/static/upyun.js"></script>
+              <a href="###" onClick="chooseFile('picurl','background')" class="ChooseImage">选择</a> <a href="###" onClick="upyunPicUpload('picurl',1500,1000,'{laoyang:$token}')" class="ChooseImage">上传</a> <a href="###" onClick="viewImg('picurl')" class="ChooseImage">预览</a></TD>
+        <TD></TD>
+      </TR>
+      <TR>
+        <TH valign="top"><label for="keyword">海报2：</label></TH>
+        <TD><input type="input" class="px" id="picurl1" value="{laoyang:$info.picurl1}" name="picurl1" style="width:400px"><script src="/tpl/static/upyun.js"></script>
+              <a href="###" onClick="chooseFile('picurl1','background')" class="ChooseImage">选择</a> <a href="###" onClick="upyunPicUpload('picurl1',1500,1000,'{laoyang:$token}')" class="ChooseImage">上传</a> <a href="###" onClick="viewImg('picurl1')" class="ChooseImage">预览</a></TD>
+        <TD></TD>
+      </TR>
+      <TR>
+        <TH valign="top"><label for="keyword">海报3：</label></TH>
+        <TD><input type="input" class="px" id="picurl2" value="{laoyang:$info.picurl2}" name="picurl2" style="width:400px" ><script src="/tpl/static/upyun.js"></script>
+              <a href="###" onClick="chooseFile('picurl2','background')" class="ChooseImage">选择</a> <a href="###" onClick="upyunPicUpload('picurl2',1500,1000,'{laoyang:$token}')" class="ChooseImage">上传</a> <a href="###" onClick="viewImg('picurl2')" class="ChooseImage">预览</a></TD>
+        <TD></TD>
+      </TR>
+      <TR>
+        <TH valign="top"><label for="keyword">海报4：</label></TH>
+        <TD><input type="input" class="px" id="picurl3" value="{laoyang:$info.picurl3}" name="picurl3" style="width:400px" ><script src="/tpl/static/upyun.js"></script>
+              <a href="###" onClick="chooseFile('picurl3','background')" class="ChooseImage">选择</a> <a href="###" onClick="upyunPicUpload('picurl3',1500,1000,'{laoyang:$token}')" class="ChooseImage">上传</a> <a href="###" onClick="viewImg('picurl3')" class="ChooseImage">预览</a></TD>
+        <TD></TD>
+      </TR>
+      <TR>
+        <TH valign="top"><label for="keyword">海报5：</label></TH>
+        <TD><input type="input" class="px" id="picurl4" value="{laoyang:$info.picurl4}" name="picurl4" style="width:400px" ><script src="/tpl/static/upyun.js"></script>
+              <a href="###" onClick="chooseFile('picurl4','background')" class="ChooseImage">选择</a> <a href="###" onClick="upyunPicUpload('picurl4',1500,1000,'{laoyang:$token}')" class="ChooseImage">上传</a> <a href="###" onClick="viewImg('picurl4')" class="ChooseImage">预览</a></TD>
+        <TD></TD>
+      </TR>
+          <TR>
+            <TH></TH>
+            <TD><button type="submit"  name="button"  class="btn btn-success left" >保存</button>
+              <div class="clr"></div></TD>
+          </TR>
+        </TBODY>
+      </TABLE>
+    </form>
+  </div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+</div>
+<!--底部-->
+</div>
+<include file="Public:footer"/>

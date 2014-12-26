@@ -1,0 +1,61 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/cymain.css" />
+<script src="{laoyang::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{laoyang::STATICS}/artDialog/plugins/iframeTools.js"></script>
+<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+<include file="Public:hangye"/>
+<div class="clr"></div>
+<include file="Estate:menu"/>
+<div class="cLineB">
+  <h4>添加全景图 </h4>
+ </div>
+ <!--tab start-->
+
+<!--tab end-->
+    <div class="msgWrap bgfc" style="margin-top:10px;">
+	  <form class="form" method="post" action="" target="_top" enctype="multipart/form-data">
+
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+					<th width="120">所属分类：</th>
+                    <td>
+                        <select id="panorama_id" name="panorama_id" class="input-medium" schoolSet>
+                                          <option value="0">请选择分类</option>
+                                            <volist name="panorama" id="vo">
+                                               <option value="{laoyang:$vo['pid']}" <if condition="$vo['pid'] eq $housetype['panorama_id']">selected="selected"</if>>{laoyang:$vo['name']}</option>
+                                            </volist>
+                                        </select>
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">如果没有，请 <a href="{laoyang::U('Estate/Panorama_catAdd',array('token'=>$token))}" class="btn"><strong><font color='red'>点击这里</strong></font></a>添加</span>
+                    </td>
+
+				</tr>
+                  <tr>
+                    <th>选择全景相册：</th>
+                    <td>
+                        <select id="panorama_id" name="panorama_id" class="input-medium" schoolSet>
+                                          <option value="0">请选择360全景相册</option>
+                                            <volist name="panorama" id="vo">
+                                               <option value="{laoyang:$vo['pid']}" <if condition="$vo['pid'] eq $housetype['panorama_id']">selected="selected"</if>>{laoyang:$vo['name']}</option>
+                                            </volist>
+                                        </select>
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">如果没有，请到 <a href="{laoyang::U('Panorama/add',array('token'=>$token))}" class="btn"><strong><font color='red'>360°全景</strong></font></a>添加</span>
+                    </td>
+                </tr>
+				<th>&nbsp;</th>
+					<td>
+					<input type="hidden" name="token" value="{laoyang:$token}" />
+						<button type="submit" name="button" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div>
+
+
+        </div>
+<include file="Public:footer"/>

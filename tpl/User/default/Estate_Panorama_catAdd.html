@@ -1,0 +1,38 @@
+ <include file="Public:head" /> 
+ <script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+  <div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+<include file="Public:hangye"/> 
+   <div class="cLineB"> 
+    <h4>添加<span class="red">{laoyang:$catData.name}</span>的全景分类</h4> 
+    <a href="{laoyang::U('Estate/Panorama',array('token'=>$token,'id'=>$id))}" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+   </div> 
+   <form class="form" method="post" action="" enctype="multipart/form-data"> 
+    <input type="hidden" name="id" value="{laoyang:$set.id}" /> 
+     
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+       <tr> 
+        <th>当前户型：</th> 
+        <td>{laoyang:$catData.norms}</td> 
+       </tr>
+       <tr>
+        <th>分类名称：</th> 
+        <td><input type="text" name="value" value="{laoyang:$set.value}" class="px"/></td> 
+       </tr>
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+       <input type="hidden" value="{laoyang::$type}" name="type" />
+       <input type="hidden" value="{laoyang::$catid}" name="catid" />
+       <input type="hidden" value="{laoyang::$token}" name="token" />
+       <button type="submit" name="button" class="btnGreen">保存</button> &nbsp; <a href="{laoyang::U('Estate/Panorama',array('token'=>$token,'id'=>$id))}" class="btnGray vm">取消</a></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+    
+   </form> 
+  </div> 
+  <include file="Public:footer" />

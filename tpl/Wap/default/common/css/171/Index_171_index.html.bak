@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{baowei:$tpl.wxname}</title>
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta charset="utf-8">
+        <link href="{baowei::RES}/css/171/css/cate52_.css" rel="stylesheet" type="text/css" />
+    <link href="{baowei::RES}/css/171/css/iscroll.css" rel="stylesheet" type="text/css" />
+    <style>
+        .banner img
+        {
+            width: 100%;
+        }
+        .themeStyle
+        {
+            background-color: #E83407 !important;
+        }
+         
+    </style>
+    <script src="{baowei::RES}/css/171/js/iscroll.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var myScroll;
+
+        function loaded() {
+            myScroll = new iScroll('wrapper', {
+                snap: true,
+                momentum: false,
+                hScrollbar: false,
+                onScrollEnd: function () {
+                    document.querySelector('#indicator > li.active').className = '';
+                    document.querySelector('#indicator > li:nth-child(' + (this.currPageX + 1) + ')').className = 'active';
+                }
+            });
+
+
+        }
+
+        document.addEventListener('DOMContentLoaded', loaded, false);
+    </script>
+</head>
+<body id="cate52">
+        <div class="banner">
+            <div id="wrapper">
+                <div id="scroller">
+                    <ul id="thelist">
+					      <volist name="flash" id="so">
+                            <li>
+                                <p>
+                                    {baowei:$so.name}</p>
+                                <a href="{baowei:$so.url}">
+                                    <img src="{baowei:$so.img}"></a></li>
+                            </volist>
+                    </ul>
+                </div>
+            </div>
+            <div id="nav">
+                <div id="prev" onclick="myScroll.scrollToPage('prev', 0,400,3);return false">
+                    &larr; prev</div>
+                <ul id="indicator"><volist name="flash" id="so">
+                        <li class='active'> {baowei:$so.i}</li>
+                       
+                        </volist>
+                </ul>
+                <div id="next" onclick="myScroll.scrollToPage('next', 0,400,3);return false">
+                    next &rarr;</div>
+            </div>
+            <div class="clr">
+            </div>
+        </div>
+    
+    <div id="insert1">
+    </div>
+    <ul class="mainmenu">
+        <li><a href="http://www.wydapp.com/html/list/27730?ukey=">
+            <p>
+                <span>分类3</span> <i>分类描述3</i></p>
+            <b></b></a></li>
+        <li><a href="http://www.wydapp.com/html/list/27726?ukey=">
+            <p>
+                <span>分类1</span> <i>分类描述1</i></p>
+            <b></b></a></li>
+        <li><a href="http://www.wydapp.com/html/list/27728?ukey=">
+            <p>
+                <span>分类2</span> <i>分类描述2</i></p>
+            <b></b></a></li>
+        <li><a href="http://www.wydapp.com/html/list/27731?ukey=">
+            <p>
+                <span>分类4</span> <i>分类描述4</i></p>
+            <b></b></a></li>
+        <li><a href="http://www.wydapp.com/html/list/27796?ukey=">
+            <p>
+                <span>分类9</span> <i>分类描述9</i></p>
+            <b></b></a></li>
+        <li><a href="http://www.wydapp.com/html/list/27797?ukey=">
+            <p>
+                <span>分类8</span> <i>分类描述8</i></p>
+            <b></b></a></li>
+        <li><a href="http://www.wydapp.com/html/list/27798?ukey=">
+            <p>
+                <span>分类7</span> <i>分类描述7</i></p>
+            <b></b></a></li>
+        <li><a href="http://www.wydapp.com/html/list/27799?ukey=">
+            <p>
+                <span>分类6</span> <i>分类描述6</i></p>
+            <b></b></a></li>
+        <li><a href="http://www.wydapp.com/html/list/27800?ukey=">
+            <p>
+                <span>分类5</span> <i>分类描述5</i></p>
+            <b></b></a></li>
+    <div class="clr">
+    </div>
+</ul>
+
+    <script>
+        var count = document.getElementById("thelist").getElementsByTagName("img").length;
+        for (i = 0; i < count; i++) {
+            document.getElementById("thelist").getElementsByTagName("img").item(i).style.cssText = " width:" + document.body.clientWidth + "px";
+        }
+        document.getElementById("scroller").style.cssText = " width:" + document.body.clientWidth * count + "px";
+
+        setInterval(function () {
+            myScroll.scrollToPage('next', 0, 400, count);
+        }, 3500);
+
+        window.onresize = function () {
+            for (i = 0; i < count; i++) {
+                document.getElementById("thelist").getElementsByTagName("img").item(i).style.cssText = " width:" + document.body.clientWidth + "px";
+            }
+            document.getElementById("scroller").style.cssText = " width:" + document.body.clientWidth * count + "px";
+        } 
+
+    </script>
+    
+
+    <div class="copyright">
+        <br />
+        
+    </div>
+    <div style="display: none">
+    </div>
+    
+        <div style="display:none;">
+            <img src="other/wapstat.php?siteid=5681455&r=&rnd=1474021105" width="0" height="0" />
+            <img src="other/hm.gif?si=13275e4b8aafbd762768fc7d5d627104&amp;et=0&amp;nv=0&amp;st=4&amp;lt=1400205595&amp;v=wap-1-0.1&amp;rnd=1474021105" width="0" height="0" />
+        </div>
+</body>
+</html>

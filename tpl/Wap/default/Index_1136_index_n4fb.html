@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+       <if condition="$zd['status'] eq 1">
+            {laoyang:$zd['code']}
+        </if>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>{laoyang:$tpl.wxname}</title>
+
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<meta name="format-detection" content="telephone=no">
+
+<meta charset="utf-8">
+
+<link href="./tpl/static/tpl/1136/css/cate8_2.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+
+
+ <div id="insert1" ></div>
+
+<ul class="mainmenu">
+
+
+
+   <volist name="info" id="vo">
+
+   
+
+	<li>
+
+		<div class="menubtn">
+
+			<a href="<if condition="$vo['url'] eq ''">{laoyang::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}<else/>{laoyang:$vo.url|htmlspecialchars_decode}</if>">
+
+				<div class="menuimg"><img src="{laoyang:$vo.img}" /><p class="menutitle">{laoyang:$vo.name}</p></div>
+
+			
+
+		</a>
+
+		</div>
+
+		
+
+	</li>
+
+   </volist>
+
+ 	
+
+<div class="clr"></div>
+
+</ul>
+
+
+
+
+
+ <div id="insert2" ></div>
+
+  <include file="Index:styleInclude"/><include file="$cateMenuFileName"/> 
+
+	<if condition="ACTION_NAME eq 'index'">
+
+		<script type="text/javascript">
+
+			window.shareData = {  
+
+					"moduleName":"Index",
+
+					"moduleID": '0',
+
+					"imgUrl": "{laoyang:$homeInfo.picurl}", 
+
+					"timeLineLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+
+					"sendFriendLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+
+					"weiboLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+
+					"tTitle": "{laoyang:$homeInfo.title}",
+
+					"tContent": "{laoyang:$homeInfo.info}"
+
+				};
+
+		</script>
+
+	<else />
+
+		<script type="text/javascript">
+
+			window.shareData = {  
+
+				"moduleName":"Index",
+
+				"moduleID": '1',
+
+				"imgUrl": "{laoyang:$homeInfo.picurl}", 
+
+				"timeLineLink": "{laoyang::C('site_url')}{laoyang::U(Index/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+
+				"sendFriendLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+
+				"weiboLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+
+				"tTitle": "{laoyang:$homeInfo.title}",
+
+				"tContent": "{laoyang:$homeInfo.info}"
+
+			};
+
+		</script>	
+
+	
+
+	</if>
+
+{laoyang:$shareScript}
+
+<include file="Public:footer"/>

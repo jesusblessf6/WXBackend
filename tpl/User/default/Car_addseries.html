@@ -1,0 +1,108 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{laoyang::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{laoyang::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{laoyang::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{laoyang::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="{laoyang::RES}/css/cymain.css" />
+<script src="{laoyang::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{laoyang::STATICS}/artDialog/plugins/iframeTools.js"></script>
+<script>
+
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#info', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+'source','undo','plainpaste','wordpaste','clearhtml','quickformat','selectall','fullscreen','fontname', 'fontsize','subscript','superscript','indent','outdent','|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline','hr']
+});
+});
+</script>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <h4>添加车系</h4>
+  <include file="Car:menu"/>
+  <a href="javascript:history.go(-1);return false;" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+ <!--tab start-->
+
+<!--tab end-->
+    <div class="msgWrap bgfc" style="margin-top:10px;">
+      <form class="form" method="post" action="" enctype="multipart/form-data">
+  <if condition="$series['id'] neq ''">
+         <input type="hidden" name="id" id="id" value="{laoyang:$series['id']}"/>
+ </if>
+        <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tbody>
+                <tr>
+                    <th width="120">品牌：</th>
+                    <td> 
+                         <select class="input-medium" name="brand">
+                         <volist name="brands" id="vo">
+						 <option value="{laoyang:$vo['id']}@{laoyang:$vo['name']}" <if condition="$vo[id] eq $bid"> selected="selected" </if> >{laoyang:$vo['name']}</option>
+						</volist>
+                        </select>
+                    </td>
+                </tr>
+               <tr>
+                    <th>车系名称：</th>
+                    <td>
+                        <input type="text" name="name" id="name" class="input-medium px" data-rule-required="true" data-rule-maxlength="20" value="{laoyang:$series['name']}"/>
+                        <span class="maroon">*</span>
+                        <span class="help-inline">请添加车系的完整名称，如“奔驰A级”</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="120">车系简称：</th>
+                    <td>
+                      <input type="text" name="shortname" id="shortname" class="px" data-rule-required="true" data-rule-maxlength="4" value="{laoyang:$series['shortname']}"/>
+                      <span class="maroon">*</span>
+                      <span class="help-inline">请添加车系的简称,如“A级”；手机端显示的是车系简称</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="120">图片：</th>
+                    <td> 
+                        <div class="controls">
+                                        <img class="thumb_img" id="picture_src" src="{laoyang:$series['picture']|default='tpl/User/default/common/car/lanbo8.jpg'}" style="max-height: 100px;" />
+                                        <input type="text" class="px" id="picture" name="picture" value="{laoyang:$series['picture']|default='tpl/User/default/common/car/lanbo8.jpg'}" />
+                                        <span class="maroon">*</span>
+                                        <span class="help-inline">
+                                            <script src="{laoyang::STATICS}/upyun.js"></script><a href="###" onclick="upyunPicUpload('picture',640,180,'{laoyang:$token}')" class="ChooseImage">上传</a> <a href="###" onclick="viewImg('picture')" class="ChooseImage">预览</a>
+                                        </span>
+                                        <span class="help-inline">建议图片尺寸640*180，图片大小不超过300K</span>
+                                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>显示顺序：</th>
+                    <td> 
+                    <input type="text" id="sort" name="sort" value="{laoyang:$series['sort']|default=1}" class="px" data-rule-required="true" data-rule-number="true" /><span class="maroon">*</span>
+                        <span class="help-inline">数字越大越靠前</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="120">车系亮点：</th>
+                    <td>  
+ <textarea name="info" style="width:605px;height:120px"  placeholder="请用简短的文字描述该车系的亮点所在,不超过200字"  id="info"  data-rule-maxlength="200">{laoyang:$series['info']}</textarea>
+
+                    </td>
+                </tr>
+				<tr>
+                <th>&nbsp;</th>
+                    <td>
+                        <input type="hidden" name="token" value="{laoyang:$token}" />
+                        <button type="submit" name="button" class="btnGreen">保存</button>
+                        <a href="javascript:history.go(-1);" class="btn btn-danger">取消</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+  </div> 
+ 
+  
+        </div>
+<include file="Public:footer"/>

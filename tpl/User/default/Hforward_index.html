@@ -1,0 +1,48 @@
+﻿<include file="Public:head"/>
+	<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+          <div class="cLineB">
+		 
+            <div class="pageNavigator left">
+            <a href="{laoyang::U('Hforward/add')}" title="发起转发有礼活动" class="btn btn-primary btn_submit  J_ajax_submit_btn">发起转发有礼活动</a>
+            </div>
+          
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+					
+					<th  width="25%" class="time">关键词</th>
+					<th width="25%">标题</th>
+					
+					<th width="25%">结束时间</th>
+					
+					<th width="25%" class="norightborder">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr></tr>
+                  <volist id="list" name="list">
+                <tr>
+                  <td>{laoyang:$list.keyword}</td>
+                  <td>{laoyang:$list.title}</td>
+                
+                  <td>{laoyang:$list.statdate|date='Y-m-d',###}</td>
+                  
+                  <td class="norightborder"><a class="btn btn-primary btn_submit  J_ajax_submit_btn" href="{laoyang::U('Hforward/edit',array('id'=>$list['id']))}" title="编辑">编辑</a> <a class="btn btn-primary btn_submit  J_ajax_submit_btn" href="javascript:drop_confirm('您确定要删除吗?删除会把投票结果也一起删除！', '{laoyang::U('Hforward/del',array('id'=>$list['id']))}');">删除</a> 
+                   
+				   <a  class="btn btn-primary btn_submit  J_ajax_submit_btn" href="{laoyang::U('Hforward/item',array('id'=>$list['id']))}">中奖管理</a> 
+                   </td>
+          
+                </tr>
+                  </volist>
+      			                
+                  
+              </tbody>
+            </table>
+            
+   </div> 
+          
+  </div>
+<include file="Public:footer"/>

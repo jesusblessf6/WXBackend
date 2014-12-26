@@ -1,0 +1,57 @@
+<include file="Public:head"/>
+<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+   <include file="Wifi:menu"/>
+    <h4>认证页设置</h4>
+  </div>
+	<div id="div_ptype">
+		<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+		<thead>
+		<tr>
+		<th style=" width:180px;">电话/用户名</th>
+		<th style=" width:180px;">MAC地址</th>
+		<th style=" width:100px;">网内IP</th>
+		<th style=" ">路由信息</th>      
+		<th style=" width:150px;">连接时间</th>
+		<th style=" width:150px;" class="norightborder">操作</th>
+		</tr>
+		</thead>
+		<volist name="list" id="actinfo">
+		<tr>
+		<td>{laoyang:$actinfo.phone} / {laoyang:$actinfo.user} </td>
+		<td>{laoyang:$actinfo.rptk_user_mac} (共 {laoyang:$actinfo.count} 次)</td>
+		<td>{laoyang:$actinfo.rptk_user_ip }</td>
+		<td>{laoyang:$actinfo.rptk_key}</td>
+		<td>
+		<?php echo date('Y-m-d H:i:s',$actinfo['use_time']);?>
+		</td>
+		<td align="center" class="norightborder"><a href="{laoyang::U('Router/unauth_user',array('id'=>$actinfo['id']))}">踢下线</a></td>
+		</volist>
+		<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td>注:目前不能获取用户的在线状态.非微信认证也不能踢下线.</td>
+		</tr>
+		</table>
+	</div>
+	<div class="pages">{laoyang:$page}</div>
+</div>
+<if condition="$wid eq null">
+<style>
+.ro_list li {float:left;padding:10px 22px 5px;line-height:200%}
+.ro_list li img{width:150px ;height:150px;border-radius:5px;border:1px solid #ddd;margin-bottom:10px;}
+.ro_title {font-size:16px;color:#666;font-weight:bold;}
+</style>
+<div style="background:#ccc;border:4px solid #666;filter:alpha(opacity=70);-moz-opacity:0.7;-khtml-opacity: 0.7;opacity: 0.7;width:70%;height:500px;position:absolute;top:20%;left:15%"></div>
+<div style="width:64%;height:500px;position:absolute;top:20%;left:15%;position:absolute;padding:1% 3%;">
+	<h3 class="ro_title">请选择路由节点：</h3>
+	<ul class="ro_list">
+		<volist name="info" id="o">
+		<li><a href="{laoyang::U('Router/rzdisplay',array('token'=>$token,'id'=>$o['id']))}"><img src="{laoyang::STATICS}/wifi/wifi.jpg" /><br />{laoyang:$o.shop_name}<br />{laoyang:$o.name}</a></li>
+		</volist>
+	</ul>
+</div>
+</if>
+<include file="Public:footer"/>

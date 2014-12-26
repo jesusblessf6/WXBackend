@@ -1,0 +1,71 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default">
+</script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js">
+</script>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+  <h4>多人在线客服设定： </h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+         
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="" target="_top" >	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+				  <th valign="top"><span class="red">*</span>关键词：</th>
+				  <td>
+					<input type="text" name="keyword" id="keyword" value="{laoyang:$kefuonline.keyword}"
+                            class="px" style="width:200px;"></td>
+				</tr>
+				<tr>
+				  <th valign="top">标题：</th>
+				  <td>
+					<input type="text" name="title" id="title" value="{laoyang:$kefuonline.title}"
+                            class="px" style="width:200px;"></td>
+				</tr>
+				<tr>
+                        <th>
+                            封面图片：
+                        </th>
+                        <td>
+                            <input type="text" name="picurl" id="picurl" value="{laoyang:$kefuonline.picurl}"
+                            class="px" style="width:550px;">
+                            <script src="/tpl/static/upyun.js">
+                            </script>
+                            <a href="###" onclick="upyunPicUpload('picurl',700,420,'{pigcms:$token}')"
+                            class="ChooseImage">
+                                上传
+                            </a>
+                            <a href="###" onclick="viewImg('picurl')" class="ChooseImage">
+                                预览
+                            </a>
+                        </td>
+                </tr>
+				<tr>
+					<th width="120">JS代码(浮动)：</br>（微网站）</th>
+					<td><textarea style="width:560px;height:75px" name="info" id="info" class="px">{laoyang:$kefuonline.info}</textarea></td>
+				</tr>
+				<tr>
+					<th>超链接(直链)：</br>（直接聊天）</th>
+					<td><input type="text" name="info2" id="info2" value="{laoyang:$kefuonline.info2}" class="px" style="width:550px;">
+					</td>
+				</tr>
+				<tr>
+				<th></th>
+				<td>没有代码？ <a target="_blank" href="http://agent.kuaishang.cn/agent/member/index/167.htm">点击这里免费申请代码</a></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td>
+						<button type="submit" name="button" class="btnGreen">保存</button> &nbsp;&nbsp;<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+ 
+  
+        </div>
+<include file="Public:footer"/>

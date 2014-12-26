@@ -1,0 +1,77 @@
+<include file="Public:head"/>
+     
+		<link rel="stylesheet" type="text/css" href="http://stc.weimob.com/css/todc_bootstrap_button.css?2014-02-25-10" media="all" />
+		<link rel="stylesheet" type="text/css" href="http://stc.weimob.com/css/themes.css?2014-02-25-10" media="all" />
+		<link rel="stylesheet" type="text/css" href="http://stc.weimob.com/css/inside.css?2014-02-25-10" media="all" />
+		<script type="text/javascript" src="http://stc.weimob.com/src/jQuery.js?2014-02-25-10"></script>
+		<script type="text/javascript" src="http://stc.weimob.com/src/bootstrap_min.js?2014-02-25-10"></script>
+		<script type="text/javascript" src="http://stc.weimob.com/src/plugins/form/jquery_form_min.js?2014-02-25-10"></script>
+		<script type="text/javascript" src="http://stc.weimob.com/src/plugins/validation/jquery_validate_min.js?2014-02-25-10"></script>
+		<script type="text/javascript" src="http://stc.weimob.com/src/plugins/validation/jquery_validate_methods.js?2014-02-25-10"></script>
+		<script type="text/javascript" src="http://stc.weimob.com/src/inside.js?2014-02-25-10"></script>
+		<script type="text/javascript" src="http://stc.weimob.com/src/plugins/highcharts/highcharts.js?2014-02-25-10"></script>
+		<script type="text/javascript" src="http://stc.weimob.com/src/plugins/highcharts/highcharts_more.js?2014-02-25-10"></script>
+<if condition="$ischild neq 1">
+ <include file="Public:hangye"/>
+  <div class="cLineB">
+</if>
+	    <div id="main">
+        <div class="container-fluid">
+
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="box">
+                        <div class="box-title">
+                            <div class="span10">
+                                <h3><i class="icon-bar-chart"></i>竞猜统计</h3>
+                            </div>
+                            <div class="span2"><a class="btn" href="Javascript:window.history.go(-1)">返回</a></div>
+                        </div>
+
+                        <div class="box-content">
+                            <ul id="mytab" class="nav nav-tabs">
+                                <li class="active"><a href="#chart" data-toggle="tab">统计图表</a></li>
+                       
+                              
+                            </ul>
+                              <div class="tab-content">
+                                    <div class="tab-pane active" id="chart">
+                                        <div class="span12">
+                                            <h2>比赛竞猜统计</h2>
+                                            <div id="visitData" style="width: 97.5%; height: 300px;"></div>
+                                           
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            var chart;
+            $(document).ready(function () {
+                new Highcharts.Chart({
+                    chart: { renderTo: 'visitData', type: 'line', marginRight: 30, marginBottom: 25 },
+                    title: { text: '竞猜结果统计', x: -20 },
+                    xAxis: { categories: ['{laoyang:$info.zhuduiname}','平','{laoyang:$info.keduiname}'] },
+                    yAxis: {
+                        title: { text: '竞猜结果统计' },
+                        plotLines: [{ value: 0, width: {laoyang:$maxvalue},allowDecimals:false, color: '#808080' }]
+                    },
+                    tooltip: {
+                        formatter: function () { return this.x + ': ' + this.y + '人'; }
+                    },
+                    series: [{ name: "竞猜结果统计", data: [{laoyang:$result.zhuduinums|default='0'},{laoyang:$result.pingnums|default='0'},{laoyang:$result.funums|default='0'}] }],
+                    legend: { enabled: false }
+                });
+               
+            });
+        });
+</script>
+
+<include file="Public:footer"/>

@@ -1,0 +1,31 @@
+
+	<if condition="ACTION_NAME eq 'index'">
+		<script type="text/javascript">
+			window.shareData = {  
+					"moduleName":"Index",
+					"moduleID": "0",
+					"imgUrl": "{laoyang:$homeInfo.picurl}", 
+					"timeLineLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"sendFriendLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"weiboLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"tTitle": "{laoyang:$homeInfo.title}",
+					"tContent": "{laoyang:$homeInfo.info}"
+				};
+		</script>
+	<else />
+		<script type="text/javascript">
+			window.shareData = {  
+				"moduleName":"NewsList",
+				"moduleID": "{laoyang:$_GET['classid']|intval}",
+				"imgUrl": "{laoyang:$thisClassInfo.img}", 
+				"timeLineLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"sendFriendLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"weiboLink": "{laoyang::C('site_url')}{laoyang::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"tTitle": "{laoyang:$thisClassInfo.name}",
+				"tContent": "{laoyang:$thisClassInfo.info}"
+			};
+		</script>	
+	
+	</if>
+	
+{laoyang:$shareScript}
